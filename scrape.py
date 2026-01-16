@@ -2,77 +2,70 @@ import requests
 import json
 import datetime
 
-#爬取dental 的网站
+# Scrape Dental Cafe website
 TARGET_URL_TEMPLATE = "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sbu-eats-events/menu-type/dental-cafe/{year}/{month}/{day}/?format=json"
 
 def fetch_dental_cafe_menu():
+    # Get today's date in Eastern Time (UTC - 5 hours)
+    eastern_time = datetime.datetime.utcnow() - datetime.timedelta(hours=5)
     
-    # 日期美东
-    today = datetime.datetime.utcnow() - datetime.timedelta(hours=5)
-    
-    #填充个位日期
+    # Format URL with zero-padded dates
     url = TARGET_URL_TEMPLATE.format(
-        year=today.year,
-        month=f"{today.month:02d}",
-        day=f"{today.day:02d}"
+        year=eastern_time.year,
+        month=f"{eastern_time.month:02d}",
+        day=f"{eastern_time.day:02d}"
     )
-
-    print(f"开始运行了： {url}")
+    print(f"Fetching from: {url}")
     
     headers = {"User-Agent": "Mozilla/5.0 (SBU Student Project)"}
-
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()
         data = response.json()
-
         todays_menu = []
-        date_str = today.strftime("%Y-%m-%d")
+        date_str = eastern_time.strftime("%Y-%m-%d")
         
         found_today = False
-
-        #找到今天
+        # Find today's menu
         for day_data in data.get('days', []):
             if day_data.get('date') == date_str:
                 found_today = True
                 menu_items = day_data.get('menu_items', [])
                 
-                print(f"找到日期 {date_str}，共有 {len(menu_items)} 数据。")
-
+                print(f"Found date {date_str} with {len(menu_items)} items.")
                 for item in menu_items:
                     food_obj = item.get('food')
                     
                     if food_obj is None:
                         continue 
-
                     food_name = food_obj.get('name', 'Unknown Name')
                     price = item.get('price', '')
-
                     todays_menu.append({
                         "name": food_name,
                         "price": price,
                     })
                 break 
-
-        #今天没数据？
+        
+        # No data for today?
         if not found_today:
-            print(f"API 数据里没有 {date_str} 这一天。")
+            print(f"API data does not contain {date_str}.")
         else:
-            print(f"有效菜品: {len(todays_menu)} 个。")
-
-        # 写入jsonn文件
+            print(f"Valid menu items: {len(todays_menu)}.")
+        
+        # Write to JSON file - FIXED: Use eastern_time instead of datetime.now()
         output = {
             "date": date_str,
             "location": "Dental Cafe",
             "menu": todays_menu,
-            "updated_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "updated_at": eastern_time.strftime("%Y-%m-%d %H:%M:%S EST")  # Changed this line
         }
-
         with open('dental_cafe.json', 'w', encoding='utf-8') as f:
             json.dump(output, f, indent=4, ensure_ascii=False)
-
+        
+        print(f"Successfully updated dental_cafe.json with {len(todays_menu)} items!")
+        
     except Exception as e:
-        print(f"严重错误: {e}")
+        print(f"Error: {e}")
         import traceback
         traceback.print_exc()
 
