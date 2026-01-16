@@ -1,10 +1,696 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Seawolf Dine</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wofie Dine - Campus Dining</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background:  linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background:  linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1. 5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom:  0.5rem;
+        }
+
+        .tagline {
+            font-size:  1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            background:  white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 100px;
+            z-index: 999;
+        }
+
+        . nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2a5298;
+            cursor:  pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-btn:: after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #2a5298;
+            transition: width 0.3s ease;
+        }
+
+        .nav-btn:hover:: after,
+        .nav-btn. active::after {
+            width:  100%;
+        }
+
+        .nav-btn:hover {
+            color: #1e3c72;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem 2rem;
+        }
+
+        /* Meal Period Selector */
+        .meal-selector {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .meal-selector h2 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .meal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meal-btn {
+            padding: 0.75rem 2rem;
+            border: 2px solid #2a5298;
+            background: white;
+            color: #2a5298;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .meal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(42, 82, 152, 0.3);
+        }
+
+        .meal-btn. active {
+            background: #2a5298;
+            color:  white;
+            transform: scale(1.05);
+        }
+
+        /* Dining Halls Grid */
+        .dining-halls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .dining-hall {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dining-hall:hover {
+            transform: translateY(-5px);
+            box-shadow:  0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .hall-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .hall-header h3 {
+            font-size:  1.8rem;
+            margin-bottom:  0.5rem;
+        }
+
+        .hall-status {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size:  0.9rem;
+            font-weight: 600;
+        }
+
+        .menu-content {
+            padding: 1.5rem;
+        }
+
+        .menu-category {
+            margin-bottom: 1.5rem;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform:  translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform:  translateX(0);
+            }
+        }
+
+        .category-title {
+            color: #2a5298;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e7ff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+        }
+
+        .menu-items {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .menu-item {
+            padding: 0.6rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            border-left-color: #2a5298;
+            background: #f8faff;
+            padding-left: 1.5rem;
+        }
+
+        .no-menu {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .dining-halls {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .meal-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .header-container,
+            .nav-container,
+            main {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .dining-halls {
+                grid-template-columns: 1fr;
+            }
+            
+            . hall-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .category-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Loading Animation */
+        . loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: #2a5298;
+        }
+
+        . spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2a5298;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Seawolf Dine!</h1>
-    <p>Stony Brook University Daily Menu - Coming Soon.</p>
+    <header>
+        <div class="header-container">
+            <h1>🐺 Wofie Dine</h1>
+            <p class="tagline">Your campus dining companion</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="scrollToTop()">Today's Menu</button>
+            <button class="nav-btn" onclick="scrollToHall('west-hall')">West Hall</button>
+            <button class="nav-btn" onclick="scrollToHall('east-hall')">East Hall</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="meal-selector">
+            <h2>Select Meal Period</h2>
+            <div class="meal-buttons">
+                <button class="meal-btn active" data-meal="breakfast" onclick="changeMeal('breakfast')">Breakfast</button>
+                <button class="meal-btn" data-meal="lunch" onclick="changeMeal('lunch')">Lunch</button>
+                <button class="meal-btn" data-meal="dinner" onclick="changeMeal('dinner')">Dinner</button>
+            </div>
+        </div>
+
+        <div class="dining-halls" id="dining-halls-container">
+            <!-- Content will be dynamically loaded -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Wofie Dine.  Bringing campus dining to your fingertips.</p>
+    </footer>
+
+    <script>
+        // Menu Data
+        const menuData = {
+            'west-hall': {
+                name:  'West Campus Dining Hall',
+                breakfast: {
+                    'Breakfast Classics': [
+                        'Scrambled Eggs',
+                        'Bacon',
+                        'Sausage Links',
+                        'Hash Browns',
+                        'Pancakes',
+                        'French Toast',
+                        'Belgian Waffles'
+                    ],
+                    'Healthy Options': [
+                        'Fresh Fruit Bowl',
+                        'Greek Yogurt Parfait',
+                        'Oatmeal Bar',
+                        'Granola',
+                        'Whole Grain Toast'
+                    ],
+                    'Beverages': [
+                        'Coffee',
+                        'Orange Juice',
+                        'Apple Juice',
+                        'Hot Tea',
+                        'Milk'
+                    ]
+                },
+                lunch: {
+                    'Entrees': [
+                        'Grilled Chicken Breast',
+                        'Beef Tacos',
+                        'Vegetarian Pasta Primavera',
+                        'Baked Salmon',
+                        'BBQ Pulled Pork Sandwich'
+                    ],
+                    'Sides': [
+                        'Caesar Salad',
+                        'French Fries',
+                        'Steamed Broccoli',
+                        'Rice Pilaf',
+                        'Coleslaw'
+                    ],
+                    'Soups': [
+                        'Tomato Soup',
+                        'Chicken Noodle Soup'
+                    ],
+                    'Desserts': [
+                        'Chocolate Chip Cookies',
+                        'Fresh Fruit',
+                        'Ice Cream'
+                    ]
+                },
+                dinner: {
+                    'Entrees': [
+                        'Prime Rib',
+                        'Herb Roasted Chicken',
+                        'Shrimp Scampi',
+                        'Vegetable Stir Fry',
+                        'Meatloaf',
+                        'Baked Ziti'
+                    ],
+                    'Sides': [
+                        'Mashed Potatoes',
+                        'Green Beans',
+                        'Garden Salad',
+                        'Garlic Bread',
+                        'Roasted Vegetables'
+                    ],
+                    'Soups': [
+                        'French Onion Soup',
+                        'Minestrone'
+                    ],
+                    'Desserts': [
+                        'Cheesecake',
+                        'Brownies',
+                        'Apple Pie',
+                        'Fruit Cobbler'
+                    ]
+                }
+            },
+            'east-hall': {
+                name:  'East Campus Dining Hall',
+                breakfast: {
+                    'Hot Breakfast':  [
+                        'Eggs Benedict',
+                        'Omelet Station',
+                        'Turkey Bacon',
+                        'Breakfast Burrito',
+                        'Cinnamon Rolls',
+                        'Bagels with Cream Cheese'
+                    ],
+                    'Continental':  [
+                        'Assorted Pastries',
+                        'Fresh Berries',
+                        'Yogurt Station',
+                        'Cereal Bar',
+                        'Toast & Jam'
+                    ],
+                    'Beverages': [
+                        'Espresso Bar',
+                        'Fresh Squeezed Juice',
+                        'Smoothies',
+                        'Herbal Tea',
+                        'Chocolate Milk'
+                    ]
+                },
+                lunch: {
+                    'Entrees': [
+                        'Buffalo Chicken Wrap',
+                        'Veggie Burger',
+                        'Fish Tacos',
+                        'Chicken Teriyaki',
+                        'Margherita Pizza'
+                    ],
+                    'Sides': [
+                        'Sweet Potato Fries',
+                        'Mixed Green Salad',
+                        'Corn on the Cob',
+                        'Quinoa Salad',
+                        'Onion Rings'
+                    ],
+                    'Soups':  [
+                        'Butternut Squash Soup',
+                        'Vegetable Soup'
+                    ],
+                    'Desserts': [
+                        'Cupcakes',
+                        'Jello',
+                        'Seasonal Fruit'
+                    ]
+                },
+                dinner: {
+                    'Entrees': [
+                        'Steak Tips',
+                        'Lemon Garlic Tilapia',
+                        'Chicken Parmesan',
+                        'Tofu Pad Thai',
+                        'Beef Stroganoff',
+                        'Fajita Bar'
+                    ],
+                    'Sides': [
+                        'Loaded Baked Potato',
+                        'Asparagus',
+                        'Caprese Salad',
+                        'Mac and Cheese',
+                        'Sautéed Spinach'
+                    ],
+                    'Soups': [
+                        'Loaded Baked Potato Soup',
+                        'Clam Chowder'
+                    ],
+                    'Desserts': [
+                        'Tiramisu',
+                        'Cookies',
+                        'Carrot Cake',
+                        'Gelato'
+                    ]
+                }
+            }
+        };
+
+        // Category Icons
+        const categoryIcons = {
+            'Breakfast Classics': '🍳',
+            'Hot Breakfast': '🍳',
+            'Healthy Options': '🥗',
+            'Continental': '🥐',
+            'Beverages': '☕',
+            'Entrees': '🍽️',
+            'Sides': '🥘',
+            'Soups':  '🍲',
+            'Desserts': '🍰'
+        };
+
+        let currentMeal = 'breakfast';
+
+        // Initialize the page
+        function init() {
+            renderDiningHalls();
+            setActiveNav();
+        }
+
+        // Render dining halls based on current meal
+        function renderDiningHalls() {
+            const container = document.getElementById('dining-halls-container');
+            container.innerHTML = '';
+
+            Object.keys(menuData).forEach((hallId, index) => {
+                const hall = menuData[hallId];
+                const menu = hall[currentMeal];
+                
+                const hallElement = document.createElement('div');
+                hallElement.className = 'dining-hall';
+                hallElement.id = hallId;
+                hallElement.style.animationDelay = `${index * 0.1}s`;
+
+                let menuHTML = '';
+                
+                if (menu && Object.keys(menu).length > 0) {
+                    Object.keys(menu).forEach(category => {
+                        const icon = categoryIcons[category] || '🍴';
+                        menuHTML += `
+                            <div class="menu-category">
+                                <h4 class="category-title">
+                                    <span class="category-icon">${icon}</span>
+                                    ${category}
+                                </h4>
+                                <ul class="menu-items">
+                                    ${menu[category].map(item => `<li class="menu-item">${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        `;
+                    });
+                } else {
+                    menuHTML = '<div class="no-menu">No menu available for this meal period</div>';
+                }
+
+                hallElement.innerHTML = `
+                    <div class="hall-header">
+                        <h3>${hall.name}</h3>
+                        <span class="hall-status">${currentMeal.charAt(0).toUpperCase() + currentMeal.slice(1)}</span>
+                    </div>
+                    <div class="menu-content">
+                        ${menuHTML}
+                    </div>
+                `;
+
+                container.appendChild(hallElement);
+            });
+        }
+
+        // Change meal period
+        function changeMeal(meal) {
+            currentMeal = meal;
+            
+            // Update button states
+            document.querySelectorAll('.meal-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.meal === meal) {
+                    btn. classList.add('active');
+                }
+            });
+
+            // Re-render dining halls
+            renderDiningHalls();
+        }
+
+        // Scroll to specific dining hall
+        function scrollToHall(hallId) {
+            const element = document.getElementById(hallId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            setActiveNav();
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setActiveNav();
+        }
+
+        // Set active navigation button
+        function setActiveNav() {
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector('. nav-btn').classList.add('active');
+        }
+
+        // Auto-detect current time and set appropriate meal
+        function autoDetectMeal() {
+            const hour = new Date().getHours();
+            if (hour >= 6 && hour < 11) {
+                changeMeal('breakfast');
+            } else if (hour >= 11 && hour < 16) {
+                changeMeal('lunch');
+            } else {
+                changeMeal('dinner');
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            autoDetectMeal();
+        });
+    </script>
 </body>
 </html>
