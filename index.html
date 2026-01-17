@@ -1,4 +1,4 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -808,13 +808,18 @@
 
         async function loadDentalCafeData() {
             try {
-                const response = await fetch('dental_cafe. json? t=' + new Date().getTime());
-                if (! response.ok) throw new Error('Could not load menu');
+                const response = await fetch('dental_cafe.json?t=' + Date.now());
+                if (!response.ok) throw new Error('Could not load menu');
                 dentalCafeData = await response.json();
                 renderDiningHalls();
             } catch (error) {
                 console.error('Error loading Dental Cafe data:', error);
-                dentalCafeData = { error: true, message: 'Menu data unavailable' };
+                dentalCafeData = {
+                    status: 'fetch_error',
+                    message: 'Menu data unavailable',
+                    menu: [],
+                    updated_at: ''
+                };
                 renderDiningHalls();
             }
         }
@@ -857,18 +862,26 @@
             if (dentalCafeData === null) {
                 return '<div class="loading-message">Loading menu...</div>';
             }
-            if (dentalCafeData. error) {
-                return `<div class="no-menu">${dentalCafeData. message}</div>`;
-            }
 
-            const items = (dentalCafeData.menu || []).map(item => {
-                const price = item.price ?  `<span class="item-price">${item.price}</span>` : '';
-                return `<li class="menu-item"><span>${item.name}</span>${price}</li>`;
-            }).join('');
+            const status = dentalCafeData.status || '';
+            const message = dentalCafeData.message || '';
+            const menu = Array.isArray(dentalCafeData.menu) ? dentalCafeData.menu : [];
 
-            const updated = dentalCafeData. updated_at
+            const updated = dentalCafeData.updated_at
                 ? `<div class="last-updated">Last updated: ${dentalCafeData.updated_at}</div>`
                 : '';
+
+            // If empty menu, show message (weekend_no_menu / no_data_today / fetch_error)
+            if (menu.length === 0) {
+                const text = message || 'No menu data available.';
+                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
+                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
+            }
+
+            const items = menu.map(item => {
+                const price = item.price ? `<span class="item-price">${item.price}</span>` : '';
+                return `<li class="menu-item"><span>${item.name}</span>${price}</li>`;
+            }).join('');
 
             return `
                 <div class="menu-category">
