@@ -40,7 +40,7 @@
             }
         }
 
-        . header-container {
+        .header-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
@@ -50,7 +50,7 @@
             gap: 2rem;
         }
 
-        . header-left {
+        .header-left {
             flex: 0 1 auto;
         }
 
@@ -68,7 +68,7 @@
             margin-top: 0.25rem;
         }
 
-        . clock-container {
+        .clock-container {
             flex: 0 0 auto;
             text-align: right;
         }
@@ -117,7 +117,7 @@
             display: inline-block;
         }
 
-        .nav-btn:: after {
+        .nav-btn::after {
             content: '';
             position: absolute;
             bottom:   0;
@@ -129,7 +129,7 @@
         }
 
         .nav-btn:hover::after,
-        .nav-btn. active::after {
+        .nav-btn.active::after {
             width:   100%;
         }
 
@@ -174,7 +174,7 @@
             font-size: 1.8rem;
         }
 
-        . meal-buttons {
+        .meal-buttons {
             display: flex;
             justify-content: center;
             gap: 1rem;
@@ -249,7 +249,7 @@
             margin-bottom:   0.4rem;
         }
 
-        . hall-status {
+        .hall-status {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
             padding: 0.4rem 0.8rem;
@@ -264,16 +264,16 @@
             overflow-y:   auto;
         }
 
-        .menu-content: :-webkit-scrollbar {
+        .menu-content::-webkit-scrollbar {
             width: 6px;
         }
 
-        . menu-content::-webkit-scrollbar-track {
+        .menu-content::-webkit-scrollbar-track {
             background:   #f1f1f1;
             border-radius: 10px;
         }
 
-        . menu-content::-webkit-scrollbar-thumb {
+        .menu-content::-webkit-scrollbar-thumb {
             background:   #c62828;
             border-radius: 10px;
         }
@@ -332,10 +332,10 @@
             font-size: 0.95rem;
         }
 
-        . menu-item:hover {
+        .menu-item:hover {
             border-left-color: #c62828;
             background: #ffebee;
-            padding-left: 1. 2rem;
+            padding-left: 1.2rem;
         }
 
         .item-price {
@@ -345,9 +345,9 @@
             margin-left: 0.75rem;
         }
 
-        . no-menu {
+        .no-menu {
             text-align: center;
-            padding: 2. 5rem;
+            padding: 2.5rem;
             color: #666;
             font-style: italic;
         }
@@ -380,9 +380,9 @@
             line-height: 1.8;
         }
 
-        . about-content h2 {
+        .about-content h2 {
             color: #c62828;
-            font-size: 2. 5rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
             text-align: center;
         }
@@ -400,7 +400,7 @@
             transition: color 0.3s ease;
         }
 
-        . about-content a:hover {
+        .about-content a:hover {
             color: #b71c1c;
         }
 
@@ -422,7 +422,7 @@
                 gap: 0.75rem;
             }
 
-            . clock-container {
+            .clock-container {
                 text-align: center;
             }
 
@@ -430,7 +430,7 @@
                 font-size: 1.5rem;
             }
 
-            . dining-halls {
+            .dining-halls {
                 grid-template-columns: 1fr;
             }
 
@@ -457,7 +457,7 @@
             }
 
             .about-content {
-                padding: 2rem 1. 5rem;
+                padding: 2rem 1.5rem;
             }
 
             .menu-content {
@@ -503,13 +503,13 @@
             }
         }
 
-        . meal-selector{
+        .meal-selector{
           background:#fff;
           border-radius: 18px;
-          padding:2. 2rem 2rem;
+          padding:2.2rem 2rem;
           max-width: 860px;
-          margin:1. 4rem auto 2rem;
-          border:1px solid rgba(0,0,0,. 06);
+          margin:1.4rem auto 2rem;
+          border:1px solid rgba(0,0,0,.06);
           box-shadow:0 10px 24px rgba(0,0,0,.10);
         }
 
@@ -517,7 +517,7 @@
           color:#9b1111;     
           font-size:2rem;
           font-weight:750;
-          letter-spacing: -. 02em;
+          letter-spacing: -.02em;
           margin:0 0 1.3rem;
         }
 
@@ -534,10 +534,10 @@
           color:#30343a;
           font-size:1rem;
           font-weight:650;
-          padding:. 82rem 2. 2rem;
+          padding:.82rem 2.2rem;
           border-radius:9999px;
           cursor:pointer;
-          transition:background . 16s ease, box-shadow .16s ease, transform .16s ease, color .16s ease, border-color .16s ease;
+          transition:background .16s ease, box-shadow .16s ease, transform .16s ease, color .16s ease, border-color .16s ease;
           box-shadow:none;
         }
 
@@ -546,9 +546,9 @@
           transform:translateY(-1px);
         }
 
-        .meal-btn. active{
+        .meal-btn.active{
           background:#b11212;   
-          border-color: rgba(177,18,18,. 18);
+          border-color: rgba(177,18,18,.18);
           color:#fff;
           box-shadow:0 10px 18px rgba(177,18,18,.22);
           transform:none;
@@ -564,6 +564,11 @@
           .meal-btn{ width:100%; }
         }
     </style>
+    <!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "b55eeac22b1c465d9a39541f96cbcdae"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
 </head>
 <body>
     <header>
@@ -827,7 +832,7 @@
         function updateClock() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now. getMinutes()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             const timeString = `${hours}:${minutes}:${seconds}`;
             const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
