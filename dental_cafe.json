@@ -1,5 +1,5 @@
 {
-    "date": "2026-01-20",
+    "date": "2026-01-21",
     "location": "Dental Cafe",
     "menu": [
         {
@@ -19,35 +19,27 @@
             "price": null
         },
         {
-            "name": "Turkey Reuben Panini",
-            "price": null
-        },
-        {
             "name": "Grilled Chicken, Basil Pesto, Mozzarella Panini",
             "price": 10.95
         },
         {
-            "name": "Buffalo Vegan Chicken Nugget",
+            "name": "Turkey Reuben Panini",
             "price": null
         },
         {
-            "name": "Roasted Vegetables",
+            "name": "Mushroom Ravioli Marinara",
             "price": null
         },
         {
-            "name": "Steamed Rice",
+            "name": "Marinara Sauce",
             "price": null
         },
         {
-            "name": "crispy buffalo chicken",
+            "name": "Sausage with Peppers, Onions",
             "price": null
         },
         {
-            "name": "Roasted Vegetables",
-            "price": null
-        },
-        {
-            "name": "Steamed Rice",
+            "name": "Penne Pasta",
             "price": null
         },
         {
@@ -60,6 +52,6 @@
         }
     ],
     "status": "ok",
-    "message": "Valid menu items: 14.",
-    "updated_at": "2026-01-20 01:28:05 EST"
+    "message": "Valid menu items: 12.",
+    "updated_at": "2026-01-21 01:28:11 EST"
 }
