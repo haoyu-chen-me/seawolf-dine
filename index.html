@@ -339,29 +339,29 @@
             font-size: 0.95rem;
         }
 
-        .menu-item:hover {
+        
+        .menu-item-link{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            width:100%;
+            color:inherit;
+            text-decoration:none;
+        }
+
+        .menu-item-link:focus-visible{
+            outline:none;
+            box-shadow:0 0 0 4px rgba(198,40,40,.18);
+            border-radius:8px;
+        }
+
+.menu-item:hover {
             border-left-color: #c62828;
             background: #ffebee;
             padding-left: 1.2rem;
         }
 
-        
-
-        .menu-item-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .menu-item-link:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(198, 40, 40, 0.18);
-            border-radius: 8px;
-        }
-.item-price {
+        .item-price {
             color: #c62828;
             font-weight: 600;
             font-size: 0.9rem;
@@ -834,31 +834,7 @@
 
         let currentMeal = 'breakfast';
 
-        
-
-        
-
-        function getNYDateParts() {
-            const parts = new Intl.DateTimeFormat("en-US", {
-                timeZone: "America/New_York",
-                year: "numeric",
-                month: "numeric",
-                day: "numeric"
-            }).formatToParts(new Date());
-
-            const get = (type) => Number(parts.find(p => p.type === type).value);
-            return { year: get("year"), month: get("month"), day: get("day") };
-        }
-
-        function dentalApiUrlForToday() {
-            const { year, month, day } = getNYDateParts();
-            return `https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sbu-eats-events/menu-type/dental-cafe/${year}/${month}/${day}/?format=json`;
-        }
-function nutrisliceSearchUrl(query) {
-            const base = "https://stonybrook.nutrislice.com/search?q=";
-            return base + encodeURIComponent(query);
-        }
-async function loadDentalCafeData() {
+        async function loadDentalCafeData() {
             try {
                 const response = await fetch('dental_cafe.json?t=' + Date.now());
                 if (!response.ok) throw new Error('Could not load menu');
@@ -910,7 +886,15 @@ async function loadDentalCafeData() {
             return s ?  s.charAt(0).toUpperCase() + s.slice(1) : s;
         }
 
-        function renderDentalCafeContent() {
+        
+        function nutrisliceDentalCafeDayUrl(dateStr) {
+            const base = "https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe";
+            if (!dateStr) return base;
+            // Nutrislice menu pages commonly accept YYYY-MM-DD via the `day` query parameter.
+            return `${base}?day=${encodeURIComponent(dateStr)}`;
+        }
+
+function renderDentalCafeContent() {
             if (dentalCafeData === null) {
                 return '<div class="loading-message">Loading menu...</div>';
             }
@@ -929,16 +913,22 @@ async function loadDentalCafeData() {
                 const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
                 return `<div class="no-menu" ${style}>${text}</div>${updated}`;
             }
+
             const items = menu.map(item => {
-                const price = item.price ? `<span class="item-price">${item.price}</span>` : '';
-                const href = dentalApiUrlForToday() + "#" + encodeURIComponent(item.name);
+                const price = item.price ? `<span class="item-price">${item.price}</span>` : "";
+                const dateStr = (dentalCafeData && dentalCafeData.date)
+                    ? dentalCafeData.date
+                    : (new Date()).toISOString().slice(0, 10);
+                const href = nutrisliceDentalCafeDayUrl(dateStr);
                 return `
                     <li class="menu-item">
                         <a class="menu-item-link" href="${href}" target="_blank" rel="noopener noreferrer">
                             <span>${item.name}</span>${price}
                         </a>
-                    </li>`;
-            }).join('');
+                    </li>
+                `;
+            }).join("");
+
             return `
                 <div class="menu-category">
                     <h4 class="category-title">
