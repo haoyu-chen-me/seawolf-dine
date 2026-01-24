@@ -329,7 +329,7 @@
 
         footer { text-align: center; padding: 2rem; color: #fff; margin-top: 3rem; }
 
-        @media (max-width: 768px) {
+        @media (hover: none) and (pointer: coarse) {
             h1 { font-size: 1.8rem; }
             .header-container { flex-direction: column; text-align: center; gap: 0.75rem; }
             .clock-container { text-align: center; }
@@ -418,7 +418,7 @@
 
         .meal-btn:focus-visible{ outline: none; box-shadow: 0 0 0 4px rgba(177,18,18,.18); }
 
-        @media (max-width:768px){
+        @media (hover: none) and (pointer: coarse){
           .meal-selector{ padding:1.8rem 1.2rem; }
           .meal-btn{ width:100%; }
         }
@@ -436,7 +436,7 @@
             .meal-btn { min-width: 140px; }
         }
     
-        @media (max-width: 768px) {
+        @media (hover: none) and (pointer: coarse) {
             .menu-content { max-height: none !important; overflow: visible !important; }
 
             .dining-hall .hall-header { cursor: pointer; position: relative; }
@@ -457,9 +457,12 @@
         }
 
 
-        @media (max-width: 768px) {
-            html { font-size: 200%; }
-            body { -webkit-text-size-adjust: 200%; text-size-adjust: 200%; }
+        
+
+
+        @media (hover: none) and (pointer: coarse) {
+            html { font-size: 400%; }
+            body { -webkit-text-size-adjust: 400%; text-size-adjust: 400%; }
         }
 
 </style>
