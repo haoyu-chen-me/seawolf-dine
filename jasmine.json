@@ -2,12 +2,12 @@
   "date": "2026-01-25",
   "location": "Jasmine",
   "hours_today": "12pm to 7pm",
-  "updated_at": "2026-01-25 15:17:03 EST",
+  "updated_at": "2026-01-25 15:44:45 EST",
   "timezone": "America/New_York",
   "sections": [
     {
       "section": "Cafetasia Chinese",
-      "hours_today": "12pm to 7pm",
+      "hours_today": "Closed",
       "items": [],
       "menu_url": "https://stonybrook.nutrislice.com/menu/jasmine/cafetasia-chinese/2026-01-26"
     },
@@ -19,13 +19,13 @@
     },
     {
       "section": "Cafetasia Korean",
-      "hours_today": "12pm to 7pm",
+      "hours_today": "Closed",
       "items": [],
       "menu_url": "https://stonybrook.nutrislice.com/menu/jasmine/cafetasia-korean/2026-01-26"
     },
     {
       "section": "Sushido",
-      "hours_today": "12pm to 7pm",
+      "hours_today": "Closed",
       "items": [],
       "menu_url": "https://stonybrook.nutrislice.com/menu/jasmine/sushido/2026-01-26"
     }
