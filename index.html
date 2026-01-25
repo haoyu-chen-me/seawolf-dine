@@ -10,7 +10,8 @@
     <meta property="og:site_name" content="Wolfie Dine" />
     <meta name="application-name" content="Wolfie Dine" />
     <meta name="apple-mobile-web-app-title" content="Wolfie Dine" />
-    <meta name="description" content="Daily menus, hours, and live updates.">
+    
+    <meta name="description" content="Daily menus, hours, and live updates in a clean, fast view. Check what’s open, spot something tasty, and decide where to eat—quickly.">
     <link rel="canonical" href="https://www.wolfiedine.com/">
 
     <link rel="apple-touch-icon" href="https://www.wolfiedine.com/apple-touch-icon.png">
@@ -21,241 +22,470 @@
     <link rel="icon" type="image/png" sizes="192x192" href="https://www.wolfiedine.com/wolfiedine_icon_192.png">
 
     <style>
+        /* =========================================
+           第一部分：原始 CSS (保持电脑端原汁原味)
+           ========================================= */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { font-size: 14px; /* 进一步调小基准字号 */ }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #ffcdd2 0%, #ffebee 100%);
             min-height: 100vh;
             color: #333;
-            -webkit-tap-highlight-color: transparent;
         }
 
         header {
             background: linear-gradient(135deg, #b71c1c 0%, #c62828 100%);
             color: white;
-            padding: 0.5rem 0; /* 极简头部 */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .header-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 0.8rem;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
         }
+
+        .header-left { flex: 0 1 auto; }
 
         h1 {
-            font-size: 1.2rem; /* 标题更小 */
+            font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
             margin: 0;
         }
-        
-        .tagline { display: none; /* 手机端隐藏副标题省空间 */ }
-        @media (min-width: 600px) { .tagline { display: block; font-size: 0.8rem; opacity: 0.9; } }
 
-        .clock-container { text-align: right; }
-        .clock-time { font-size: 1.1rem; font-weight: 700; line-height: 1; }
-        .clock-date { font-size: 0.65rem; opacity: 0.9; }
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-top: 0.25rem;
+        }
+
+        .clock-container { flex: 0 0 auto; text-align: right; }
+
+        .clock-time { font-size: 1.8rem; font-weight: 700; margin: 0; }
+        .clock-date { font-size: 0.85rem; opacity: 0.9; margin-top: 0.15rem; }
 
         nav {
             background: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             position: sticky;
-            top: 0; 
+            top: 80px;
             z-index: 999;
         }
 
         .nav-container {
-            padding: 0 0.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .nav-btn {
             background: none;
             border: none;
-            padding: 0.6rem 0.8rem;
-            font-size: 0.9rem;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #c62828;
             cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
             text-decoration: none;
+            display: inline-block;
         }
 
-        .nav-btn.active { border-bottom: 2px solid #c62828; }
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #c62828;
+            transition: width 0.3s ease;
+        }
+
+        .nav-btn:hover::after,
+        .nav-btn.active::after { width: 100%; }
+
+        .nav-btn:hover { color: #b71c1c; }
 
         main {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0.5rem; /* 极小边距 */
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem 2rem;
         }
-        
-        @media (min-width: 768px) { main { padding: 1rem 2rem; } }
 
         .page { display: none; }
         .page.active { display: block; }
 
         .meal-selector {
-            background: #fff;
-            border-radius: 12px;
-            padding: 0.8rem 0.5rem;
-            margin-bottom: 0.8rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,.05);
             text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.6s ease-out;
+            /* 原版样式 */
+            background: #fff;
+            border-radius: 18px;
+            padding: 2.2rem 2rem;
+            max-width: 860px;
+            margin: 1.4rem auto 2rem;
+            border: 1px solid rgba(0,0,0,.06);
+            box-shadow: 0 10px 24px rgba(0,0,0,.10);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .meal-selector h2 {
             color: #9b1111;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
+            margin-bottom: 1.3rem;
+            font-size: 2rem;
             font-weight: 750;
+            letter-spacing: -.02em;
         }
 
         .meal-buttons {
             display: flex;
             justify-content: center;
-            gap: 0.4rem;
+            gap: 1.4rem;
             flex-wrap: wrap;
         }
 
         .meal-btn {
+            border: 1px solid rgba(0,0,0,.06);
             background: #f2f3f5;
             color: #30343a;
-            padding: 0.4rem 0.6rem;
-            border-radius: 8px;
+            padding: .82rem 2.2rem;
+            border-radius: 9999px;
             cursor: pointer;
-            border: 1px solid transparent;
+            transition: background .16s ease, box-shadow .16s ease, transform .16s ease;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .35rem;
             text-align: center;
-            line-height: 1;
-            /* 按钮更紧凑 */
-            flex: 1; 
-            min-width: 70px; 
-            max-width: 100px;
+            line-height: 1.05;
+            min-width: 220px;
+            font-size: 1rem;
+            font-weight: 600;
         }
-        
+
+        .meal-btn:hover { transform: translateY(-2px); background: #eceef1; }
+
         .meal-btn.active {
             background: #b11212;
+            border-color: rgba(177,18,18,.18);
             color: #fff;
-            box-shadow: 0 2px 6px rgba(177,18,18,.2);
+            box-shadow: 0 10px 18px rgba(177,18,18,.22);
+            transform: none;
         }
         
-        .meal-label { font-size: 0.85rem; font-weight: 700; display: block; margin-bottom: 2px; }
-        .meal-time { font-size: 0.65rem; opacity: 0.8; font-weight: 500; }
+        .meal-btn:focus-visible{ outline: none; box-shadow: 0 0 0 4px rgba(177,18,18,.18); }
 
-        /* --- 核心修改：超紧凑多列布局 --- */
+        .meal-label{ font-size:1rem; font-weight:650; }
+        .meal-time{ font-size:0.82rem; font-weight:600; opacity:.75; line-height:1.2; }
+        .meal-btn.active .meal-time{ opacity:.9; }
+
         .dining-halls {
             display: grid;
-            /* 手机默认3列 */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 0.4rem; /* 极小间距 */
-            margin-top: 0.5rem;
-        }
-
-        /* 稍大一点的手机（如Pro Max）或横屏，显示4列 */
-        @media (min-width: 450px) {
-            .dining-halls { grid-template-columns: repeat(4, 1fr); }
-        }
-        
-        /* 平板或电脑显示更多列 */
-        @media (min-width: 800px) {
-            .dining-halls { grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+            /* 电脑端默认保持原样 */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
         }
 
         .dining-hall {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            /* 固定高度，保证整齐，像APP图标一样 */
-            height: 220px; 
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dining-hall:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
         }
 
         .hall-header {
-            background: #c62828;
+            background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%);
             color: white;
-            padding: 0.4rem 0.2rem;
+            padding: 1rem;
             text-align: center;
-            /* 头部高度固定 */
-            height: 45px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
-        .hall-header h3 { 
-            font-size: 0.8rem; /* 标题极小 */
-            margin: 0;
-            line-height: 1.1;
-            /* 超过两行省略 */
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        
+        .hall-header h3 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+
         .hall-status {
-            display: none; /* 极简模式下隐藏状态条，太占地了，或者字极小 */
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         .menu-content {
-            padding: 0.3rem;
+            padding: 1rem;
+            max-height: 420px;
             overflow-y: auto;
-            flex-grow: 1;
-            /* 隐藏滚动条但允许滚动 */
-            scrollbar-width: none; 
         }
-        .menu-content::-webkit-scrollbar { display: none; }
 
-        .menu-category { margin-bottom: 0.4rem; }
+        .menu-content::-webkit-scrollbar { width: 6px; }
+        .menu-content::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .menu-content::-webkit-scrollbar-thumb { background: #c62828; border-radius: 10px; }
+        .menu-content::-webkit-scrollbar-thumb:hover { background: #b71c1c; }
+
+        .menu-category { margin-bottom: 1.2rem; animation: slideIn 0.5s ease-out; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
         .category-title {
             color: #c62828;
-            font-size: 0.75rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0.2rem;
-            padding-bottom: 0.1rem;
-            border-bottom: 1px solid #eee;
-            /* 只显示一行 */
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            padding-left: 1rem;
+            border-bottom: 2px solid #ffebee;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .category-icon { display: none; /* 省略图标省空间 */ }
+        .category-icon { font-size: 1.2rem; }
 
-        .menu-items { list-style: none; }
+        .menu-items { list-style: none; padding-left: 1rem; }
 
         .menu-item {
-            padding: 0.15rem 0;
-            font-size: 0.7rem; /* 菜单内容字号极小 */
-            line-height: 1.2;
-            color: #444;
-            border-bottom: 1px dashed #f5f5f5;
+            padding: 0.4rem 0;
+            padding-left: 0.8rem;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
         }
-        
-        .menu-item-link { color: inherit; text-decoration: none; display: block; }
 
-        .no-menu { font-size: 0.7rem; color: #999; text-align: center; padding-top: 1rem; }
-        
-        .last-updated { font-size: 0.6rem; color: #aaa; text-align: center; margin-top: 0.5rem; display: none; }
+        .menu-item:hover {
+            border-left-color: #c62828;
+            background: #ffebee;
+            padding-left: 1.2rem;
+        }
 
-        /* 关于页面保持原样 */
-        .about-content { padding: 1.5rem; background: white; border-radius: 12px; }
-        .about-content h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #c62828; }
-        
-        footer { text-align: center; padding: 1.5rem; color: #fff; font-size: 0.75rem; }
+        .menu-item-link{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            width:100%;
+            color:inherit;
+            text-decoration:none;
+        }
+
+        .menu-item-link:focus-visible{
+            outline:none;
+            box-shadow:0 0 0 4px rgba(198,40,40,.18);
+            border-radius:8px;
+        }
+
+        .no-menu { text-align: center; padding: 2.5rem; color: #666; font-style: italic; }
+        .loading-message { text-align: center; padding: 2rem; color: #666; font-style: italic; }
+
+        .last-updated {
+            text-align: center;
+            color: #888;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid #ffebee;
+            font-style: italic;
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            animation: fadeIn 0.6s ease-out;
+            line-height: 1.8;
+        }
+
+        .about-content h2 {
+            color: #c62828;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .about-content p { font-size: 1.1rem; margin-bottom: 1.5rem; color: #333; }
+
+        .about-content a {
+            color: #c62828;
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .about-content a:hover { color: #b71c1c; }
+
+        footer { text-align: center; padding: 2rem; color: #fff; margin-top: 3rem; }
+
+        /* =========================================
+           第二部分：手机端特供 (极致紧凑的 3 列布局)
+           只在宽度小于 800px 时生效，完全不影响电脑
+           ========================================= */
+        @media (max-width: 800px) {
+            html { font-size: 14px; } /* 缩小基准字体 */
+            
+            body { -webkit-tap-highlight-color: transparent; }
+
+            .header-container { padding: 0 0.8rem; }
+            h1 { font-size: 1.4rem; letter-spacing: -0.5px; }
+            .tagline { display: none; } /* 手机隐藏副标题 */
+            .clock-time { font-size: 1.2rem; }
+            .clock-date { font-size: 0.7rem; }
+            header { padding: 0.6rem 0; }
+
+            nav { top: 0; } /* 手机上去掉 top 偏移 */
+            .nav-container { padding: 0 0.5rem; gap: 0.5rem; }
+            .nav-btn { padding: 0.7rem 0.8rem; font-size: 0.9rem; }
+
+            main { padding: 0.5rem; margin: 0.5rem auto; }
+            
+            .meal-selector { 
+                padding: 1rem 0.5rem; 
+                margin-bottom: 1rem; 
+                border-radius: 12px;
+            }
+            .meal-selector h2 { font-size: 1.2rem; margin-bottom: 0.8rem; }
+            .meal-buttons { gap: 0.5rem; }
+            .meal-btn { 
+                min-width: unset; 
+                width: 48%; /* 按钮一行两个 */
+                padding: 0.5rem;
+                border-radius: 12px;
+            }
+            .meal-label { font-size: 0.9rem; }
+            .meal-time { font-size: 0.7rem; }
+
+            /* --- 核心：手机端 3 列高密度布局 --- */
+            .dining-halls {
+                grid-template-columns: repeat(3, 1fr) !important; /* 强制覆盖 */
+                gap: 0.4rem;
+                margin-top: 0.5rem;
+            }
+            
+            /* 横屏时变 4 列 */
+            @media (min-width: 450px) and (max-width: 800px) {
+                .dining-halls { grid-template-columns: repeat(4, 1fr) !important; }
+            }
+
+            .dining-hall {
+                height: 220px; /* 手机端固定高度 */
+                display: flex;
+                flex-direction: column;
+                border-radius: 8px;
+            }
+
+            .hall-header {
+                padding: 0.4rem 0.2rem;
+                height: 40px; /* 固定头部高度 */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .hall-header h3 { 
+                font-size: 0.85rem; 
+                margin: 0; 
+                line-height: 1.1;
+                white-space: nowrap; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+            }
+            
+            /* 手机端隐藏状态标签（Open/Hours）以节省空间，或者改得极小 */
+            .hall-status { display: none; } 
+
+            .menu-content {
+                padding: 0.3rem;
+                flex-grow: 1;
+                /* 手机端隐藏滚动条 */
+                scrollbar-width: none; 
+            }
+            .menu-content::-webkit-scrollbar { display: none; }
+
+            .menu-category { margin-bottom: 0.5rem; }
+            
+            .category-title {
+                font-size: 0.75rem;
+                padding-left: 0;
+                border-bottom-width: 1px;
+                margin-bottom: 0.2rem;
+                padding-bottom: 0.1rem;
+            }
+            .category-icon { display: none; } /* 手机隐藏图标 */
+
+            .menu-items { padding-left: 0; }
+            
+            .menu-item {
+                padding: 0.15rem 0;
+                padding-left: 0;
+                font-size: 0.7rem; /* 极小字体 */
+                line-height: 1.2;
+                border-bottom: 1px dashed #f5f5f5;
+                justify-content: flex-start;
+            }
+            
+            .menu-item:hover { padding-left: 0; background: transparent; }
+            .menu-item-link span { 
+                white-space: nowrap; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                max-width: 100%;
+                display: block;
+            }
+
+            .about-content { padding: 1.5rem; }
+            .about-content h2 { font-size: 1.5rem; }
+            
+            footer { padding: 1.5rem; font-size: 0.75rem; margin-top: 1rem; }
+        }
     </style>
 
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
@@ -268,11 +498,11 @@
         <div class="header-container">
             <div class="header-left">
                 <h1>🐺 Wolfie Dine</h1>
-                <p class="tagline">Campus dining</p>
+                <p class="tagline">Your campus dining companion</p>
             </div>
             <div class="clock-container">
-                <div class="clock-time" id="clock-time">00:00</div>
-                <div class="clock-date" id="clock-date">...</div>
+                <div class="clock-time" id="clock-time">00:00:00</div>
+                <div class="clock-date" id="clock-date">Loading...</div>
             </div>
         </div>
     </header>
@@ -281,14 +511,16 @@
         <div class="nav-container">
             <button class="nav-btn active" onclick="showPage('menu', this)">Menu</button>
             <button class="nav-btn" onclick="showPage('about', this)">About</button>
-            <a class="nav-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfwXXeb2SHBLBE1TENjznsm8F5WlA5zCsay5n1cbmbJU2BTIQ/viewform?usp=sharing&ouid=114715764942658548801" target="_blank">Feedback</a>
+            <a class="nav-btn"
+               href="https://docs.google.com/forms/d/e/1FAIpQLSfwXXeb2SHBLBE1TENjznsm8F5WlA5zCsay5n1cbmbJU2BTIQ/viewform?usp=sharing&ouid=114715764942658548801"
+               target="_blank" rel="noopener noreferrer">Feedback</a>
         </div>
     </nav>
 
     <main>
         <div id="menu-page" class="page active">
             <div class="meal-selector">
-                <h2 id="meal-selector-title">Meals</h2>
+                <h2>Select Meal Period</h2>
                 <div class="meal-buttons" id="meal-buttons"></div>
             </div>
             <div class="dining-halls" id="dining-halls-container"></div>
@@ -296,31 +528,48 @@
 
         <div id="about-page" class="page">
             <div class="about-content">
-                <h2>About</h2>
-                <p>Wolfie Dine aggregates Stony Brook dining menus.</p>
-                <p>Maintained by students. Updates daily.</p>
-                <p><a href="https://stonybrook.nutrislice.com" target="_blank">Official Site</a></p>
+                <h2>About Wolfie Dine</h2>
+                <p>
+                    Wolfie Dine is a menu aggregator for the Stony Brook University dining halls that lets students see all meal options in one place.
+                </p>
+                <p>
+                    Wolfie Dine was founded in January 2025 by Tina Yu [CC '26] and Chenhao Yu [CC '26]. It's maintained by current students and updates daily.
+                </p>
+                <p>
+                    See the <a href="https://stonybrook.nutrislice.com" target="_blank" rel="noopener noreferrer">official Dining website</a>
+                    for hours updates, nutritional information, service alerts[...]
+                </p>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Wolfie Dine</p>
+        <p>&copy; 2026 Wolfie Dine. Bringing campus dining to your fingertips.</p>
     </footer>
 
     <script>
-        /* 这里是数据源区域
-           未来你要加10个餐厅，只需要在这里复制粘贴 'new-hall': {...} 即可
-           页面会自动排列它们
-        */
+        // 修改点2：删除了原版那个强制模拟 1100px 宽度的 JS 脚本。
+        // 这对于实现“手机端3列布局”是必须的，否则手机会以为自己是电脑，永远显示原来的样子。
+
         const menuData = {
-            'west-hall': { name: 'West Side', isDynamic: true },
-            'east-hall': { name: 'East Side', isDynamic: true },
-            'dental-cafe': { name: 'Dental Café', isDynamic: true },
-            // 示例：未来加的餐厅
-            // 'roth-cafe': { name: 'Roth Café', isDynamic: false },
-            // 'jasmine': { name: 'Jasmine', isDynamic: false },
+            'west-hall': {
+                name: 'West Side Dining',
+                isDynamic: true
+            },
+
+
+            'east-hall': {
+                name: 'East Side Dining',
+                isDynamic: true
+            },
+
+            'dental-cafe': {
+                name: 'Dental Café',
+                isDynamic: true
+            }
+            // 你可以在这里继续添加新餐厅，手机端会自动按 3 列排布
         };
+
 
         if (!menuData['west-hall'].isDynamic) {
             menuData['west-hall'].latenight = menuData['west-hall'].dinner;
@@ -331,9 +580,16 @@
         let westDiningData = null;
 
         const categoryIcons = {
-            'Breakfast Classics': '', 'Hot Breakfast': '', 'Healthy Options': '',
-            'Continental': '', 'Beverages': '', 'Entrees': '', 'Sides': '',
-            'Soups': '', 'Desserts': '', 'All Items': ''
+            'Breakfast Classics': '🍳',
+            'Hot Breakfast': '🍳',
+            'Healthy Options': '🥗',
+            'Continental': '🥐',
+            'Beverages': '☕',
+            'Entrees': '🍽️',
+            'Sides': '🥘',
+            'Soups': '🍲',
+            'Desserts': '🍰',
+            'All Items': '🍴'
         };
 
         let currentMeal = 'breakfast';
@@ -342,16 +598,19 @@
             const now = new Date();
             const day = now.getDay();
             const minutes = now.getHours() * 60 + now.getMinutes();
+
             const isWeekend = (day === 0 || day === 6);
+
             const schedule = isWeekend ? [
-                { key: 'lunch', label: 'Brunch', time: '9a-4p', start: 540, end: 960 },
-                { key: 'dinner', label: 'Dinner', time: '4p-11p', start: 960, end: 1380 }
+                { key: 'lunch', label: 'Brunch', time: '9am–3:59pm', start: 9 * 60, end: 16 * 60 },
+                { key: 'dinner', label: 'Dinner', time: '4pm–11pm', start: 16 * 60, end: 23 * 60 }
             ] : [
-                { key: 'breakfast', label: 'Bkfst', time: '7:30a', start: 450, end: 660 },
-                { key: 'lunch', label: 'Lunch', time: '11a', start: 660, end: 960 },
-                { key: 'dinner', label: 'Dinner', time: '4p', start: 960, end: 1320 },
-                { key: 'late-night', label: 'Late', time: '10p', start: 1320, end: 1440 }
+                { key: 'breakfast', label: 'Breakfast', time: '7:30–10:59am', start: 7 * 60 + 30, end: 11 * 60 },
+                { key: 'lunch', label: 'Lunch', time: '11am–3:59pm', start: 11 * 60, end: 16 * 60 },
+                { key: 'dinner', label: 'Dinner', time: '4pm–9:59pm', start: 16 * 60, end: 22 * 60 },
+                { key: 'late-night', label: 'Late Night', time: '10pm–12am', start: 22 * 60, end: 24 * 60 }
             ];
+
             for (const slot of schedule) {
                 if (minutes >= slot.start && minutes < slot.end) return slot.key;
             }
@@ -365,22 +624,29 @@
             const now = new Date();
             const day = now.getDay();
             const isWeekend = (day === 0 || day === 6);
+
             const schedule = isWeekend ? [
-                { key: 'lunch', label: 'Brunch', time: '9a-4p' },
-                { key: 'dinner', label: 'Dinner', time: '4p-11p' }
+                { key: 'lunch', label: 'Brunch', time: '9am–3:59pm' },
+                { key: 'dinner', label: 'Dinner', time: '4pm–11pm' }
             ] : [
-                { key: 'breakfast', label: 'Bkfst', time: '7:30a' },
-                { key: 'lunch', label: 'Lunch', time: '11a' },
-                { key: 'dinner', label: 'Dinner', time: '4p' },
-                { key: 'late-night', label: 'Late', time: '10p' }
+                { key: 'breakfast', label: 'Breakfast', time: '7:30–10:59am' },
+                { key: 'lunch', label: 'Lunch', time: '11am–3:59pm' },
+                { key: 'dinner', label: 'Dinner', time: '4pm–9:59pm' },
+                { key: 'late-night', label: 'Late Night', time: '10pm–12am' }
             ];
 
             const buttonsWrap = document.getElementById('meal-buttons');
+            if (!buttonsWrap) return;
+
+            buttonsWrap.classList.toggle('weekday', !isWeekend);
+
             buttonsWrap.innerHTML = schedule.map(slot => `
-                <button class="meal-btn" data-meal="${slot.key}">
-                    <span class="meal-label">${slot.label}</span>
-                    <span class="meal-time">${slot.time}</span>
-                </button>
+                <div class="meal-option">
+                    <button class="meal-btn" data-meal="${slot.key}">
+                        <span class="meal-label">${slot.label}</span>
+                        <span class="meal-time">${slot.time}</span>
+                    </button>
+                </div>
             `).join('');
 
             buttonsWrap.querySelectorAll('.meal-btn').forEach(btn => {
@@ -391,122 +657,364 @@
         function setInitialMealUI(initialMeal) {
             currentMeal = initialMeal;
             document.querySelectorAll('.meal-btn').forEach(btn => btn.classList.remove('active'));
+
             const chosenBtn = document.querySelector(`[data-meal="${initialMeal}"]`);
-            if (chosenBtn) chosenBtn.classList.add('active');
+            if (chosenBtn && chosenBtn.style.display !== 'none') {
+                chosenBtn.classList.add('active');
+            } else {
+                const fallbackBtn = document.querySelector('[data-meal="lunch"]');
+                if (fallbackBtn) {
+                    currentMeal = 'lunch';
+                    fallbackBtn.classList.add('active');
+                }
+            }
+
             renderDiningHalls();
         }
 
-        /* Data Fetching Functions (No changes in logic, just compact rendering) */
         async function loadDentalCafeData() {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 9000);
             try {
-                const response = await fetch('dental_cafe.json?ts=' + Date.now());
-                if (!response.ok) throw new Error('Err');
+                const response = await fetch('dental_cafe.json?ts=' + Date.now(), {
+                    cache: 'no-store',
+                    signal: controller.signal
+                });
+                if (!response.ok) throw new Error('Could not load menu');
                 dentalCafeData = await response.json();
             } catch (error) {
-                dentalCafeData = { status: 'error', menu: [] };
-            } finally { renderDiningHalls(); }
+                console.error('Error loading Dental Cafe data:', error);
+                dentalCafeData = {
+                    status: 'fetch_error',
+                    message: 'Menu data unavailable (refresh or try again later)',
+                    menu: [],
+                    updated_at: ''
+                };
+            } finally {
+                clearTimeout(timeout);
+                renderDiningHalls();
+            }
         }
 
         async function loadEastDiningData() {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 9000);
             try {
-                const response = await fetch('east_dining.json?ts=' + Date.now());
-                if (!response.ok) throw new Error('Err');
+                const response = await fetch('east_dining.json?ts=' + Date.now(), {
+                    cache: 'no-store',
+                    signal: controller.signal
+                });
+                if (!response.ok) throw new Error('Could not load menu');
                 eastDiningData = await response.json();
             } catch (error) {
-                eastDiningData = { status: 'error', meals: {} };
-            } finally { renderDiningHalls(); }
+                console.error('Error loading East Dining data:', error);
+                eastDiningData = {
+                    status: 'fetch_error',
+                    message: 'Menu data unavailable (refresh or try again later)',
+                    meals: {},
+                    updated_at: '',
+                    is_weekend: false
+                };
+            } finally {
+                clearTimeout(timeout);
+                renderDiningHalls();
+            }
         }
 
+
         async function loadWestDiningData() {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 9000);
             try {
-                const response = await fetch('west_dining.json?ts=' + Date.now());
-                if (!response.ok) throw new Error('Err');
+                const response = await fetch('west_dining.json?ts=' + Date.now(), {
+                    cache: 'no-store',
+                    signal: controller.signal
+                });
+                if (!response.ok) throw new Error('Could not load menu');
                 westDiningData = await response.json();
             } catch (error) {
-                westDiningData = { status: 'error', meals: {} };
-            } finally { renderDiningHalls(); }
+                console.error('Error loading West Dining data:', error);
+                westDiningData = {
+                    status: 'fetch_error',
+                    message: 'Menu data unavailable (refresh or try again later)',
+                    meals: {},
+                    updated_at: '',
+                    is_weekend: false
+                };
+            } finally {
+                clearTimeout(timeout);
+                renderDiningHalls();
+            }
         }
 
         function updateClock() {
             const now = new Date();
-            const h = String(now.getHours()).padStart(2, '0');
-            const m = String(now.getMinutes()).padStart(2, '0');
-            document.getElementById('clock-time').textContent = `${h}:${m}`;
-            
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
             const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-            const mths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            document.getElementById('clock-date').textContent = `${days[now.getDay()]}, ${mths[now.getMonth()]} ${now.getDate()}`;
+            const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            const dayOfWeek = days[now.getDay()];
+            const month = months[now.getMonth()];
+            const date = now.getDate();
+            const year = now.getFullYear();
+            const dateString = `${dayOfWeek}, ${month} ${date}, ${year}`;
+
+            document.getElementById('clock-time').textContent = timeString;
+            document.getElementById('clock-date').textContent = dateString;
         }
-        setInterval(updateClock, 1000); updateClock();
+
+        setInterval(updateClock, 1000);
+        updateClock();
 
         function showPage(pageName, btn) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(`${pageName}-page`).classList.add('active');
+
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            if(btn) btn.classList.add('active');
+            if (btn) btn.classList.add('active');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function getUrl(type, dateStr) {
-            const baseMap = {
-                'dental': "https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe",
-                'east': "https://stonybrook.nutrislice.com/menu/east-side-dining/todays-dine-in-specials-esd",
-                'west': "https://stonybrook.nutrislice.com/menu/west-side-dining/todays-dine-in-specials-wsd"
-            };
-            let url = baseMap[type];
-            if(dateStr) url += `?day=${encodeURIComponent(dateStr)}`;
-            return url;
+        function nutrisliceDentalCafeDayUrl(dateStr) {
+            const base = "https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe";
+            if (!dateStr) return base;
+            return `${base}?day=${encodeURIComponent(dateStr)}`;
         }
 
-        /* --- Rendering Logic for Compact View --- */
+
+        function nutrisliceEastSideSpecialsDayUrl(dateStr) {
+            const base = "https://stonybrook.nutrislice.com/menu/east-side-dining/todays-dine-in-specials-esd";
+            if (!dateStr) return base;
+            return `${base}?day=${encodeURIComponent(dateStr)}`;
+        }
+
+        function nutrisliceWestSideSpecialsDayUrl(dateStr) {
+            const base = "https://stonybrook.nutrislice.com/menu/west-side-dining/todays-dine-in-specials-wsd";
+            if (!dateStr) return base;
+            return `${base}?day=${encodeURIComponent(dateStr)}`;
+        }
+
+
+        function getEastSideDineInHoursLabel() {
+
+            const d = new Date();
+            const day = d.getDay();
+            const isWeekend = (day === 0 || day === 6);
+
+
+            return isWeekend ? "9am–11pm" : "7:30am–12am";
+        }
+
+
+        function getWestSideDineInHoursLabel() {
+
+            const d = new Date();
+            const day = d.getDay();
+            const isWeekend = (day === 0 || day === 6);
+
+
+            return isWeekend ? "9am–11pm" : "7:30am–12am";
+        }
+
 
         function renderDentalCafeContent() {
-            if (!dentalCafeData) return '<div class="no-menu">...</div>';
-            const menu = dentalCafeData.menu || [];
-            if (menu.length === 0) return '<div class="no-menu">Closed</div>';
+            if (dentalCafeData === null) {
+                return '<div class="loading-message">Loading menu...</div>';
+            }
 
-            const dateStr = dentalCafeData.date || null;
-            const href = getUrl('dental', dateStr);
+            const status = dentalCafeData.status || '';
+            const message = dentalCafeData.message || '';
+            const menu = Array.isArray(dentalCafeData.menu) ? dentalCafeData.menu : [];
+
+            const updated = dentalCafeData.updated_at
+                ? `<div class="last-updated">Last updated: ${dentalCafeData.updated_at}</div>`
+                : '';
+
+            if (menu.length === 0) {
+                const text = message || 'No menu data available.';
+                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
+                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
+            }
+
+            const dateStr = (dentalCafeData && dentalCafeData.date)
+                ? dentalCafeData.date
+                : (dentalCafeData && dentalCafeData.updated_at ? dentalCafeData.updated_at.split(' ')[0] : null);
+
+            const href = nutrisliceDentalCafeDayUrl(dateStr);
+
+            const items = menu.map(item => `
+                <li class="menu-item">
+                    <a class="menu-item-link" href="${href}" target="_blank" rel="noopener noreferrer">
+                        <span>${item.name}</span>
+                    </a>
+                </li>
+            `).join("");
 
             return `
                 <div class="menu-category">
-                    <h4 class="category-title">Menu</h4>
-                    <ul class="menu-items">
-                        ${menu.map(item => `
-                            <li class="menu-item">
-                                <a class="menu-item-link" href="${href}" target="_blank">${item.name}</a>
-                            </li>`).join('')}
-                    </ul>
-                </div>`;
+                    <h4 class="category-title">
+                        <span class="category-icon">🍴</span>
+                        Today's Menu
+                    </h4>
+                    <ul class="menu-items">${items}</ul>
+                </div>
+                ${updated}
+            `;
         }
 
-        function renderNutrisliceContent(data, type) {
-            if (!data) return '<div class="no-menu">...</div>';
-            const meals = data.meals || {};
-            let mealKey = currentMeal === 'late-night' ? 'late_night' : currentMeal;
-            
-            if (data.is_weekend) {
+        function renderEastDiningContent() {
+            if (eastDiningData === null) {
+                return '<div class="loading-message">Loading menu...</div>';
+            }
+
+            const status = eastDiningData.status || '';
+            const message = eastDiningData.message || '';
+            const meals = eastDiningData.meals || {};
+
+            const updated = eastDiningData.updated_at
+                ? `<div class="last-updated">Last updated: ${eastDiningData.updated_at}</div>`
+                : '';
+
+
+            const dateStr = (eastDiningData && eastDiningData.date)
+                ? eastDiningData.date
+                : (eastDiningData && eastDiningData.updated_at ? eastDiningData.updated_at.split(' ')[0] : null);
+
+            const itemHref = nutrisliceEastSideSpecialsDayUrl(dateStr);
+
+
+            let mealKey = currentMeal;
+            if (mealKey === 'late-night') mealKey = 'late_night';
+
+
+            if (eastDiningData.is_weekend) {
                 if (mealKey === 'lunch' || mealKey === 'breakfast') mealKey = 'brunch';
                 if (mealKey === 'late_night') mealKey = 'dinner';
             }
 
-            const blocks = meals[mealKey] || [];
-            if (blocks.length === 0) return '<div class="no-menu">Closed</div>';
+            const blocks = Array.isArray(meals[mealKey]) ? meals[mealKey] : [];
 
-            const dateStr = data.date || null;
-            const href = getUrl(type, dateStr);
+            if (blocks.length === 0) {
+                const text = message || 'No menu data available.';
+                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
+                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
+            }
 
-            return blocks.map(b => `
-                <div class="menu-category">
-                    <h4 class="category-title">${b.section || 'Menu'}</h4>
-                    <ul class="menu-items">
-                        ${(b.items || []).map(name => `
-                            <li class="menu-item">
-                                <a class="menu-item-link" href="${href}" target="_blank">${name}</a>
-                            </li>`).join('')}
-                    </ul>
-                </div>
-            `).join('');
+            const htmlBlocks = blocks.map(b => {
+                const section = b.section || 'Menu';
+                const items = Array.isArray(b.items) ? b.items : [];
+
+                const li = items.map(name => `
+                    <li class="menu-item">
+                        <a class="menu-item-link" href="${itemHref}" target="_blank" rel="noopener noreferrer">
+                            <span>${name}</span>
+                        </a>
+                    </li>
+                `).join('');
+
+                return `
+                    <div class="menu-category">
+                        <h4 class="category-title">
+                            <span class="category-icon">🍴</span>
+                            ${section}
+                        </h4>
+                        <ul class="menu-items">${li}</ul>
+                    </div>
+                `;
+            }).join('');
+
+            return `${htmlBlocks}${updated}`;
+        }
+
+        function renderWestDiningContent() {
+            if (westDiningData === null) {
+                return '<div class="loading-message">Loading menu...</div>';
+            }
+
+            const status = westDiningData.status || '';
+            const message = westDiningData.message || '';
+            const meals = westDiningData.meals || {};
+
+            const updated = westDiningData.updated_at
+                ? `<div class="last-updated">Last updated: ${westDiningData.updated_at}</div>`
+                : '';
+
+            const dateStr = (westDiningData && westDiningData.date)
+                ? westDiningData.date
+                : (westDiningData && westDiningData.updated_at ? westDiningData.updated_at.split(' ')[0] : null);
+
+            const itemHref = nutrisliceWestSideSpecialsDayUrl(dateStr);
+
+
+            let mealKey = currentMeal;
+            if (mealKey === 'late-night') mealKey = 'late_night';
+
+
+            if (westDiningData.is_weekend) {
+                if (mealKey === 'lunch' || mealKey === 'breakfast') mealKey = 'brunch';
+                if (mealKey === 'late_night') mealKey = 'dinner';
+            }
+
+            const blocks = Array.isArray(meals[mealKey]) ? meals[mealKey] : [];
+
+            if (blocks.length === 0) {
+                const text = message || 'No menu data available.';
+                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
+                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
+            }
+
+            const htmlBlocks = blocks.map(b => {
+                const section = b.section || 'Menu';
+                const items = Array.isArray(b.items) ? b.items : [];
+
+                const li = items.map(name => `
+                    <li class="menu-item">
+                        <a class="menu-item-link" href="${itemHref}" target="_blank" rel="noopener noreferrer">
+                            <span>${name}</span>
+                        </a>
+                    </li>
+                `).join('');
+
+                return `
+                    <div class="menu-category">
+                        <h4 class="category-title">
+                            <span class="category-icon">🍴</span>
+                            ${section}
+                        </h4>
+                        <ul class="menu-items">${li}</ul>
+                    </div>
+                `;
+            }).join('');
+
+            return `${htmlBlocks}${updated}`;
+        }
+
+
+        function renderStaticHallMenu(menu) {
+            if (!menu || Object.keys(menu).length === 0) {
+                return '<div class="no-menu">No menu available for this meal period</div>';
+            }
+
+            return Object.keys(menu).map(category => {
+                const icon = categoryIcons[category] || '🍴';
+                const items = menu[category]
+                    .map(item => `<li class="menu-item"><span>${item}</span></li>`)
+                    .join('');
+
+                return `
+                    <div class="menu-category">
+                        <h4 class="category-title">
+                            <span class="category-icon">${icon}</span>
+                            ${category}
+                        </h4>
+                        <ul class="menu-items">${items}</ul>
+                    </div>
+                `;
+            }).join('');
         }
 
         function renderDiningHalls() {
@@ -518,39 +1026,59 @@
                 const hallDiv = document.createElement('div');
                 hallDiv.className = 'dining-hall';
 
-                let content = '<div class="no-menu">N/A</div>';
-                
+                let menuContent;
                 if (hall.isDynamic) {
-                    if (hallId === 'dental-cafe') content = renderDentalCafeContent();
-                    else if (hallId === 'east-hall') content = renderNutrisliceContent(eastDiningData, 'east');
-                    else if (hallId === 'west-hall') content = renderNutrisliceContent(westDiningData, 'west');
+                    if (hallId === 'dental-cafe') {
+                        menuContent = renderDentalCafeContent();
+                    } else if (hallId === 'east-hall') {
+                        menuContent = renderEastDiningContent();
+                    } else if (hallId === 'west-hall') {
+                        menuContent = renderWestDiningContent();
+                    } else {
+                        menuContent = '<div class="no-menu">Dynamic menu not configured</div>';
+                    }
                 } else {
-                    // Future static halls
-                    content = '<div class="no-menu">Coming Soon</div>';
+
+                    const staticKey = (currentMeal === 'late-night') ? 'latenight' : currentMeal;
+                    const menu = hall[staticKey];
+                    menuContent = renderStaticHallMenu(menu);
                 }
+
+                const statusText = (hallId === 'east-hall')
+                    ? getEastSideDineInHoursLabel()
+                    : (hallId === 'west-hall')
+                        ? getWestSideDineInHoursLabel()
+                        : 'Open';
 
                 hallDiv.innerHTML = `
                     <div class="hall-header">
                         <h3>${hall.name}</h3>
+                        <span class="hall-status">${statusText}</span>
                     </div>
-                    <div class="menu-content">${content}</div>
+                    <div class="menu-content">
+                        ${menuContent}
+                    </div>
                 `;
+
                 container.appendChild(hallDiv);
             });
         }
 
         function changeMeal(meal) {
             currentMeal = meal;
-            document.querySelectorAll('.meal-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector(`[data-meal="${meal}"]`)?.classList.add('active');
+            document.querySelectorAll('.meal-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.querySelector(`[data-meal="${meal}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
             renderDiningHalls();
         }
+
 
         applyMealSchedule();
         setInitialMealUI(pickInitialMeal());
         loadDentalCafeData();
         loadEastDiningData();
         loadWestDiningData();
+        renderDiningHalls();
     </script>
 </body>
 </html>
