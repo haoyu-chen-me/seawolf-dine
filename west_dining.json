@@ -4,13 +4,13 @@
   "is_weekend": true,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-25 01:24:00 EST",
+  "updated_at": "2026-01-25 12:12:16 EST",
   "meals": {
     "brunch": [
       {
         "section": "Grill Lunch Specials",
         "items": [
-          "Balsamic Mushroom Eggplant Wrap",
+          "Tangy BBQ Garden Burger",
           "Cheese Quesadilla",
           "Chipotle Bacon Cheddar Beef Burger",
           "French Fries",
@@ -34,9 +34,9 @@
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Pepper and Onion Cheese Flatbread Pizza",
+          "Sausage Pepper and Onion Cheese Flatbread Pizza",
           "Creamy Penne Ala Vodka",
-          "Vegetable Beef Barley Soup"
+          "Chicken & Dumpling Soup"
         ]
       },
       {
@@ -88,9 +88,9 @@
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Pepper and Onion Cheese Flatbread Pizza",
+          "Sausage Pepper and Onion Cheese Flatbread Pizza",
           "Creamy Penne Ala Vodka",
-          "Vegetable Beef Barley Soup"
+          "Chicken & Dumpling Soup"
         ]
       },
       {

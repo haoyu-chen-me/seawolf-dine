@@ -4,14 +4,17 @@
   "is_weekend": true,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-25 01:23:59 EST",
+  "updated_at": "2026-01-25 12:12:15 EST",
   "meals": {
     "brunch": [
       {
         "section": "Breakfast at Chef's Table",
         "items": [
-          "Belgian Waffle",
-          "Peach Compote"
+          "Teriyaki Glazed Chicken",
+          "White Rice",
+          "Sesame Broccoli",
+          "Waffles",
+          "Blueberry Compote"
         ]
       },
       {
@@ -20,19 +23,19 @@
           "Teriyaki Glazed Chicken",
           "White Rice",
           "Sesame Broccoli",
-          "French Toast Sticks",
-          "Peach Compote"
+          "Belgian Waffles",
+          "Blueberry Compote"
         ]
       },
       {
         "section": "Grill Lunch Specials",
         "items": [
-          "Grilled Cheese with Bacon on White Bread",
-          "Chili Dog",
-          "Cajun Black Bean Burger, Mushrooms, Peppers, Onions",
+          "Beef Slider",
+          "BBQ Beef Hot Dog",
+          "Grilled Cheese",
           "Grilled Vegetables",
-          "Curly Fries",
-          "Fried Pickles"
+          "French Fries",
+          "Chicken Tenders"
         ]
       },
       {
@@ -49,8 +52,8 @@
       {
         "section": "Pasta Specials",
         "items": [
-          "Vegetable Pasta Primavera",
-          "Crispy Chicken Buffalo Blue Cheese Alfredo Penne"
+          "Penne a la Vodka",
+          "Mac and Cheese"
         ]
       },
       {
@@ -88,8 +91,8 @@
       {
         "section": "Pasta Specials",
         "items": [
-          "Vegetable Pasta Primavera",
-          "Crispy Chicken Buffalo Blue Cheese Alfredo Penne"
+          "Penne a la Vodka",
+          "Mac and Cheese"
         ]
       },
       {
