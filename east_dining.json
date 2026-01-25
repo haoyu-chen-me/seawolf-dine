@@ -4,7 +4,8 @@
   "is_weekend": true,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-25 12:29:52 EST",
+  "updated_at": "2026-01-25 15:17:02 EST",
+  "timezone": "America/New_York",
   "meals": {
     "brunch": [
       {
@@ -46,7 +47,7 @@
           "Peppers, Onion & Kale & Tumeric Tofu Scramble",
           "Chorizo & Potato Frittata",
           "Pork sausage Links",
-          "Hash Brown Patty"
+          "Crispy Tater Tots"
         ]
       },
       {
