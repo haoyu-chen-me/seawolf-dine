@@ -1,38 +1,38 @@
 {
-  "date": "2026-01-24",
+  "date": "2026-01-25",
   "location": "East Side Dining (Dine-in Specials)",
   "is_weekend": true,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-24 13:56:59 EST",
+  "updated_at": "2026-01-25 01:23:59 EST",
   "meals": {
     "brunch": [
       {
         "section": "Breakfast at Chef's Table",
         "items": [
           "Belgian Waffle",
-          "Apple Compote"
+          "Peach Compote"
         ]
       },
       {
         "section": "Chef's Table Lunch Specials",
         "items": [
-          "Beef Stroganoff",
-          "Buttered Egg Noodles",
-          "Roasted Broccoli",
-          "Belgian Waffle",
-          "Apple Compote"
+          "Teriyaki Glazed Chicken",
+          "White Rice",
+          "Sesame Broccoli",
+          "French Toast Sticks",
+          "Peach Compote"
         ]
       },
       {
         "section": "Grill Lunch Specials",
         "items": [
-          "BBQ Pulled Pork Slider",
-          "Bacon BBQ Beef Cheese Burger",
-          "California Veggie Slider with Pickles",
-          "Chicken Nuggets",
-          "French Fries",
-          "Grilled Vegetables"
+          "Grilled Cheese with Bacon on White Bread",
+          "Chili Dog",
+          "Cajun Black Bean Burger, Mushrooms, Peppers, Onions",
+          "Grilled Vegetables",
+          "Curly Fries",
+          "Fried Pickles"
         ]
       },
       {
@@ -40,17 +40,17 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Tofu Mushroom Scramble",
-          "Chorizo Pepper Feta Frittata",
-          "Pork Breakfast Sausage Links",
-          "Breakfast Potatoes"
+          "Peppers, Onion & Kale & Tumeric Tofu Scramble",
+          "Chorizo & Potato Frittata",
+          "Pork sausage Links",
+          "Hash Brown Patty"
         ]
       },
       {
         "section": "Pasta Specials",
         "items": [
-          "Chicken Alfredo",
-          "Stuffed Shells in Marinara"
+          "Vegetable Pasta Primavera",
+          "Crispy Chicken Buffalo Blue Cheese Alfredo Penne"
         ]
       },
       {
@@ -58,8 +58,8 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Meat Lover's Pizza",
-          "Pepper & Onion Pizza"
+          "Pepper & Onion Pizza",
+          "Pork Bacon Four Cheese Pizza"
         ]
       }
     ],
@@ -67,28 +67,29 @@
       {
         "section": "Chef's Table Dinner Specials",
         "items": [
-          "Maple Apple Pork Loin",
-          "Roasted Fingerling Potatoes",
-          "Roasted Brussels Sprouts",
-          "apple chutney"
+          "Lemon Chicken",
+          "Wild Rice Pilaf",
+          "Charred Broccolini",
+          "Blistered Grape Tomatoes"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Fried Chicken Sandwich with American Cheese",
-          "Teriyaki Chicken",
-          "Pepper Jack Cheese, Hot Sauce, Sliced Jalapenos Beef Burger",
+          "Crispy Chicken Caesar Wrap",
+          "BBQ Cheddar Ranch Garden Burger",
+          "Beef Hamburger",
           "Fried Chicken Tenders",
           "French Fries",
-          "Grilled Vegetables"
+          "Grilled Vegetables",
+          "Beef Hamburger, Lettuce, Tomato, Onions"
         ]
       },
       {
         "section": "Pasta Specials",
         "items": [
-          "Chicken Alfredo",
-          "Stuffed Shells in Marinara"
+          "Vegetable Pasta Primavera",
+          "Crispy Chicken Buffalo Blue Cheese Alfredo Penne"
         ]
       },
       {
@@ -96,20 +97,20 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Meat Lover's Pizza",
-          "Pepper & Onion Pizza"
+          "Pepper & Onion Pizza",
+          "Pork Bacon Four Cheese Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Beyond Chili Spiced \"Beef\"",
-          "Seasoned  Rice",
-          "Broccoli",
-          "Roasted Golden Beets"
+          "Vegetable Black Bean Stew",
+          "Cilantro Lime White Rice",
+          "Maple-Roasted Sweet Potatoes",
+          "Roasted Asparagus"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/todays-dine-in-specials-esd/2026/01/24/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/todays-dine-in-specials-esd/2026/01/25/?format=json"
 }
