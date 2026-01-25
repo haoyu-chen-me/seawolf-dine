@@ -11,7 +11,7 @@
     <meta name="application-name" content="Wolfie Dine" />
     <meta name="apple-mobile-web-app-title" content="Wolfie Dine" />
     
-    <meta name="description" content="Daily menus, hours, and live updates in a clean, fast view. Check what’s open, spot something tasty, and decide where to eat—quickly.">
+    <meta name="description" content="Daily menus, hours, and live updates in a clean, fast view. Check what's open, spot something tasty, and decide where to eat—quickly.">
     <link rel="canonical" href="https://www.wolfiedine.com/">
 
     <link rel="apple-touch-icon" href="https://www.wolfiedine.com/apple-touch-icon.png">
@@ -501,7 +501,7 @@
                 <p class="tagline">Your campus dining companion</p>
             </div>
             <div class="clock-container">
-                <div class="clock-time" id="clock-time">00:00:00</div>
+                <div class="clock-time" id="clock-time">00:00</div>
                 <div class="clock-date" id="clock-date">Loading...</div>
             </div>
         </div>
@@ -533,11 +533,14 @@
                     Wolfie Dine is a menu aggregator for the Stony Brook University dining halls that lets students see all meal options in one place.
                 </p>
                 <p>
-                    Wolfie Dine was founded in January 2025 by Tina Yu [CC '26] and Chenhao Yu [CC '26]. It's maintained by current students and updates daily.
+                    Wolfie Dine was founded in January 2025 by Tina Yu [BCM '29] and Chenhao Yu [EE '28]. It's maintained by the same student team and updates daily.
                 </p>
                 <p>
                     See the <a href="https://stonybrook.nutrislice.com" target="_blank" rel="noopener noreferrer">official Dining website</a>
                     for hours updates, nutritional information, service alerts[...]
+                </p>
+                <p>
+                    Feel free to leave any feedback on the feedback page!
                 </p>
             </div>
         </div>
@@ -549,7 +552,7 @@
 
     <script>
         // 修改点2：删除了原版那个强制模拟 1100px 宽度的 JS 脚本。
-        // 这对于实现“手机端3列布局”是必须的，否则手机会以为自己是电脑，永远显示原来的样子。
+        // 这对于实现"手机端3列布局"是必须的，否则手机会以为自己是电脑，永远显示原来的样子。
 
         const menuData = {
             'west-hall': {
@@ -751,8 +754,7 @@
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const timeString = `${hours}:${minutes}:${seconds}`;
+            const timeString = `${hours}:${minutes}`;
 
             const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
             const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -999,86 +1001,71 @@
                 return '<div class="no-menu">No menu available for this meal period</div>';
             }
 
-            return Object.keys(menu).map(category => {
-                const icon = categoryIcons[category] || '🍴';
-                const items = menu[category]
-                    .map(item => `<li class="menu-item"><span>${item}</span></li>`)
-                    .join('');
+            return Object.entries(menu).map(([category, items]) => `
+                <div class="menu-category">
+                    <h4 class="category-title">
+                        <span class="category-icon">${categoryIcons[category] || '🍴'}</span>
+                        ${category}
+                    </h4>
+                    <ul class="menu-items">
+                        ${items.map(item => `<li class="menu-item"><span>${item}</span></li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        function renderDiningHalls() {
+            const container = document.getElementById('dining-halls-container');
+            if (!container) return;
+
+            container.innerHTML = Object.entries(menuData).map(([hallId, hallInfo]) => {
+                let contentHTML = '';
+                let statusLabel = 'Hours vary';
+
+                if (hallInfo.isDynamic) {
+                    if (hallId === 'dental-cafe') {
+                        contentHTML = renderDentalCafeContent();
+                        statusLabel = 'Mon–Fri 8am–4pm';
+                    } else if (hallId === 'east-hall') {
+                        contentHTML = renderEastDiningContent();
+                        statusLabel = getEastSideDineInHoursLabel();
+                    } else if (hallId === 'west-hall') {
+                        contentHTML = renderWestDiningContent();
+                        statusLabel = getWestSideDineInHoursLabel();
+                    }
+                } else {
+                    const menu = hallInfo[currentMeal] || {};
+                    contentHTML = renderStaticHallMenu(menu);
+                }
 
                 return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">${icon}</span>
-                            ${category}
-                        </h4>
-                        <ul class="menu-items">${items}</ul>
+                    <div class="dining-hall">
+                        <div class="hall-header">
+                            <h3>${hallInfo.name}</h3>
+                            <span class="hall-status">${statusLabel}</span>
+                        </div>
+                        <div class="menu-content">${contentHTML}</div>
                     </div>
                 `;
             }).join('');
         }
 
-        function renderDiningHalls() {
-            const container = document.getElementById('dining-halls-container');
-            container.innerHTML = '';
-
-            Object.keys(menuData).forEach(hallId => {
-                const hall = menuData[hallId];
-                const hallDiv = document.createElement('div');
-                hallDiv.className = 'dining-hall';
-
-                let menuContent;
-                if (hall.isDynamic) {
-                    if (hallId === 'dental-cafe') {
-                        menuContent = renderDentalCafeContent();
-                    } else if (hallId === 'east-hall') {
-                        menuContent = renderEastDiningContent();
-                    } else if (hallId === 'west-hall') {
-                        menuContent = renderWestDiningContent();
-                    } else {
-                        menuContent = '<div class="no-menu">Dynamic menu not configured</div>';
-                    }
-                } else {
-
-                    const staticKey = (currentMeal === 'late-night') ? 'latenight' : currentMeal;
-                    const menu = hall[staticKey];
-                    menuContent = renderStaticHallMenu(menu);
-                }
-
-                const statusText = (hallId === 'east-hall')
-                    ? getEastSideDineInHoursLabel()
-                    : (hallId === 'west-hall')
-                        ? getWestSideDineInHoursLabel()
-                        : 'Open';
-
-                hallDiv.innerHTML = `
-                    <div class="hall-header">
-                        <h3>${hall.name}</h3>
-                        <span class="hall-status">${statusText}</span>
-                    </div>
-                    <div class="menu-content">
-                        ${menuContent}
-                    </div>
-                `;
-
-                container.appendChild(hallDiv);
-            });
-        }
-
         function changeMeal(meal) {
             currentMeal = meal;
             document.querySelectorAll('.meal-btn').forEach(btn => btn.classList.remove('active'));
-            const activeBtn = document.querySelector(`[data-meal="${meal}"]`);
-            if (activeBtn) activeBtn.classList.add('active');
+            document.querySelector(`[data-meal="${meal}"]`)?.classList.add('active');
             renderDiningHalls();
         }
 
+        window.addEventListener('DOMContentLoaded', () => {
+            applyMealSchedule();
+            const initialMeal = pickInitialMeal();
+            setInitialMealUI(initialMeal);
 
-        applyMealSchedule();
-        setInitialMealUI(pickInitialMeal());
-        loadDentalCafeData();
-        loadEastDiningData();
-        loadWestDiningData();
-        renderDiningHalls();
+            loadDentalCafeData();
+            loadEastDiningData();
+            loadWestDiningData();
+        });
     </script>
 </body>
 </html>
