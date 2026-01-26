@@ -1,9 +1,13 @@
-name: Update Menus (Dental + East + West + Jasmine + SAC + Roth)
+name: Update Menus (All Locations)
 
 on:
   schedule:
-    - cron: '0 6 * * *'
-  workflow_dispatch:
+    - cron: '0 10 * * *'
+  workflow_dispatch: 
+
+
+permissions:
+  contents: write
 
 jobs:
   update-menu:
@@ -17,29 +21,52 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests tzdata
 
-      - name: Run scrapers
-        run: |
-          python scrape.py
-          python eastdi_scrape.py
-          python westdi_scrape.py
-          python jasmine_scrape.py
-          python sac_scrape.py
-          python roth_scrape.py
 
+
+      - name: Scrape East Dining
+        run: python eastdi_scrape.py
+        continue-on-error: true
+
+      - name: Scrape West Dining
+        run: python westdi_scrape.py
+        continue-on-error: true
+
+      - name: Scrape Jasmine
+        run: python jasmine_scrape.py
+        continue-on-error: true
+
+      - name: Scrape SAC
+        run: python sac_scrape.py
+        continue-on-error: true
+
+      - name: Scrape Roth
+        run: python roth_scrape.py
+        continue-on-error: true
+
+
+      - name: Scrape Dental Cafe
+        run: python dental_cafe_scrape.py
+        continue-on-error: true
+      
       - name: Commit and push if changed
         run: |
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions@github.com'
 
-          git add dental_cafe.json east_dining.json west_dining.json jasmine.json sac.json roth.json
 
-          git diff --quiet && git diff --staged --quiet || (
-            git commit -m "🍴 Update menus - $(date -u +'%Y-%m-%d')" &&
+          git add *.json
+
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes in menus today."
+          else
+            git commit -m "🍴 Update menus - $(date -u +'%Y-%m-%d')"
+            git pull --rebase
             git push
-          )
+          fi
