@@ -206,7 +206,7 @@
         footer { text-align: center; padding: 2rem; color: #fff; margin-top: 3rem; }
 
         /* =========================================
-           Mobile CSS (Optimized for Readability)
+           Mobile CSS (Optimized)
            ========================================= */
         @media (max-width: 800px) {
             html { font-size: 14px; }
@@ -234,22 +234,27 @@
             
             .dining-hall { height: 220px; display: flex; flex-direction: column; border-radius: 8px; }
             
-            /* --- Mobile Header Fix --- */
+            /* --- Mobile Header Fix (修复挡住问题) --- */
             .hall-header { 
-                padding: 0.5rem 0.3rem; 
-                height: auto; /* Allow growth for status text */
+                padding: 0.5rem 0.2rem; 
+                height: auto; /* 允许高度自动撑开 */
                 min-height: 45px;
                 display: flex; flex-direction: column; justify-content: center; 
             }
             .hall-header h3 { 
-                font-size: 0.85rem; margin: 0; line-height: 1.2; 
-                white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+                font-size: 0.85rem; margin: 0; line-height: 1.25; 
+                /* 关键修复：允许换行，取消截断 */
+                white-space: normal; 
+                overflow: visible; 
+                text-overflow: clip; 
+                text-align: center;
+                display: block;
             }
-            /* Unhide status on mobile but make it small */
+            /* Unhide status on mobile */
             .hall-status { 
                 display: block; 
                 background: none; padding: 0; 
-                margin-top: 2px;
+                margin-top: 3px;
                 font-size: 0.65rem; opacity: 0.9;
                 font-weight: 500;
             }
@@ -258,26 +263,24 @@
             .menu-content::-webkit-scrollbar { display: none; }
             .menu-category { margin-bottom: 0.8rem; }
             
-            /* --- 档口标题与时间垂直排列 (Stacking) --- */
+            /* --- Mobile Stacking Layout --- */
             .category-header {
-                flex-direction: column; /* Stack vertical */
-                align-items: flex-start; /* Align left */
+                flex-direction: column; 
+                align-items: flex-start; 
                 gap: 2px;
                 margin-bottom: 0.3rem;
             }
             .category-title { 
                 font-size: 0.8rem; 
                 padding-left: 0; 
-                border-bottom: none; /* Remove underline on mobile title to look cleaner */
+                border-bottom: 1px solid #ffebee; 
                 margin-bottom: 0; 
                 padding-bottom: 0;
                 width: 100%;
-                border-bottom: 1px solid #ffebee; /* Add lighter separator */
             }
             .category-icon { display: none; }
             .status-badge { font-size: 0.6rem; padding: 1px 5px; margin-left: 6px; }
 
-            /* Unhide and style hours for mobile */
             .station-hours { 
                 display: block; 
                 font-size: 0.65rem; 
@@ -290,18 +293,17 @@
             
             /* --- 允许菜名换行 (Wrap Text) --- */
             .menu-item { 
-                padding: 0.4rem 0; /* Slightly more vertical padding for wrapped text */
+                padding: 0.4rem 0; 
                 padding-left: 0; 
                 font-size: 0.75rem; 
-                line-height: 1.35; /* Better readability */
+                line-height: 1.35; 
                 border-bottom: 1px dashed #f5f5f5; 
                 justify-content: flex-start; 
             }
             .menu-item:hover { padding-left: 0; background: transparent; }
             
-            /* Allow wrapping */
             .menu-item a, .menu-item span { 
-                white-space: normal; /* Key fix! */
+                white-space: normal; /* 允许换行 */
                 overflow: visible; 
                 text-overflow: clip; 
                 max-width: 100%;
