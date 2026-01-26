@@ -18,6 +18,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.wolfiedine.com/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="48x48" href="https://www.wolfiedine.com/wolfiedine_icon_48.png">
     <link rel="icon" type="image/png" sizes="192x192" href="https://www.wolfiedine.com/wolfiedine_icon_192.png">
+    
     <style>
         /* --- 基础样式 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -137,16 +138,24 @@
         .menu-category { margin-bottom: 1.2rem; animation: slideIn 0.5s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
 
+        /* --- Updated Layout for Headers --- */
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
         .category-title {
             color: #c62828; font-size: 1.1rem; font-weight: 700;
-            margin-bottom: 0.5rem; padding-bottom: 0.4rem; padding-left: 1rem;
+            padding-bottom: 0.4rem; padding-left: 1rem;
             border-bottom: 2px solid #ffebee;
             display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
         }
         .category-icon { font-size: 1.2rem; }
         .station-hours { font-size: 0.85rem; font-weight: 600; color: #666; margin-left: auto; }
 
-        /* --- 档口状态标签样式 --- */
+        /* --- Badge Styles --- */
         .status-badge {
             display: inline-block;
             font-size: 0.65rem;
@@ -158,19 +167,10 @@
             letter-spacing: 0.3px;
             text-transform: uppercase;
         }
-        .status-badge.open {
-            background-color: #e6f4ea; 
-            color: #137333;           
-            border: 1px solid #ceead6;
-        }
-        .status-badge.off {
-            background-color: #f1f3f4; 
-            color: #5f6368;           
-            border: 1px solid #dadce0;
-        }
+        .status-badge.open { background-color: #e6f4ea; color: #137333; border: 1px solid #ceead6; }
+        .status-badge.off { background-color: #f1f3f4; color: #5f6368; border: 1px solid #dadce0; }
         .text-red { color: #d32f2f !important; opacity: 1 !important; }
         .text-black { color: #444 !important; opacity: 1 !important; }
-        /* ----------------------- */
 
         .menu-items { list-style: none; padding-left: 1rem; }
         .menu-item {
@@ -205,6 +205,9 @@
         .about-content a:hover { color: #b71c1c; }
         footer { text-align: center; padding: 2rem; color: #fff; margin-top: 3rem; }
 
+        /* =========================================
+           Mobile CSS (Optimized for Readability)
+           ========================================= */
         @media (max-width: 800px) {
             html { font-size: 14px; }
             body { -webkit-tap-highlight-color: transparent; }
@@ -218,30 +221,93 @@
             .nav-container { padding: 0 0.5rem; gap: 0.5rem; }
             .nav-btn { padding: 0.7rem 0.8rem; font-size: 0.9rem; }
             main { padding: 0.5rem; margin: 0.5rem auto; }
+            
             .meal-selector { padding: 1rem 0.5rem; margin-bottom: 1rem; border-radius: 12px; }
             .meal-selector h2 { font-size: 1.2rem; margin-bottom: 0.8rem; }
             .meal-buttons { gap: 0.5rem; }
             .meal-btn { min-width: unset; width: 48%; padding: 0.5rem; border-radius: 12px; }
             .meal-label { font-size: 0.9rem; }
             .meal-time { font-size: 0.7rem; }
+            
             .dining-halls { grid-template-columns: repeat(3, 1fr) !important; gap: 0.4rem; margin-top: 0.5rem; }
             @media (min-width: 450px) and (max-width: 800px) { .dining-halls { grid-template-columns: repeat(4, 1fr) !important; } }
+            
             .dining-hall { height: 220px; display: flex; flex-direction: column; border-radius: 8px; }
-            .hall-header { padding: 0.4rem 0.2rem; height: 40px; display: flex; flex-direction: column; justify-content: center; }
-            .hall-header h3 { font-size: 0.85rem; margin: 0; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-            .hall-status { display: none; } 
+            
+            /* --- Mobile Header Fix --- */
+            .hall-header { 
+                padding: 0.5rem 0.3rem; 
+                height: auto; /* Allow growth for status text */
+                min-height: 45px;
+                display: flex; flex-direction: column; justify-content: center; 
+            }
+            .hall-header h3 { 
+                font-size: 0.85rem; margin: 0; line-height: 1.2; 
+                white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+            }
+            /* Unhide status on mobile but make it small */
+            .hall-status { 
+                display: block; 
+                background: none; padding: 0; 
+                margin-top: 2px;
+                font-size: 0.65rem; opacity: 0.9;
+                font-weight: 500;
+            }
+
             .menu-content { padding: 0.3rem; flex-grow: 1; scrollbar-width: none; }
             .menu-content::-webkit-scrollbar { display: none; }
-            .menu-category { margin-bottom: 0.5rem; }
-            .category-title { font-size: 0.75rem; padding-left: 0; border-bottom-width: 1px; margin-bottom: 0.2rem; padding-bottom: 0.1rem; }
+            .menu-category { margin-bottom: 0.8rem; }
+            
+            /* --- 档口标题与时间垂直排列 (Stacking) --- */
+            .category-header {
+                flex-direction: column; /* Stack vertical */
+                align-items: flex-start; /* Align left */
+                gap: 2px;
+                margin-bottom: 0.3rem;
+            }
+            .category-title { 
+                font-size: 0.8rem; 
+                padding-left: 0; 
+                border-bottom: none; /* Remove underline on mobile title to look cleaner */
+                margin-bottom: 0; 
+                padding-bottom: 0;
+                width: 100%;
+                border-bottom: 1px solid #ffebee; /* Add lighter separator */
+            }
             .category-icon { display: none; }
-            /* Mobile tweaks for badges */
-            .status-badge { font-size: 0.6rem; padding: 1px 4px; margin-left: 4px; border-radius: 4px; }
-            .station-hours { display: none; }
+            .status-badge { font-size: 0.6rem; padding: 1px 5px; margin-left: 6px; }
+
+            /* Unhide and style hours for mobile */
+            .station-hours { 
+                display: block; 
+                font-size: 0.65rem; 
+                margin-left: 0;
+                margin-top: 2px;
+                color: #777;
+            }
+
             .menu-items { padding-left: 0; }
-            .menu-item { padding: 0.15rem 0; padding-left: 0; font-size: 0.7rem; line-height: 1.2; border-bottom: 1px dashed #f5f5f5; justify-content: flex-start; }
+            
+            /* --- 允许菜名换行 (Wrap Text) --- */
+            .menu-item { 
+                padding: 0.4rem 0; /* Slightly more vertical padding for wrapped text */
+                padding-left: 0; 
+                font-size: 0.75rem; 
+                line-height: 1.35; /* Better readability */
+                border-bottom: 1px dashed #f5f5f5; 
+                justify-content: flex-start; 
+            }
             .menu-item:hover { padding-left: 0; background: transparent; }
-            .menu-item a, .menu-item span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; }
+            
+            /* Allow wrapping */
+            .menu-item a, .menu-item span { 
+                white-space: normal; /* Key fix! */
+                overflow: visible; 
+                text-overflow: clip; 
+                max-width: 100%;
+                display: block;
+            }
+
             .about-content { padding: 1.5rem; }
             .about-content h2 { font-size: 1.5rem; }
             footer { padding: 1.5rem; font-size: 0.75rem; margin-top: 1rem; }
