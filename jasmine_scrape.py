@@ -1,18 +1,17 @@
-# jasmine_scrape.py
 import json
 import datetime
+from typing import Any, Dict, List, Optional
+
 import requests
 
-HEADERS = {"User-Agent": "Mozilla/5.0 (SBU Student Project)"}
+HEADERS = {"User-Agent": "Mozilla/5.0 (SBU Student Project)", "Accept": "application/json"}
 
 API_TEMPLATE = (
     "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/jasmine/menu-type/"
     "{slug}/{year}/{month}/{day}/?format=json"
 )
 
-
-FIXED_DATE = datetime.date(2026, 1, 26)
-
+FIXED_MENU_DATE = datetime.date(2026, 1, 27)
 
 JASMINE_HOURS = {
     "mon_thu": "11am to 8pm",
@@ -21,14 +20,12 @@ JASMINE_HOURS = {
     "sun": "12pm to 7pm",
 }
 
-
 CURRY_HOURS = {
     "mon_thu": "11am to 8pm",
     "fri": "11am to 8pm",
     "sat": "Closed",
     "sun": "Closed",
 }
-
 
 STALLS = [
     {"name": "Cafetasia Chinese", "slug": "cafetasia-chinese", "daily": False},
@@ -39,12 +36,7 @@ STALLS = [
 
 
 def eastern_now() -> datetime.datetime:
-    
     return datetime.datetime.utcnow() - datetime.timedelta(hours=5)
-
-
-def eastern_today_date() -> datetime.date:
-    return eastern_now().date()
 
 
 def weekday_key(d: datetime.date) -> str:
@@ -58,45 +50,60 @@ def weekday_key(d: datetime.date) -> str:
     return "sun"
 
 
-def safe_food_name(mi: dict) -> str | None:
+def safe_food_name(mi: Dict[str, Any]) -> Optional[str]:
     food = mi.get("food") or {}
-    name = food.get("name")
-    if isinstance(name, str) and name.strip():
-        return name.strip()
+    if isinstance(food, dict):
+        name = food.get("name")
+        if isinstance(name, str) and name.strip():
+            return name.strip()
     return None
 
 
-def detect_header_text(mi: dict) -> str | None:
+def detect_header_text(mi: Dict[str, Any]) -> Optional[str]:
     if mi.get("food"):
         return None
+
     for k in ("name", "text", "label", "description", "menu_item_name"):
         v = mi.get(k)
         if isinstance(v, str) and v.strip():
             return v.strip()
-    title = (mi.get("category") or {}).get("name")
-    if isinstance(title, str) and title.strip():
-        return title.strip()
+
+    cat = mi.get("category") or {}
+    if isinstance(cat, dict):
+        title = cat.get("name")
+        if isinstance(title, str) and title.strip():
+            return title.strip()
+
     return None
 
 
-def pick_section_name(menu_item: dict, current_section: str | None) -> str:
-    mc = menu_item.get("menu_category") or {}
-    cat = menu_item.get("category") or {}
+def pick_section_name(menu_item: Dict[str, Any], current_section: Optional[str]) -> str:
+    mc = menu_item.get("menu_category")
+    cat = menu_item.get("category")
+
+    mc_name = mc.get("name") if isinstance(mc, dict) else None
+    cat_name = cat.get("name") if isinstance(cat, dict) else None
+
     sec = (
-        mc.get("name")
-        or cat.get("name")
+        mc_name
+        or cat_name
         or menu_item.get("category_name")
         or menu_item.get("station")
         or "Other"
     )
-    if sec == "Other" and current_section:
+
+    if (not sec or sec == "Other") and current_section:
         sec = current_section
-    return sec
+
+    if not isinstance(sec, str) or not sec.strip():
+        return current_section or "Other"
+
+    return sec.strip()
 
 
-def dedupe_preserve_order(items: list[str]) -> list[str]:
+def dedupe_preserve_order(items: List[str]) -> List[str]:
     seen = set()
-    out = []
+    out: List[str] = []
     for x in items:
         if x not in seen:
             seen.add(x)
@@ -104,7 +111,7 @@ def dedupe_preserve_order(items: list[str]) -> list[str]:
     return out
 
 
-def fetch_flat_items(slug: str, date_obj: datetime.date) -> list[str]:
+def fetch_flat_items(slug: str, date_obj: datetime.date) -> List[str]:
     url = API_TEMPLATE.format(
         slug=slug,
         year=date_obj.year,
@@ -130,10 +137,13 @@ def fetch_flat_items(slug: str, date_obj: datetime.date) -> list[str]:
     if not menu_items:
         return []
 
-    section_map: dict[str, list[str]] = {}
-    current_section = None
+    section_map: Dict[str, List[str]] = {}
+    current_section: Optional[str] = None
 
     for mi in menu_items:
+        if not isinstance(mi, dict):
+            continue
+
         header = detect_header_text(mi)
         if header:
             current_section = header
@@ -146,7 +156,7 @@ def fetch_flat_items(slug: str, date_obj: datetime.date) -> list[str]:
         sec = pick_section_name(mi, current_section)
         section_map.setdefault(sec, []).append(name)
 
-    flat = []
+    flat: List[str] = []
     for sec in section_map:
         flat.extend(section_map[sec])
 
@@ -159,15 +169,16 @@ def stall_hours_today(stall_name: str, today_key: str) -> str:
     return JASMINE_HOURS[today_key]
 
 
-def main():
+def main() -> None:
     now_eastern = eastern_now()
     today = now_eastern.date()
     today_key = weekday_key(today)
 
-    out = {
+    out: Dict[str, Any] = {
         "date": today.strftime("%Y-%m-%d"),
         "location": "Jasmine",
         "hours_today": JASMINE_HOURS[today_key],
+        "fixed_menu_date_for_non_daily": FIXED_MENU_DATE.strftime("%Y-%m-%d"),
         "updated_at": now_eastern.strftime("%Y-%m-%d %H:%M:%S EST"),
         "timezone": "America/New_York",
         "sections": [],
@@ -178,29 +189,23 @@ def main():
         slug = s["slug"]
         is_daily = bool(s.get("daily"))
 
-    
-        fetch_date = today if is_daily else FIXED_DATE
+        fetch_date = today if is_daily else FIXED_MENU_DATE
 
-       
-        h = stall_hours_today(name, today_key)
+        hours_today = stall_hours_today(name, today_key)
 
-       
-        if name.strip().lower() == "curry kitchen" and h == "Closed":
-            items = []
+        if name.strip().lower() == "curry kitchen" and hours_today == "Closed":
+            items: List[str] = []
         else:
             try:
                 items = fetch_flat_items(slug, fetch_date)
             except Exception:
                 items = []
 
-        
-        if not items:
-            h = "Closed"
-
         out["sections"].append(
             {
                 "section": name,
-                "hours_today": h,
+                "hours_today": hours_today,
+                "menu_date": fetch_date.strftime("%Y-%m-%d"),
                 "items": items,
                 "menu_url": f"https://stonybrook.nutrislice.com/menu/jasmine/{slug}/{fetch_date.strftime('%Y-%m-%d')}",
             }

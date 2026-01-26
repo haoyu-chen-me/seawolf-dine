@@ -9,45 +9,14 @@ HEADERS = {
     "Accept": "application/json",
 }
 
-API_SCHOOL_SLUG = "roth"
-
-WEB_SCHOOL_SLUG = "roth-cafe"
-
 API_TEMPLATE = (
-    "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/{school}/menu-type/"
-    "{slug}/{year}/{month}/{day}/?format=json"
+    "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sbu-eats-events/"
+    "menu-type/dental-cafe/{year}/{month}/{day}/?format=json"
 )
 
-FIXED_DATE = datetime.date(2026, 1, 27)
 
-ROTH_SECTIONS = [
-    {
-        "section": "Subway",
-        "type": "chain",
-        "slug": None,
-        "items": ["Click to view the official menu"],
-        "menu_url": "https://www.subway.com/en-us/menu",
-    },
-    {
-        "section": "Smash n' Shake",
-        "type": "static",
-        "slug": "smash-n-shake",
-        "menu_url": f"https://stonybrook.nutrislice.com/menu/{WEB_SCHOOL_SLUG}/smash-n-shake/{FIXED_DATE.strftime('%Y-%m-%d')}",
-    },
-    {
-        "section": "Savor",
-        "type": "static",
-        "slug": "chef-jet",
-        "menu_url": f"https://stonybrook.nutrislice.com/menu/{WEB_SCHOOL_SLUG}/chef-jet/{FIXED_DATE.strftime('%Y-%m-%d')}",
-    },
-    {
-        "section": "Popeyes",
-        "type": "chain",
-        "slug": None,
-        "items": ["Click to view the official menu"],
-        "menu_url": "https://www.popeyes.com/menu",
-    },
-]
+def eastern_now() -> datetime.datetime:
+    return datetime.datetime.utcnow() - datetime.timedelta(hours=5)
 
 
 def safe_food_name(mi: Dict[str, Any]) -> Optional[str]:
@@ -107,17 +76,8 @@ def dedupe_preserve_order(items: List[str]) -> List[str]:
     return out
 
 
-def flatten_blocks(section_map: Dict[str, List[str]]) -> List[str]:
-    merged: List[str] = []
-    for _, names in section_map.items():
-        merged.extend(names)
-    return dedupe_preserve_order(merged)
-
-
-def fetch_static_menu(menu_type_slug: str, date_obj: datetime.date) -> Dict[str, Any]:
+def fetch_daily_menu(date_obj: datetime.date) -> Dict[str, Any]:
     url = API_TEMPLATE.format(
-        school=API_SCHOOL_SLUG,
-        slug=menu_type_slug,
         year=date_obj.year,
         month=f"{date_obj.month:02d}",
         day=f"{date_obj.day:02d}",
@@ -128,7 +88,6 @@ def fetch_static_menu(menu_type_slug: str, date_obj: datetime.date) -> Dict[str,
         r = requests.get(url, headers=HEADERS, timeout=25)
         r.raise_for_status()
         data = r.json()
-
 
         day_block = None
         for d in data.get("days", []):
@@ -141,7 +100,7 @@ def fetch_static_menu(menu_type_slug: str, date_obj: datetime.date) -> Dict[str,
                 "status": "no_data_today",
                 "message": f"API missing {date_str}",
                 "source_url": url,
-                "items": [],
+                "sections": [],
             }
 
         menu_items = day_block.get("menu_items") or []
@@ -150,10 +109,9 @@ def fetch_static_menu(menu_type_slug: str, date_obj: datetime.date) -> Dict[str,
                 "status": "no_data_today",
                 "message": f"{date_str} menu_items empty",
                 "source_url": url,
-                "items": [],
+                "sections": [],
             }
 
-     
         if (
             len(menu_items) == 1
             and isinstance(menu_items[0], dict)
@@ -164,7 +122,7 @@ def fetch_static_menu(menu_type_slug: str, date_obj: datetime.date) -> Dict[str,
                 "status": "closed",
                 "message": menu_items[0].get("text").strip(),
                 "source_url": url,
-                "items": [],
+                "sections": [],
             }
 
         section_map: Dict[str, List[str]] = {}
@@ -187,66 +145,58 @@ def fetch_static_menu(menu_type_slug: str, date_obj: datetime.date) -> Dict[str,
             sec = pick_section_name(mi, current_section)
             section_map.setdefault(sec, []).append(name)
 
-        items = flatten_blocks(section_map)
-        if not items:
+        sections_out: List[Dict[str, Any]] = []
+        for sec_name, items in section_map.items():
+            items2 = dedupe_preserve_order(items)
+            if items2:
+                sections_out.append({"section": sec_name, "items": items2})
+
+        if not sections_out:
             return {
                 "status": "no_data_today",
                 "message": "No food names parsed",
                 "source_url": url,
-                "items": [],
+                "sections": [],
             }
 
-        return {"status": "ok", "message": "Menu fetched.", "source_url": url, "items": items}
+        return {
+            "status": "ok",
+            "message": "Menu fetched.",
+            "source_url": url,
+            "sections": sections_out,
+        }
 
     except Exception as e:
-        return {"status": "fetch_error", "message": f"Error: {e}", "source_url": url, "items": []}
+        return {
+            "status": "fetch_error",
+            "message": f"Error: {e}",
+            "source_url": url,
+            "sections": [],
+        }
 
 
 def main() -> None:
-    # 近似 EST（你原来就是这么写的；足够用）
-    now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-5)))
-    updated_at = now.strftime("%Y-%m-%d %H:%M EST")
+    now_eastern = eastern_now()
+    today = now_eastern.date()
+
+    fetched = fetch_daily_menu(today)
 
     out: Dict[str, Any] = {
-        "location": "Roth Cafe",
-        "date_fetched_from": FIXED_DATE.strftime("%Y-%m-%d"),
+        "location": "Dental Café",
+        "date": today.strftime("%Y-%m-%d"),
         "timezone": "America/New_York",
-        "updated_at": updated_at,
-        "status": "ok",
-        "sections": [],
+        "updated_at": now_eastern.strftime("%Y-%m-%d %H:%M:%S EST"),
+        "status": fetched["status"],
+        "message": fetched["message"],
+        "source_url": fetched["source_url"],
+        "sections": fetched["sections"],
+        "menu_url": f"https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe/{today.strftime('%Y-%m-%d')}",
     }
 
-    any_error = False
-
-    for sec in ROTH_SECTIONS:
-        entry: Dict[str, Any] = {
-            "section": sec["section"],
-            "type": sec["type"],
-            "menu_url": sec["menu_url"],
-            "items": sec.get("items", []),
-            "status": "ok",
-            "message": "",
-        }
-
-        if sec["type"] == "static":
-            fetched = fetch_static_menu(sec["slug"], FIXED_DATE)
-            entry["status"] = fetched["status"]
-            entry["message"] = fetched["message"]
-            entry["source_url"] = fetched["source_url"]
-            entry["items"] = fetched["items"]
-
-            if entry["status"] not in ("ok", "closed"):
-                any_error = True
-
-        out["sections"].append(entry)
-
-    if any_error:
-        out["status"] = "partial_error"
-
-    with open("roth.json", "w", encoding="utf-8") as f:
+    with open("dental_cafe.json", "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)
 
-    print("Successfully wrote roth.json")
+    print("Successfully wrote dental_cafe.json")
 
 
 if __name__ == "__main__":

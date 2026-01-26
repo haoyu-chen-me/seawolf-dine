@@ -3,24 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Wolfie Dine</title>
+    <meta name="description" content="Daily menus, hours, and live updates in a clean, fast view.">
     
-    <title>Wolfie Dine　</title>
-    
-    <meta property="og:title" content="Wolfie Dine" />
-    <meta property="og:site_name" content="Wolfie Dine" />
-    <meta name="application-name" content="Wolfie Dine" />
-    <meta name="apple-mobile-web-app-title" content="Wolfie Dine" />
-    
-    <meta name="description" content="Daily menus, hours, and live updates in a clean, fast view. Check what's open, spot something tasty, and decide where to eat—quickly.">
-    <link rel="canonical" href="https://www.wolfiedine.com/">
-
-    <link rel="apple-touch-icon" href="https://www.wolfiedine.com/apple-touch-icon.png">
-    <link rel="icon" href="https://www.wolfiedine.com/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://www.wolfiedine.com/wolfiedine_icon_16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://www.wolfiedine.com/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="https://www.wolfiedine.com/wolfiedine_icon_48.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://www.wolfiedine.com/wolfiedine_icon_192.png">
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -29,6 +14,7 @@
             background: linear-gradient(135deg, #ffcdd2 0%, #ffebee 100%);
             min-height: 100vh;
             color: #333;
+            padding-bottom: 2rem;
         }
 
         header {
@@ -39,465 +25,247 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            animation: slideDown 0.5s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
 
         .header-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 2rem;
         }
 
-        .header-left { flex: 0 1 auto; }
+        .header-left h1 { font-size: 1.8rem; font-weight: 700; margin: 0; }
+        .tagline { font-size: 0.85rem; opacity: 0.9; margin-top: 0.2rem; }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin: 0;
-        }
-
-        .tagline {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            font-weight: 300;
-            margin-top: 0.25rem;
-        }
-
-        .clock-container { flex: 0 0 auto; text-align: right; }
-
-        .clock-time { font-size: 1.8rem; font-weight: 700; margin: 0; }
-        .clock-date { font-size: 0.85rem; opacity: 0.9; margin-top: 0.15rem; }
+        .clock-container { text-align: right; }
+        .clock-time { font-size: 1.4rem; font-weight: 700; }
+        .clock-date { font-size: 0.75rem; opacity: 0.9; }
 
         nav {
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             position: sticky;
-            top: 80px;
+            top: 70px;
             z-index: 999;
+            padding: 0.5rem 0;
         }
 
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
         .nav-btn {
             background: none;
             border: none;
-            padding: 1rem 1.5rem;
+            padding: 0.5rem 1rem;
             font-size: 1rem;
             font-weight: 600;
             color: #c62828;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
             text-decoration: none;
-            display: inline-block;
+            position: relative;
         }
-
-        .nav-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: #c62828;
-            transition: width 0.3s ease;
+        
+        .nav-btn.active::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #c62828;
         }
-
-        .nav-btn:hover::after,
-        .nav-btn.active::after { width: 100%; }
-
-        .nav-btn:hover { color: #b71c1c; }
 
         main {
             max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem 2rem;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
         }
 
         .page { display: none; }
         .page.active { display: block; }
 
+
         .meal-selector {
             text-align: center;
-            margin-bottom: 2rem;
-            animation: fadeIn 0.6s ease-out;
-            
             background: #fff;
-            border-radius: 18px;
-            padding: 2.2rem 2rem;
-            max-width: 860px;
-            margin: 1.4rem auto 2rem;
-            border: 1px solid rgba(0,0,0,.06);
-            box-shadow: 0 10px 24px rgba(0,0,0,.10);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            border-radius: 16px;
+            padding: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .meal-selector h2 {
             color: #9b1111;
-            margin-bottom: 1.3rem;
-            font-size: 2rem;
-            font-weight: 750;
-            letter-spacing: -.02em;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
 
         .meal-buttons {
             display: flex;
             justify-content: center;
-            gap: 1.4rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .meal-btn {
-            border: 1px solid rgba(0,0,0,.06);
-            background: #f2f3f5;
-            color: #30343a;
-            padding: .82rem 2.2rem;
-            border-radius: 9999px;
+            border: 1px solid #eee;
+            background: #f8f9fa;
+            color: #444;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background .16s ease, box-shadow .16s ease, transform .16s ease;
-            box-shadow: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: .35rem;
-            text-align: center;
-            line-height: 1.05;
-            min-width: 220px;
-            font-size: 1rem;
-            font-weight: 600;
+            min-width: 140px;
+            transition: all 0.2s;
         }
-
-        .meal-btn:hover { transform: translateY(-2px); background: #eceef1; }
 
         .meal-btn.active {
-            background: #b11212;
-            border-color: rgba(177,18,18,.18);
-            color: #fff;
-            box-shadow: 0 10px 18px rgba(177,18,18,.22);
-            transform: none;
+            background: #b71c1c;
+            color: white;
+            border-color: #b71c1c;
+            box-shadow: 0 4px 8px rgba(183, 28, 28, 0.3);
         }
-        
-        .meal-btn:focus-visible{ outline: none; box-shadow: 0 0 0 4px rgba(177,18,18,.18); }
 
-        .meal-label{ font-size:1rem; font-weight:650; }
-        .meal-time{ font-size:0.82rem; font-weight:600; opacity:.75; line-height:1.2; }
-        .meal-btn.active .meal-time{ opacity:.9; }
+        .meal-label { display: block; font-weight: 700; font-size: 0.95rem; }
+        .meal-time { display: block; font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
+
 
         .dining-halls {
             display: grid;
-           
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
+            gap: 1.5rem;
         }
 
         .dining-hall {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .dining-hall:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
         }
 
         .hall-header {
-            background: linear-gradient(135deg, #c62828 0%, #d32f2f 100%);
+            background: #c62828;
             color: white;
-            padding: 1rem;
-            text-align: center;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .hall-header h3 { font-size: 1.4rem; margin-bottom: 0.4rem; }
-
+        .hall-header h3 { font-size: 1.2rem; margin: 0; }
+        
         .hall-status {
-            display: inline-block;
             background: rgba(255,255,255,0.2);
-            padding: 0.4rem 0.8rem;
-            border-radius: 16px;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
             font-size: 0.8rem;
             font-weight: 600;
+        }
+        
+        .hall-status.is-closed {
+            background: rgba(0,0,0,0.2); 
+            opacity: 0.8;
         }
 
         .menu-content {
             padding: 1rem;
-            max-height: 420px;
+            max-height: 500px;
             overflow-y: auto;
         }
 
-        .menu-content::-webkit-scrollbar { width: 6px; }
-        .menu-content::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        .menu-content::-webkit-scrollbar-thumb { background: #c62828; border-radius: 10px; }
-        .menu-content::-webkit-scrollbar-thumb:hover { background: #b71c1c; }
+        .menu-category { margin-bottom: 1.5rem; }
 
-        .menu-category { margin-bottom: 1.2rem; animation: slideIn 0.5s ease-out; }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.6rem;
         }
 
         .category-title {
-            color: #c62828;
+            color: #b71c1c;
             font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.4rem;
-            padding-left: 1rem;
-            border-bottom: 2px solid #ffebee;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .category-icon { font-size: 1.2rem; }
+        .station-hours {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #666; 
+        }
 
-        .menu-items { list-style: none; padding-left: 1rem; }
+        .station-hours.closed-status {
+            color: #d32f2f; 
+            opacity: 0.8;
+        }
 
+        .menu-items { list-style: none; }
+        
         .menu-item {
-            padding: 0.4rem 0;
-            padding-left: 0.8rem;
-            border-left: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 0.5rem 0.8rem;
+            border-bottom: 1px solid #f9f9f9;
             font-size: 0.95rem;
         }
+        
+        .menu-item a { text-decoration: none; color: inherit; display: block; }
+        .menu-item:hover { background: #fafafa; color: #b71c1c; }
 
-        .menu-item:hover {
-            border-left-color: #c62828;
-            background: #ffebee;
-            padding-left: 1.2rem;
-        }
-
-        .menu-item-link{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            width:100%;
-            color:inherit;
-            text-decoration:none;
-        }
-
-        .menu-item-link:focus-visible{
-            outline:none;
-            box-shadow:0 0 0 4px rgba(198,40,40,.18);
-            border-radius:8px;
-        }
-
-        .no-menu { text-align: center; padding: 2.5rem; color: #666; font-style: italic; }
-        .loading-message { text-align: center; padding: 2rem; color: #666; font-style: italic; }
-
-        .last-updated {
+        .no-menu {
+            padding: 1rem;
             text-align: center;
             color: #888;
-            font-size: 0.8rem;
-            margin-top: 0.8rem;
-            padding-top: 0.6rem;
-            border-top: 1px solid #ffebee;
             font-style: italic;
+            background: #fcfcfc;
+            border-radius: 8px;
+            font-size: 0.9rem;
         }
+        
+        .closed-sign {
+            padding: 1.5rem;
+            text-align: center;
+            color: #d32f2f;
+            background: #fff5f5;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .loading-message { text-align: center; color: #888; padding: 2rem; }
 
         .about-content {
             background: white;
+            padding: 2rem;
             border-radius: 12px;
-            padding: 3rem;
             max-width: 800px;
-            margin: 2rem auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            animation: fadeIn 0.6s ease-out;
-            line-height: 1.8;
+            margin: 0 auto;
         }
 
-        .about-content h2 {
-            color: #c62828;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .about-content p { font-size: 1.1rem; margin-bottom: 1.5rem; color: #333; }
-
-        .about-content a {
-            color: #c62828;
-            text-decoration: underline;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .about-content a:hover { color: #b71c1c; }
-
-        footer { text-align: center; padding: 2rem; color: #fff; margin-top: 3rem; }
-
-        @media (max-width: 800px) {
-            html { font-size: 14px; }
-            
-            body { -webkit-tap-highlight-color: transparent; }
-
-            .header-container { padding: 0 0.8rem; }
-            h1 { font-size: 1.4rem; letter-spacing: -0.5px; }
-            .tagline { display: none; } 
-            .clock-time { font-size: 1.2rem; }
-            .clock-date { font-size: 0.7rem; }
-            header { padding: 0.6rem 0; }
-
-            nav { top: 0; } 
-            .nav-container { padding: 0 0.5rem; gap: 0.5rem; }
-            .nav-btn { padding: 0.7rem 0.8rem; font-size: 0.9rem; }
-
-            main { padding: 0.5rem; margin: 0.5rem auto; }
-            
-            .meal-selector { 
-                padding: 1rem 0.5rem; 
-                margin-bottom: 1rem; 
-                border-radius: 12px;
-            }
-            .meal-selector h2 { font-size: 1.2rem; margin-bottom: 0.8rem; }
-            .meal-buttons { gap: 0.5rem; }
-            .meal-btn { 
-                min-width: unset; 
-                width: 48%; 
-                padding: 0.5rem;
-                border-radius: 12px;
-            }
-            .meal-label { font-size: 0.9rem; }
-            .meal-time { font-size: 0.7rem; }
-
-           
-            .dining-halls {
-                grid-template-columns: repeat(3, 1fr) !important; 
-                gap: 0.4rem;
-                margin-top: 0.5rem;
-            }
-            
-           
-            @media (min-width: 450px) and (max-width: 800px) {
-                .dining-halls { grid-template-columns: repeat(4, 1fr) !important; }
-            }
-
-            .dining-hall {
-                height: 220px; 
-                display: flex;
-                flex-direction: column;
-                border-radius: 8px;
-            }
-
-            .hall-header {
-                padding: 0.4rem 0.2rem;
-                height: 40px; 
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-            
-            .hall-header h3 { 
-                font-size: 0.85rem; 
-                margin: 0; 
-                line-height: 1.1;
-                white-space: nowrap; 
-                overflow: hidden; 
-                text-overflow: ellipsis; 
-            }
-            
-     
-            .hall-status { display: none; } 
-
-            .menu-content {
-                padding: 0.3rem;
-                flex-grow: 1;
-           
-                scrollbar-width: none; 
-            }
-            .menu-content::-webkit-scrollbar { display: none; }
-
-            .menu-category { margin-bottom: 0.5rem; }
-            
-            .category-title {
-                font-size: 0.75rem;
-                padding-left: 0;
-                border-bottom-width: 1px;
-                margin-bottom: 0.2rem;
-                padding-bottom: 0.1rem;
-            }
-            .category-icon { display: none; } 
-
-            .menu-items { padding-left: 0; }
-            
-            .menu-item {
-                padding: 0.15rem 0;
-                padding-left: 0;
-                font-size: 0.7rem; 
-                line-height: 1.2;
-                border-bottom: 1px dashed #f5f5f5;
-                justify-content: flex-start;
-            }
-            
-            .menu-item:hover { padding-left: 0; background: transparent; }
-            .menu-item-link span { 
-                white-space: nowrap; 
-                overflow: hidden; 
-                text-overflow: ellipsis; 
-                max-width: 100%;
-                display: block;
-            }
-
-            .about-content { padding: 1.5rem; }
-            .about-content h2 { font-size: 1.5rem; }
-            
-            footer { padding: 1.5rem; font-size: 0.75rem; margin-top: 1rem; }
+        @media (max-width: 600px) {
+            .header-container { padding: 0 1rem; }
+            h1 { font-size: 1.4rem; }
+            .tagline { display: none; }
+            .meal-btn { width: 48%; min-width: unset; padding: 0.5rem; }
+            .dining-halls { grid-template-columns: 1fr; }
         }
     </style>
-
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "b55eeac22b1c465d9a39541f96cbcdae"}'></script>
-
 </head>
-
 <body>
 
 <header>
     <div class="header-container">
         <div class="header-left">
             <h1>🐺 Wolfie Dine</h1>
-            <p class="tagline">Your campus dining companion</p>
+            <p class="tagline">Stony Brook Dining Aggregator</p>
         </div>
         <div class="clock-container">
-            <div class="clock-time" id="clock-time">00:00</div>
-            <div class="clock-date" id="clock-date">Loading...</div>
-</div>
+            <div class="clock-time" id="clock-time">--:--</div>
+            <div class="clock-date" id="clock-date">...</div>
+        </div>
     </div>
 </header>
 
@@ -505,1028 +273,428 @@
     <div class="nav-container">
         <button class="nav-btn active" onclick="showPage('menu', this)">Menu</button>
         <button class="nav-btn" onclick="showPage('about', this)">About</button>
-        <a class="nav-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfwXXeb2SHBLBE1TENjznsm8F5WlA5zCsay5n1cbmbJU2BTIQ/viewform"
-           target="_blank">Feedback</a>
+        <a class="nav-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfwXXeb2SHBLBE1TENjznsm8F5WlA5zCsay5n1cbmbJU2BTIQ/viewform" target="_blank">Feedback</a>
     </div>
 </nav>
 
-    <main>
-        <div id="menu-page" class="page active">
-            <div class="meal-selector">
-                <h2>Select Meal Period</h2>
-                <div class="meal-buttons" id="meal-buttons"></div>
+<main>
+    <div id="menu-page" class="page active">
+        <div class="meal-selector">
+            <h2>Select Meal Period</h2>
+            <div class="meal-buttons" id="meal-buttons"></div>
         </div>
         <div class="dining-halls" id="dining-halls-container"></div>
     </div>
 
-        <div id="about-page" class="page">
-            <div class="about-content">
-                <h2>About Wolfie Dine</h2>
-                <p>
-                    Wolfie Dine is a menu aggregator for the Stony Brook University dining halls that lets students see all meal options in one place.
-                </p>
-                <p>
-                    Wolfie Dine was founded in January 2025 by Tina Yu [BCM '29] and Chenhao Yu [CpE '28].
-                    It's maintained by the same student team and updates daily.
-                </p>
-                <p>
-                    See the <a href="https://stonybrook.nutrislice.com" target="_blank">official Dining website</a>
-                    for hours updates, nutritional information, and service alerts.
-                </p>
-                <p>
-                    Feel free to leave feedback via the feedback page!
-                </p>
-            </div>
+    <div id="about-page" class="page">
+        <div class="about-content">
+            <h2 style="color:#b71c1c; margin-bottom:1rem;">About Wolfie Dine</h2>
+            <p>Wolfie Dine is a menu aggregator for Stony Brook University dining halls.</p>
+            <p style="margin-top:1rem;">Created by Tina Yu [BCM '29] and Chenhao Yu [CpE '28].</p>
         </div>
-    </main>
+    </div>
+</main>
 
-    <footer>
-        <p>&copy; 2026 Wolfie Dine. Bringing campus dining to your fingertips.</p>
-    </footer>
+<script>
+    const menuData = {
+        'west-hall': { name: 'West Side Dining' },
+        'east-hall': { name: 'East Side Dining' },
+        'east-retail': { name: 'East Side Retail' },
+        'jasmine': { name: 'Jasmine' },
+        'roth': { name: 'Roth Café' },
+        'sac': { name: 'SAC' },
+        'dental-cafe': { name: 'Dental Café' }
+    };
 
-    <script>
+    let fetchedData = {
+        dental: null,
+        eastDining: null,
+        westDining: null,
+        eastRetail: null,
+        jasmine: null,
+        roth: null,
+        sac: null
+    };
 
-        function isClosedHoursLabel(label) {
-            const s = String(label || '').trim().toLowerCase();
-            if (!s) return true;
-            if (s === '-' || s === '—') return true;
-            if (s.includes('closed')) return true;
-            return false;
+    let currentMeal = 'lunch';
+
+
+    function isNowOpen(hoursStr) {
+        if (!hoursStr || hoursStr === 'Closed') return false;
+        if (hoursStr === 'Hours vary') return true;
+
+        const now = new Date();
+        const curMins = now.getHours() * 60 + now.getMinutes();
+
+        const parts = hoursStr.split(/to|–|-/);
+        if (parts.length < 2) return true;
+
+        function parse(tStr, isEnd) {
+            const s = tStr.toLowerCase().replace(/[^a-z0-9:]/g, '');
+            const match = s.match(/(\d+):?(\d+)?([ap]m)/);
+            if (!match) return 0;
+            let h = parseInt(match[1]);
+            const m = match[2] ? parseInt(match[2]) : 0;
+            const ampm = match[3];
+            if (ampm === 'pm' && h !== 12) h += 12;
+            if (ampm === 'am' && h === 12) h = 0;
+            let total = h * 60 + m;
+            if (isEnd && total === 0) total = 1440; 
+            return total;
         }
 
-        const menuData = {
-            'west-hall': {
-                name: 'West Side Dining',
-                isDynamic: true
-            },
-
-
-            'east-hall': {
-                name: 'East Side Dining',
-                isDynamic: true
-            },
-
-            'east-retail': {
-                name: 'East Side Retail',
-                isDynamic: true
-            },
-
-            'jasmine': {
-                name: 'Jasmine',
-                isDynamic: true
-            },
-
-
-            'roth': {
-                name: 'Roth Café',
-                isDynamic: true
-            },
-
-
-            'sac': {
-                name: 'SAC',
-                isDynamic: true
-            },
-
-
-            'dental-cafe': {
-                name: 'Dental Café',
-                isDynamic: true
-            }
-          
-        };
-
-
-        if (!menuData['west-hall'].isDynamic) {
-            menuData['west-hall'].latenight = menuData['west-hall'].dinner;
-        }
-
-        let dentalCafeData = null;
-        let eastDiningData = null;
-        let westDiningData = null;
-        let eastRetailData = null;
-        let jasmineData = null;
-        let rothData = null;
-        let sacData = null;
-
-        const categoryIcons = {
-            'Breakfast Classics': '🍳',
-            'Hot Breakfast': '🍳',
-            'Healthy Options': '🥗',
-            'Continental': '🥐',
-            'Beverages': '☕',
-            'Entrees': '🍽️',
-            'Sides': '🥘',
-            'Soups': '🍲',
-            'Desserts': '🍰',
-            'All Items': '🍴'
-        };
-
-        let currentMeal = 'breakfast';
-
-        function pickInitialMeal() {
-            const now = new Date();
-            const day = now.getDay();
-            const minutes = now.getHours() * 60 + now.getMinutes();
-
-            const isWeekend = (day === 0 || day === 6);
-
-            const schedule = isWeekend ? [
-                { key: 'lunch', label: 'Brunch', time: '9am–3:59pm', start: 9 * 60, end: 16 * 60 },
-                { key: 'dinner', label: 'Dinner', time: '4pm–11pm', start: 16 * 60, end: 23 * 60 }
-            ] : [
-                { key: 'breakfast', label: 'Breakfast', time: '7:30–10:59am', start: 7 * 60 + 30, end: 11 * 60 },
-                { key: 'lunch', label: 'Lunch', time: '11am–3:59pm', start: 11 * 60, end: 16 * 60 },
-                { key: 'dinner', label: 'Dinner', time: '4pm–9:59pm', start: 16 * 60, end: 22 * 60 },
-                { key: 'late-night', label: 'Late Night', time: '10pm–12am', start: 22 * 60, end: 24 * 60 }
-            ];
-
-            for (const slot of schedule) {
-                if (minutes >= slot.start && minutes < slot.end) return slot.key;
-            }
-            for (const slot of schedule) {
-                if (minutes < slot.start) return slot.key;
-            }
-            return schedule[0].key;
-        }
-
-        function applyMealSchedule() {
-            const now = new Date();
-            const day = now.getDay();
-            const isWeekend = (day === 0 || day === 6);
-
-            const schedule = isWeekend ? [
-                { key: 'lunch', label: 'Brunch', time: '9am–3:59pm' },
-                { key: 'dinner', label: 'Dinner', time: '4pm–11pm' }
-            ] : [
-                { key: 'breakfast', label: 'Breakfast', time: '7:30–10:59am' },
-                { key: 'lunch', label: 'Lunch', time: '11am–3:59pm' },
-                { key: 'dinner', label: 'Dinner', time: '4pm–9:59pm' },
-                { key: 'late-night', label: 'Late Night', time: '10pm–12am' }
-            ];
-
-            const buttonsWrap = document.getElementById('meal-buttons');
-            if (!buttonsWrap) return;
-
-            buttonsWrap.classList.toggle('weekday', !isWeekend);
-
-            buttonsWrap.innerHTML = schedule.map(slot => `
-                <div class="meal-option">
-                    <button class="meal-btn" data-meal="${slot.key}">
-                        <span class="meal-label">${slot.label}</span>
-                        <span class="meal-time">${slot.time}</span>
-                    </button>
-                </div>
-            `).join('');
-
-            buttonsWrap.querySelectorAll('.meal-btn').forEach(btn => {
-                btn.addEventListener('click', () => changeMeal(btn.dataset.meal));
-            });
-        }
-
-        function setInitialMealUI(initialMeal) {
-            currentMeal = initialMeal;
-            document.querySelectorAll('.meal-btn').forEach(btn => btn.classList.remove('active'));
-
-            const chosenBtn = document.querySelector(`[data-meal="${initialMeal}"]`);
-            if (chosenBtn && chosenBtn.style.display !== 'none') {
-                chosenBtn.classList.add('active');
-            } else {
-                const fallbackBtn = document.querySelector('[data-meal="lunch"]');
-                if (fallbackBtn) {
-                    currentMeal = 'lunch';
-                    fallbackBtn.classList.add('active');
-                }
-            }
-
-            renderDiningHalls();
-        }
-
-        async function loadDentalCafeData() {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 9000);
-            try {
-                const response = await fetch('dental_cafe.json?ts=' + Date.now(), {
-                    cache: 'no-store',
-                    signal: controller.signal
-                });
-                if (!response.ok) throw new Error('Could not load menu');
-                dentalCafeData = await response.json();
-            } catch (error) {
-                console.error('Error loading Dental Cafe data:', error);
-                dentalCafeData = {
-                    status: 'fetch_error',
-                    message: 'Menu data unavailable (refresh or try again later)',
-                    menu: [],
-                    updated_at: ''
-                };
-            } finally {
-                clearTimeout(timeout);
-                renderDiningHalls();
-            }
-        }
-
-        async function loadEastDiningData() {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 9000);
-            try {
-                const response = await fetch('east_dining.json?ts=' + Date.now(), {
-                    cache: 'no-store',
-                    signal: controller.signal
-                });
-                if (!response.ok) throw new Error('Could not load menu');
-                eastDiningData = await response.json();
-            } catch (error) {
-                console.error('Error loading East Dining data:', error);
-                eastDiningData = {
-                    status: 'fetch_error',
-                    message: 'Menu data unavailable (refresh or try again later)',
-                    meals: {},
-                    updated_at: '',
-                    is_weekend: false
-                };
-            } finally {
-                clearTimeout(timeout);
-                renderDiningHalls();
-            }
-        }
-
-
-        async function loadWestDiningData() {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 9000);
-            try {
-                const response = await fetch('west_dining.json?ts=' + Date.now(), {
-                    cache: 'no-store',
-                    signal: controller.signal
-                });
-                if (!response.ok) throw new Error('Could not load menu');
-                westDiningData = await response.json();
-            } catch (error) {
-                console.error('Error loading West Dining data:', error);
-                westDiningData = {
-                    status: 'fetch_error',
-                    message: 'Menu data unavailable (refresh or try again later)',
-                    meals: {},
-                    updated_at: '',
-                    is_weekend: false
-                };
-            } finally {
-                clearTimeout(timeout);
-                renderDiningHalls();
-            }
-        }
-
-        
-        async function loadEastRetailData() {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 9000);
-            try {
-                const response = await fetch('east_side_retail.json?ts=' + Date.now(), {
-                    cache: 'no-store',
-                    signal: controller.signal
-                });
-                if (!response.ok) throw new Error('Could not load menu');
-                eastRetailData = await response.json();
-            } catch (error) {
-                console.error('Error loading East Side Retail data:', error);
-                eastRetailData = {
-                    status: 'fetch_error',
-                    message: 'Menu data unavailable (refresh or try again later)',
-                    sections: [],
-                    updated_at: ''
-                };
-            } finally {
-                clearTimeout(timeout);
-                renderDiningHalls();
-            }
-        }
-
-
-
-        async function loadJasmineData() {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 9000);
-            try {
-                const response = await fetch('jasmine.json?ts=' + Date.now(), {
-                    cache: 'no-store',
-                    signal: controller.signal
-                });
-                if (!response.ok) throw new Error('Could not load menu');
-                jasmineData = await response.json();
-            } catch (error) {
-                console.error('Error loading Jasmine data:', error);
-                jasmineData = {
-                    status: 'fetch_error',
-                    message: 'Menu data unavailable (refresh or try again later)',
-                    sections: [],
-                    updated_at: '',
-                    hours_today: ''
-                };
-            } finally {
-                clearTimeout(timeout);
-                renderDiningHalls();
-            }
-        }
-
-
-        async function loadRothData() {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 9000);
-            try {
-                const response = await fetch('roth.json?ts=' + Date.now(), {
-                    cache: 'no-store',
-                    signal: controller.signal
-                });
-                if (!response.ok) throw new Error('Could not load menu');
-                rothData = await response.json();
-            } catch (error) {
-                console.error('Error loading Roth data:', error);
-                rothData = {
-                    status: 'fetch_error',
-                    message: 'Menu data unavailable (refresh or try again later)',
-                    sections: [],
-                    updated_at: '',
-                    hours_today: ''
-                };
-            } finally {
-                clearTimeout(timeout);
-                renderDiningHalls();
-            }
-        }
-
-        async function loadSACData() {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 9000);
-            try {
-                const response = await fetch('sac.json?ts=' + Date.now(), {
-                    cache: 'no-store',
-                    signal: controller.signal
-                });
-                if (!response.ok) throw new Error('Could not load menu');
-                sacData = await response.json();
-            } catch (error) {
-                console.error('Error loading SAC data:', error);
-                sacData = {
-                    status: 'fetch_error',
-                    message: 'Menu data unavailable (refresh or try again later)',
-                    sections: [],
-                    updated_at: ''
-                };
-            } finally {
-                clearTimeout(timeout);
-                renderDiningHalls();
-            }
-        }
-
-
-
-
-        function updateClock() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const timeString = `${hours}:${minutes}`;
-
-            const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-            const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-            const dayOfWeek = days[now.getDay()];
-            const month = months[now.getMonth()];
-            const date = now.getDate();
-            const year = now.getFullYear();
-            const dateString = `${dayOfWeek}, ${month} ${date}, ${year}`;
-
-            document.getElementById('clock-time').textContent = timeString;
-            document.getElementById('clock-date').textContent = dateString;
-        }
-
-        setInterval(updateClock, 1000);
-        updateClock();
-        function showPage(pageName, btn) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(`${pageName}-page`).classList.add('active');
-
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            if (btn) btn.classList.add('active');
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function nutrisliceDentalCafeDayUrl(dateStr) {
-            const base = "https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe";
-            if (!dateStr) return base;
-            return `${base}?day=${encodeURIComponent(dateStr)}`;
-        }
-
-
-        function nutrisliceEastSideSpecialsDayUrl(dateStr) {
-            const base = "https://stonybrook.nutrislice.com/menu/east-side-dining/todays-dine-in-specials-esd";
-            if (!dateStr) return base;
-            return `${base}?day=${encodeURIComponent(dateStr)}`;
-        }
-
-        function nutrisliceWestSideSpecialsDayUrl(dateStr) {
-            const base = "https://stonybrook.nutrislice.com/menu/west-side-dining/todays-dine-in-specials-wsd";
-            if (!dateStr) return base;
-            return `${base}?day=${encodeURIComponent(dateStr)}`;
-        }
-
-
-        function getEastSideDineInHoursLabel() {
-            const d = new Date();
-            const day = d.getDay();
-            
-            if (day === 0) return "Sun 9am–11pm";
-            if (day === 6) return "Sat 9am–11pm";
-            return "Mon-Fri 7:30am–12am";
-        }
-
-
-        function getWestSideDineInHoursLabel() {
-            const d = new Date();
-            const day = d.getDay();
-            
-            if (day === 0) return "Sun 9am–11pm";
-            if (day === 6) return "Sat 9am–11pm";
-            return "Mon-Fri 7:30am–12am";
-        }
-
-
-        function getEastRetailStoreHoursLabel(storeName) {
-            const d = new Date();
-            const day = d.getDay(); // 0 Sun ... 6 Sat
-
-            function norm(s) {
-                return String(s || '')
-                    .toLowerCase()
-                    .replace(/\(.*?\)/g, '')      // remove (...) like (Emporium)
-                    .replace(/[^a-z0-9]+/g, ' ')
-                    .trim();
-            }
-
-            const key = norm(storeName);
-
-            const HOURS = {
-                // Mon-Thu / Fri / Sat / Sun
-                'cocina fresca': { monThu: 'Mon-Thu 11:30am–10pm', fri: 'Fri 11:30am–7pm', sat: 'Sat Closed', sun: 'Sun Closed' },
-                'wicked wingz': { monThu: 'Mon-Thu 11:30am–10pm', fri: 'Fri 11:30am–7pm', sat: 'Sat Closed', sun: 'Sun Closed' },
-                'halal ny': { monThu: 'Mon-Thu 11:30am–10pm', fri: 'Fri 11:30am–7pm', sat: 'Sat Closed', sun: 'Sun Closed' },
-                'island soul': { monThu: 'Mon-Thu 11:30am–10pm', fri: 'Fri 11:30am–7pm', sat: 'Sat Closed', sun: 'Sun Closed' },
-
-                'smash n shake': { monThu: 'Mon-Thu 11am–10pm', fri: 'Fri 11am–7pm', sat: 'Sat Closed', sun: 'Sun Closed' },
-                'subway': { monThu: 'Mon-Thu 11am–10pm', fri: 'Fri 11am–7pm', sat: 'Sat Closed', sun: 'Sun Closed' },
-                'popeyes': { monThu: 'Mon-Thu 11:30am–9pm', fri: 'Fri 11:30am–7pm', sat: 'Sat Closed', sun: 'Sun Closed' },
-
-                'emporium market': { monThu: 'Mon-Thu 9am–12am', fri: 'Fri 8am–12am', sat: 'Sat 10am–11pm', sun: 'Sun 10am–11pm' },
-                'delancey st kosher': { monThu: 'Mon-Thu 12pm–7pm', fri: 'Fri 10am–3pm', sat: 'Sat Closed', sun: 'Sun 12pm–6pm' },
-
-                "nathan s": { monThu: 'Mon-Thu 12pm–9pm', fri: 'Fri 12pm–7pm', sat: 'Sat Closed', sun: 'Sun Closed' }
-            };
-
-            const h = HOURS[key];
-            if (!h) return 'Hours vary';
-
-            // Sun
-            if (day === 0) return h.sun;
-            // Sat
-            if (day === 6) return h.sat;
-            // Fri
-            if (day === 5) return h.fri;
-            // Mon-Thu
-            return h.monThu;
-        }
-
-
-        function getDentalCafeHoursLabel() {
-            const d = new Date();
-            const day = d.getDay(); // 0 Sun ... 6 Sat
-            
-            if (day === 0) return 'Sun Closed';
-            if (day === 6) return 'Sat Closed';
-            return 'Mon-Fri 7:30am–2:30pm';
-        }
-
-
-        function getSACStoreHoursLabel(storeName) {
-            const d = new Date();
-            const day = d.getDay(); // 0 Sun ... 6 Sat
-
-            function norm(s) {
-                return String(s || '')
-                    .toLowerCase()
-                    .replace(/\(.*?\)/g, '')
-                    .replace(/[^a-z0-9]+/g, ' ')
-                    .trim();
-            }
-
-            const key = norm(storeName);
-
-            // Group mapping
-            const isFoodCourt = [
-                'flame',
-                'seawolves pizza',
-                'tuscan bistro',
-                'noodles',
-                'soups chili',
-                'grab n go',
-                'sac grill',
-                'wok wok stir fry',
-                'stiry fry',
-                'stir fry',
-                'healthy by nature'
-            ].includes(key);
-
-            const isCornerDeli = (key === 'corner deli');
-            const isCraft = (key === 'craft' || key === 'craft salads smoothies and bowls');
-            const isDunkin = (key === 'dunkin' || key === 'dunkin donut' || key === 'dunkin donuts' || key === 'dunkin donuts');
-
-            function pick(hours) {
-                if (day === 0) return hours.sun;
-                if (day === 6) return hours.sat;
-                if (day === 5) return hours.fri;
-                return hours.monThu;
-            }
-
-            if (isFoodCourt) {
-                return pick({ 
-                    monThu: 'Mon-Thu 11am–6pm', 
-                    fri: 'Fri 11am–3pm', 
-                    sat: 'Sat Closed', 
-                    sun: 'Sun Closed' 
-                });
-            }
-            if (isCornerDeli) {
-                return pick({ 
-                    monThu: 'Mon-Thu 11am–6pm', 
-                    fri: 'Fri 11am–3pm', 
-                    sat: 'Sat Closed', 
-                    sun: 'Sun Closed' 
-                });
-            }
-            if (isCraft) {
-                return pick({ 
-                    monThu: 'Mon-Thu 10am–7pm', 
-                    fri: 'Fri 10am–7pm', 
-                    sat: 'Sat Closed', 
-                    sun: 'Sun Closed' 
-                });
-            }
-            if (isDunkin) {
-                return pick({ 
-                    monThu: 'Mon-Thu 7:30am–7pm', 
-                    fri: 'Fri 7:30am–7pm', 
-                    sat: 'Sat 10am–7pm', 
-                    sun: 'Sun 10am–7pm' 
-                });
-            }
-
-            // Fallback for any unexpected section name
+        const start = parse(parts[0], false);
+        const end = parse(parts[1], true);
+
+        return curMins >= start && curMins < end;
+    }
+
+
+    function getStoreHours(location, storeName) {
+        const d = new Date();
+        const day = d.getDay(); 
+        const isWeekend = (day === 0 || day === 6);
+        const key = String(storeName || '').toLowerCase().trim();
+
+        if (location === 'roth') {
+            if (key.includes('subway')) return isWeekend ? '12pm to 12am' : '11am to 12am';
+            if (key.includes('smash')) return isWeekend ? '4pm to 12am' : '11am to 12am';
+            if (key.includes('savor')) return isWeekend ? 'Closed' : '4pm to 10pm';
+            if (key.includes('popeye')) return isWeekend ? '4pm to 10:30pm' : '11:30am to 10:30pm';
             return 'Hours vary';
         }
 
+        if (location === 'jasmine') {
+            return isWeekend ? '12pm to 7pm' : '11am to 8pm';
+        }
 
 
-        function renderDentalCafeContent() {
-            const dentalHours = getDentalCafeHoursLabel();
-            if (isClosedHoursLabel(dentalHours)) {
-                return '<div class=\"no-menu\">Closed</div>';
+        if (location === 'east-retail') {
+            if (key.includes('cocina') || key.includes('wingz') || key.includes('halal') || key.includes('island')) {
+                if (day === 0 || day === 6) return 'Closed';
+                if (day === 5) return '11:30am to 7pm';
+                return '11:30am to 10pm';
+            }
+            if (key.includes('emporium')) {
+                if (day === 5) return '8am to 12am';
+                if (isWeekend) return '10am to 11pm';
+                return '9am to 12am';
+            }
+            if (key.includes('delancey')) {
+                if (day === 6) return 'Closed'; 
+                if (day === 0) return '12pm to 6pm';
+                if (day === 5) return '10am to 3pm';
+                return '12pm to 7pm';
+            }
+            if (key.includes('nathan')) {
+                if (isWeekend) return 'Closed';
+                if (day === 5) return '12pm to 7pm';
+                return '12pm to 9pm';
+            }
+        }
+
+        if (location === 'sac') {
+            const isFoodCourt = ['flame', 'pizza', 'bistro', 'noodles', 'soups', 'grill', 'wok', 'nature'].some(k => key.includes(k));
+            
+            if (key.includes('corner deli')) {
+                if (isWeekend) return 'Closed';
+                if (day === 5) return '11am to 3pm'; 
+                return '11am to 6pm'; 
             }
 
-            if (dentalCafeData === null) {
-                return '<div class="loading-message">Loading menu...</div>';
+            if (key.includes('dunkin')) return isWeekend ? '10am to 7pm' : '7:30am to 7pm';
+            if (key.includes('craft')) return isWeekend ? 'Closed' : '10am to 7pm';
+            if (isFoodCourt) return isWeekend ? 'Closed' : (day === 5 ? '11am to 3pm' : '11am to 6pm');
+        }
+
+
+        if (location === 'dental-cafe') {
+            return isWeekend ? 'Closed' : '7:30am to 2:30pm';
+        }
+
+        return 'Hours vary';
+    }
+
+    function getHallHours(hallId) {
+        const d = new Date();
+        const day = d.getDay();
+        const isWeekend = (day === 0 || day === 6);
+
+        if (hallId === 'west-hall' || hallId === 'east-hall') {
+            return isWeekend ? "9am – 11pm" : "7:30am – 12am";
+        }
+        if (hallId === 'jasmine') return getStoreHours('jasmine', 'main');
+        if (hallId === 'dental-cafe') return getStoreHours('dental-cafe', 'main');
+        return 'Hours vary';
+    }
+
+    function getDiningHallAllowedSections(meal, isWeekend) {
+        const breakfast = ['hot breakfast', 'chef', 'grill breakfast'];
+        const lunch = ['chef', 'rooted', 'grill lunch', 'pasta', 'pizza'];
+        const dinner = ['rooted', 'grill dinner', 'pasta', 'pizza'];
+        const latenight = ['late night', 'pasta', 'pizza'];
+
+        if (isWeekend) {
+            if (meal === 'lunch' || meal === 'brunch') return [...breakfast, ...lunch];
+            if (meal === 'dinner') return [...dinner, ...latenight];
+            if (meal === 'late-night' || meal === 'late_night') return latenight;
+        } else {
+            if (meal === 'breakfast') return breakfast;
+            if (meal === 'lunch') return lunch;
+            if (meal === 'dinner') return dinner;
+            if (meal === 'late-night' || meal === 'late_night') return latenight;
+        }
+        return []; 
+    }
+
+
+    function renderMultiStation(data, hallId) {
+        if (!data) return '<div class="loading-message">Loading info...</div>';
+        
+        let sections = [];
+        if (hallId === 'roth') {
+            const jsonSections = data.sections || [];
+            const keyStations = ['Subway', 'Smash n\' Shake', 'Savor', 'Popeyes'];
+            sections = keyStations.map(name => {
+                const found = jsonSections.find(s => s.section && s.section.toLowerCase().includes(name.toLowerCase().split(' ')[0]));
+                return found || { section: name, items: [], menu_url: '#' };
+            });
+        } 
+        else if (hallId === 'sac') {
+            sections = [...(data.sections || []), { section: 'Dunkin Donuts', items: ['See Official Menu'], menu_url: 'https://www.dunkindonuts.com' }];
+        }
+        else {
+            sections = data.sections || [];
+        }
+
+        if (sections.length === 0) return '<div class="no-menu">No data available</div>';
+
+        return sections.map(s => {
+            const hoursStr = getStoreHours(hallId, s.section);
+            const isOpen = isNowOpen(hoursStr);
+            let contentHtml = '';
+            
+            if (!isOpen) {
+                contentHtml = '<div class="closed-sign">Closed</div>';
+            } else {
+                const hasItems = s.items && s.items.length > 0;
+                if (hasItems) {
+                    contentHtml = `<ul class="menu-items">${s.items.map(i => `<li class="menu-item"><a href="${s.menu_url || '#'}" target="_blank">${i}</a></li>`).join('')}</ul>`;
+                } else {
+                     contentHtml = `<ul class="menu-items"><li class="menu-item"><a href="${s.menu_url || '#'}" target="_blank">View Menu on Nutrislice</a></li></ul>`;
+                }
             }
 
-            const status = dentalCafeData.status || '';
-            const message = dentalCafeData.message || '';
-            const menu = Array.isArray(dentalCafeData.menu) ? dentalCafeData.menu : [];
-
-            const updated = dentalCafeData.updated_at
-                ? `<div class="last-updated">Last updated: ${dentalCafeData.updated_at}</div>`
-                : '';
-
-            if (menu.length === 0) {
-                const text = message || 'No menu data available.';
-                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
-                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
-            }
-
-            const dateStr = (dentalCafeData && dentalCafeData.date)
-                ? dentalCafeData.date
-                : (dentalCafeData && dentalCafeData.updated_at ? dentalCafeData.updated_at.split(' ')[0] : null);
-
-            const href = nutrisliceDentalCafeDayUrl(dateStr);
-
-            const items = menu.map(item => `
-                <li class="menu-item">
-                    <a class="menu-item-link" href="${href}" target="_blank" rel="noopener noreferrer">
-                        <span>${item.name}</span>
-                    </a>
-                </li>
-            `).join("");
+            const hoursClass = isOpen ? '' : 'closed-status';
 
             return `
-                <div class="menu-category">
-                    <h4 class="category-title">
-                        <span class="category-icon">🍴</span>
-                        Today's Menu
-                    </h4>
-                    <ul class="menu-items">${items}</ul>
+            <div class="menu-category">
+                <div class="category-header">
+                    <span class="category-title">🍴 ${s.section}</span>
+                    <span class="station-hours ${hoursClass}">${hoursStr}</span>
                 </div>
-                ${updated}
-            `;
-        }
+                ${contentHtml}
+            </div>`;
+        }).join('');
+    }
 
-        function renderEastDiningContent() {
-            if (eastDiningData === null) {
-                return '<div class="loading-message">Loading menu...</div>';
-            }
-
-            const status = eastDiningData.status || '';
-            const message = eastDiningData.message || '';
-            const meals = eastDiningData.meals || {};
-
-            const updated = eastDiningData.updated_at
-                ? `<div class="last-updated">Last updated: ${eastDiningData.updated_at}</div>`
-                : '';
-
-
-            const dateStr = (eastDiningData && eastDiningData.date)
-                ? eastDiningData.date
-                : (eastDiningData && eastDiningData.updated_at ? eastDiningData.updated_at.split(' ')[0] : null);
-
-            const itemHref = nutrisliceEastSideSpecialsDayUrl(dateStr);
-
-
-            let mealKey = currentMeal;
-            if (mealKey === 'late-night') mealKey = 'late_night';
-
-
-            if (eastDiningData.is_weekend) {
-                if (mealKey === 'lunch' || mealKey === 'breakfast') mealKey = 'brunch';
-                if (mealKey === 'late_night') mealKey = 'dinner';
-            }
-
-            const blocks = Array.isArray(meals[mealKey]) ? meals[mealKey] : [];
-
-            if (blocks.length === 0) {
-                const text = message || 'No menu data available.';
-                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
-                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
-            }
-
-            const htmlBlocks = blocks.map(b => {
-                const section = b.section || 'Menu';
-                const items = Array.isArray(b.items) ? b.items : [];
-
-                const li = items.map(name => `
-                    <li class="menu-item">
-                        <a class="menu-item-link" href="${itemHref}" target="_blank" rel="noopener noreferrer">
-                            <span>${name}</span>
-                        </a>
-                    </li>
-                `).join('');
-
-                return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${section}
-                        </h4>
-                        <ul class="menu-items">${li}</ul>
-                    </div>
-                `;
-            }).join('');
-
-            return `${htmlBlocks}${updated}`;
-        }
-
-        function renderWestDiningContent() {
-            if (westDiningData === null) {
-                return '<div class="loading-message">Loading menu...</div>';
-            }
-
-            const status = westDiningData.status || '';
-            const message = westDiningData.message || '';
-            const meals = westDiningData.meals || {};
-
-            const updated = westDiningData.updated_at
-                ? `<div class="last-updated">Last updated: ${westDiningData.updated_at}</div>`
-                : '';
-
-            const dateStr = (westDiningData && westDiningData.date)
-                ? westDiningData.date
-                : (westDiningData && westDiningData.updated_at ? westDiningData.updated_at.split(' ')[0] : null);
-
-            const itemHref = nutrisliceWestSideSpecialsDayUrl(dateStr);
-
-
-            let mealKey = currentMeal;
-            if (mealKey === 'late-night') mealKey = 'late_night';
-
-
-            if (westDiningData.is_weekend) {
-                if (mealKey === 'lunch' || mealKey === 'breakfast') mealKey = 'brunch';
-                if (mealKey === 'late_night') mealKey = 'dinner';
-            }
-
-            const blocks = Array.isArray(meals[mealKey]) ? meals[mealKey] : [];
-
-            if (blocks.length === 0) {
-                const text = message || 'No menu data available.';
-                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
-                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
-            }
-
-            const htmlBlocks = blocks.map(b => {
-                const section = b.section || 'Menu';
-                const items = Array.isArray(b.items) ? b.items : [];
-
-                const li = items.map(name => `
-                    <li class="menu-item">
-                        <a class="menu-item-link" href="${itemHref}" target="_blank" rel="noopener noreferrer">
-                            <span>${name}</span>
-                        </a>
-                    </li>
-                `).join('');
-
-                return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${section}
-                        </h4>
-                        <ul class="menu-items">${li}</ul>
-                    </div>
-                `;
-            }).join('');
-
-            return `${htmlBlocks}${updated}`;
-        }
-
-
-
-        function renderEastRetailContent() {
-            if (eastRetailData === null) {
-                return '<div class="loading-message">Loading menu...</div>';
-            }
-
-            const status = eastRetailData.status || '';
-            const message = eastRetailData.message || '';
-            const sections = Array.isArray(eastRetailData.sections) ? eastRetailData.sections : [];
-
-            const updated = '';
-            // (Retail card) Last updated hidden by request
-
-            if (sections.length === 0) {
-                const text = message || 'No menu data available.';
-                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
-                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
-            }
-
-            const htmlBlocks = sections.map(s => {
-                const sectionName = s.section || 'Menu';
-                const items = Array.isArray(s.items) ? s.items : [];
-                const href = s.menu_url || 'https://stonybrook.nutrislice.com/menu/east-side-retail';
-
-                const hours = getEastRetailStoreHoursLabel(sectionName);
-                const isClosed = isClosedHoursLabel(hours);
-
-                if (isClosed) {
-                    return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${sectionName}
-                            <span style="margin-left:auto; font-size:0.9rem; font-weight:650; color:#666;">${hours}</span>
-                        </h4>
-                    </div>
-                    `;
-                }
-
-                const li = items.map(name => `
-                    <li class="menu-item">
-                        <a class="menu-item-link" href="${href}" target="_blank" rel="noopener noreferrer">
-                            <span>${name}</span>
-                        </a>
-                    </li>
-                `).join('');
-
-                return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${sectionName}
-                            <span style="margin-left:auto; font-size:0.75rem; font-weight:600; color:#333;">${hours}</span>
-                        </h4>
-                        <ul class="menu-items">${li}</ul>
-                    </div>
-                `;
-            }).join('');
-
-            return `${htmlBlocks}${updated}`;
-        }
-
+    function renderDiningHall(data, isWest) {
+        if (!data) return '<div class="loading-message">Loading menu...</div>';
         
-        function renderJasmineContent() {
-            if (jasmineData === null) {
-                return '<div class="loading-message">Loading menu...</div>';
-            }
-
-            const status = jasmineData.status || '';
-            const message = jasmineData.message || '';
-            const sections = Array.isArray(jasmineData.sections) ? jasmineData.sections : [];
-
-            const updated = jasmineData.updated_at
-                ? `<div class="last-updated">Last updated: ${jasmineData.updated_at}</div>`
-                : '';
-
-            if (sections.length === 0) {
-                const text = message || 'No menu data available.';
-                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
-                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
-            }
-
-            const htmlBlocks = sections.map(s => {
-                const sectionName = s.section || 'Menu';
-                const items = Array.isArray(s.items) ? s.items : [];
-                const href = s.menu_url || 'https://stonybrook.nutrislice.com/menu/jasmine';
-                const hours = (s.hours_today && String(s.hours_today).trim()) ? s.hours_today : 'Closed';
-                const isClosed = isClosedHoursLabel(hours);
-
-                if (isClosed) {
-                    return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${sectionName}
-                            <span style="margin-left:auto; font-size:0.9rem; font-weight:650; color:#666;">${hours}</span>
-                        </h4>
-                    </div>
-                    `;
-                }
-
-                const li = items.map(name => `
-                    <li class="menu-item">
-                        <a class="menu-item-link" href="${href}" target="_blank" rel="noopener noreferrer">
-                            <span>${name}</span>
-                        </a>
-                    </li>
-                `).join('');
-
-                return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${sectionName}
-                            <span style="margin-left:auto; font-size:0.75rem; font-weight:600; color:#333;">${hours}</span>
-                        </h4>
-                        <ul class="menu-items">${li}</ul>
-                    </div>
-                `;
-            }).join('');
-
-            return `${htmlBlocks}${updated}`;
+        let mealKey = currentMeal;
+        if (mealKey === 'late-night') mealKey = 'late_night';
+        if (data.is_weekend) {
+            if (mealKey === 'breakfast') mealKey = 'brunch';
+            if (mealKey === 'late_night') mealKey = 'dinner';
         }
 
+        const rawBlocks = data.meals?.[mealKey] || [];
+        const hallHours = getHallHours(isWest ? 'west-hall' : 'east-hall');
+        const isOpen = isNowOpen(hallHours);
 
-        function renderRothContent() {
-            if (rothData === null) {
-                return '<div class="loading-message">Loading menu...</div>';
-            }
-
-            const status = rothData.status || '';
-            const message = rothData.message || '';
-            const sections = Array.isArray(rothData.sections) ? rothData.sections : [];
-
-            const updated = rothData.updated_at
-                ? `<div class="last-updated">Last updated: ${rothData.updated_at}</div>`
-                : '';
-
-            if (sections.length === 0) {
-                const text = message || 'No menu data available.';
-                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
-                return `<div class="no-menu" ${style}>${text}</div>${updated}`;
-            }
-
-            const htmlBlocks = sections.map(s => {
-                const sectionName = s.section || 'Menu';
-                const items = Array.isArray(s.items) ? s.items : [];
-                const href = s.menu_url || 'https://stonybrook.nutrislice.com/menu/roth-cafe';
-                const hours = (s.hours_today && String(s.hours_today).trim()) ? s.hours_today : 'Closed';
-                const isClosed = isClosedHoursLabel(hours);
-
-                if (isClosed) {
-                    return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${sectionName}
-                            <span style="margin-left:auto; font-size:0.9rem; font-weight:650; color:#666;">${hours}</span>
-                        </h4>
-                    </div>
-                    `;
-                }
-
-                const li = items.map(name => `
-                    <li class="menu-item">
-                        <a class="menu-item-link" href="${href}" target="_blank" rel="noopener noreferrer">
-                            <span>${name}</span>
-                        </a>
-                    </li>
-                `).join('');
-
-                return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${sectionName}
-                            <span style="margin-left:auto; font-size:0.75rem; font-weight:600; color:#333;">${hours}</span>
-                        </h4>
-                        <ul class="menu-items">${li}</ul>
-                    </div>
-                `;
-            }).join('');
-
-            return `${htmlBlocks}${updated}`;
+        if (!isOpen) {
+            return `<div class="closed-sign">Closed</div>`;
         }
 
+        const allowedKeywords = getDiningHallAllowedSections(currentMeal, data.is_weekend);
+        const blocks = rawBlocks.filter(b => {
+            const sec = (b.section || '').toLowerCase();
+            return allowedKeywords.some(keyword => sec.includes(keyword));
+        });
 
-        function renderSACContent() {
-            if (sacData === null) {
-                return '<div class="loading-message">Loading menu...</div>';
-            }
+        if (blocks.length === 0) return '<div class="no-menu">No menu posted for this meal period.</div>';
 
-            const status = sacData.status || '';
-            const message = sacData.message || '';
-            const sections = Array.isArray(sacData.sections) ? sacData.sections : [];
+        return blocks.map(b => `
+            <div class="menu-category">
+                <div class="category-header">
+                    <span class="category-title">🍴 ${b.section}</span>
+                </div>
+                <ul class="menu-items">
+                    ${(b.items || []).map(i => `<li class="menu-item"><span>${i}</span></li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+    }
 
-            // Add Dunkin (not on Nutrislice) as a static entry
-            const dunkinSection = {
-                section: 'Dunkin Donuts',
-                items: ['Menu'],
-                menu_url: 'https://www.dunkindonuts.com/en/menu'
-            };
+    function renderDentalContent() {
+        const hoursStr = getStoreHours('dental-cafe', 'main');
+        const isOpen = isNowOpen(hoursStr);
+        
+        if (!isOpen) return `<div class="closed-sign">Closed</div>`;
+        if (!fetchedData.dental) return '<div class="loading-message">Loading...</div>';
 
-            const allSections = [...sections, dunkinSection];
+        const sections = fetchedData.dental.sections || [];
+        
+        if (sections.length === 0) return '<div class="no-menu">No menu items found</div>';
 
-            if (allSections.length === 0) {
-                const text = message || 'No menu data available.';
-                const style = status === 'fetch_error' ? 'style="color:#b71c1c"' : '';
-                return `<div class="no-menu" ${style}>${text}</div>`;
-            }
+        return sections.map(s => `
+            <div class="menu-category">
+                <div class="category-header">
+                    <span class="category-title">🍴 ${s.section}</span>
+                </div>
+                <ul class="menu-items">
+                    ${(s.items || []).map(item => `<li class="menu-item"><span>${item}</span></li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+    }
 
-            const htmlBlocks = allSections.map(s => {
-                const sectionName = s.section || 'Menu';
-                const items = Array.isArray(s.items) ? s.items : [];
-                const href = s.menu_url || 'https://stonybrook.nutrislice.com/menu/sac';
 
-                const hours = getSACStoreHoursLabel(sectionName);
-                const isClosedByHours = isClosedHoursLabel(hours);
+    function renderAll() {
+        const container = document.getElementById('dining-halls-container');
+        container.innerHTML = '';
 
-                const isDunkin = String(sectionName || '').toLowerCase().includes('dunkin');
+        Object.keys(menuData).forEach(hallId => {
+            const hall = menuData[hallId];
+            const div = document.createElement('div');
+            div.className = 'dining-hall';
 
-                // As requested: empty stalls => Closed (except Dunkin, which is a static link)
-                const isEmpty = items.length === 0;
-                const isClosed = isClosedByHours || (!isDunkin && isEmpty) || (String(s.message || '').toLowerCase().includes('closed'));
+            const hoursStr = getHallHours(hallId);
+            const isOpen = isNowOpen(hoursStr);
+            const statusClass = isOpen ? '' : 'is-closed';
 
-                if (isClosed) {
-                    return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${sectionName}
-                            <span style="margin-left:auto; font-size:0.9rem; font-weight:650; color:#666;">${hours}</span>
-                        </h4>
-                    </div>
-                    `;
-                }
+            let content = '';
+            if (hallId === 'west-hall') content = renderDiningHall(fetchedData.westDining, true);
+            else if (hallId === 'east-hall') content = renderDiningHall(fetchedData.eastDining, false);
+            else if (hallId === 'east-retail') content = renderMultiStation(fetchedData.eastRetail, 'east-retail');
+            else if (hallId === 'jasmine') content = renderMultiStation(fetchedData.jasmine, 'jasmine');
+            else if (hallId === 'roth') content = renderMultiStation(fetchedData.roth, 'roth');
+            else if (hallId === 'sac') content = renderMultiStation(fetchedData.sac, 'sac');
+            else if (hallId === 'dental-cafe') content = renderDentalContent();
 
-                // Dunkin: show link even without item list
-                const li = (isDunkin ? ['Menu'] : items).map(name => `
-                    <li class="menu-item">
-                        <a class="menu-item-link" href="${href}" target="_blank" rel="noopener noreferrer">
-                            <span>${name}</span>
-                        </a>
-                    </li>
-                `).join('');
+            div.innerHTML = `
+                <div class="hall-header">
+                    <h3>${hall.name}</h3>
+                    <span class="hall-status ${statusClass}">${hoursStr}</span>
+                </div>
+                <div class="menu-content">${content}</div>
+            `;
+            container.appendChild(div);
+        });
+    }
 
-                return `
-                    <div class="menu-category">
-                        <h4 class="category-title">
-                            <span class="category-icon">🍴</span>
-                            ${sectionName}
-                            <span style="margin-left:auto; font-size:0.75rem; font-weight:600; color:#333;">${hours}</span>
-                        </h4>
-                        <ul class="menu-items">${li}</ul>
-                    </div>
-                `;
-            }).join('');
 
-            return `${htmlBlocks}`;
+    function setupMealButtons() {
+        const d = new Date();
+        const day = d.getDay();
+        const isWeekend = (day === 0 || day === 6);
+        const wrap = document.getElementById('meal-buttons');
+        
+        const schedule = isWeekend ? [
+            { key: 'lunch', label: 'Brunch', time: '9am–4pm' },
+            { key: 'dinner', label: 'Dinner', time: '4pm–11pm' }
+        ] : [
+            { key: 'breakfast', label: 'Breakfast', time: '7:30–11am' },
+            { key: 'lunch', label: 'Lunch', time: '11am–4pm' },
+            { key: 'dinner', label: 'Dinner', time: '4pm–10pm' },
+            { key: 'late-night', label: 'Late Night', time: '10pm–12am' }
+        ];
+
+        wrap.innerHTML = schedule.map(s => `
+            <button class="meal-btn" data-meal="${s.key}" onclick="setMeal('${s.key}')">
+                <span class="meal-label">${s.label}</span>
+                <span class="meal-time">${s.time}</span>
+            </button>
+        `).join('');
+        
+        const nowH = d.getHours();
+        let defaultMeal = 'lunch';
+        if (!isWeekend) {
+            if (nowH < 11) defaultMeal = 'breakfast';
+            else if (nowH >= 11 && nowH < 16) defaultMeal = 'lunch';
+            else if (nowH >= 16 && nowH < 22) defaultMeal = 'dinner';
+            else if (nowH >= 22) defaultMeal = 'late-night';
+        } else {
+             if (nowH >= 16) defaultMeal = 'dinner';
         }
+        setMeal(defaultMeal);
+    }
+
+    function setMeal(meal) {
+        currentMeal = meal;
+        document.querySelectorAll('.meal-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.meal === meal);
+        });
+        renderAll();
+    }
+
+    function showPage(pageId, btn) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId + '-page').classList.add('active');
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    async function fetchJson(file) {
+        try {
+            const res = await fetch(file + '?t=' + Date.now());
+            if(!res.ok) throw new Error(res.status);
+            return await res.json();
+        } catch(e) {
+            console.log("Fetch fail", file);
+            return { sections: [] }; 
+        }
+    }
+
+    async function initData() {
+        const [dental, eastD, westD, eastR, jas, roth, sac] = await Promise.all([
+            fetchJson('dental_cafe.json'),
+            fetchJson('east_dining.json'),
+            fetchJson('west_dining.json'),
+            fetchJson('east_side_retail.json'),
+            fetchJson('jasmine.json'),
+            fetchJson('roth.json'),
+            fetchJson('sac.json')
+        ]);
+
+        fetchedData = { 
+            dental, eastDining: eastD, westDining: westD, 
+            eastRetail: eastR, jasmine: jas, roth, sac 
+        };
+        renderAll();
+    }
+
+    function updateClock() {
+        const now = new Date();
+        const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let h = now.getHours();
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('clock-time').textContent = `${h}:${m}:${s}`;
+        document.getElementById('clock-date').textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+        
+    }
 
 
+    setupMealButtons();
+    initData();
+    setInterval(updateClock, 1000);
+    updateClock();
 
-function renderStaticHallMenu(menu) {
-            if (!menu || Object.keys(menu).length === 0) {
-                return '<div class="no-
+    setInterval(renderAll, 600000);
+
+</script>
+</body>
+</html>

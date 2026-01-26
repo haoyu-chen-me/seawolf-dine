@@ -2,6 +2,8 @@ import requests
 import json
 import datetime
 import re
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
 
 TARGET_URL_TEMPLATE = (
     "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/"
@@ -10,6 +12,7 @@ TARGET_URL_TEMPLATE = (
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (SBU Student Project)"}
 
+
 MEAL_KEYWORDS = [
     ("late_night", re.compile(r"\blate\s*night\b", re.I)),
     ("breakfast", re.compile(r"\bbreakfast\b", re.I)),
@@ -17,12 +20,30 @@ MEAL_KEYWORDS = [
     ("dinner", re.compile(r"\bdinner\b", re.I)),
 ]
 
+
 PIZZA_SECTION_RE = re.compile(r"\bpizza\b", re.I)
 PASTA_SECTION_RE = re.compile(r"\bpasta\b", re.I)
+
 
 LATE_NIGHT_SOURCE_SECTION = "Late Night Specials"
 LATE_NIGHT_TARGET_SECTION = "Grill Dinner Specials"
 
+
+
+def _ny_tz():
+    try:
+        return ZoneInfo("America/New_York")
+    except ZoneInfoNotFoundError as e:
+        raise RuntimeError(
+            "Missing timezone data for America/New_York.\n"
+            "Fix (Windows 本地最常见): python -m pip install tzdata\n"
+            "Then rerun."
+        ) from e
+
+NY_TZ = _ny_tz()
+
+def ny_now() -> datetime.datetime:
+    return datetime.datetime.now(NY_TZ)
 
 def pick_section_name(menu_item: dict) -> str:
     mc = menu_item.get("menu_category") or {}
@@ -35,14 +56,12 @@ def pick_section_name(menu_item: dict) -> str:
         or "Other"
     )
 
-
 def safe_food_name(mi: dict) -> str | None:
     food = mi.get("food") or {}
     name = food.get("name")
     if isinstance(name, str) and name.strip():
         return name.strip()
     return None
-
 
 def detect_header_text(mi: dict) -> str | None:
     if mi.get("food"):
@@ -59,24 +78,20 @@ def detect_header_text(mi: dict) -> str | None:
 
     return None
 
-
 def guess_meal_from_section(section_name: str) -> str:
     for meal, pat in MEAL_KEYWORDS:
         if pat.search(section_name or ""):
             return meal
     return "dinner"
 
-
 def is_pizza_or_pasta_section(section_name: str) -> bool:
     s = section_name or ""
     return bool(PIZZA_SECTION_RE.search(s) or PASTA_SECTION_RE.search(s))
-
 
 def add_name(meals_map: dict, meal: str, section: str, food_name: str):
     meals_map.setdefault(meal, {})
     meals_map[meal].setdefault(section, [])
     meals_map[meal][section].append(food_name)
-
 
 def dedupe_preserve_order(names: list[str]) -> list[str]:
     seen = set()
@@ -86,7 +101,6 @@ def dedupe_preserve_order(names: list[str]) -> list[str]:
             seen.add(n)
             out.append(n)
     return out
-
 
 def meals_map_to_output(meals_map: dict, meal_order: list[str]) -> dict:
     out = {}
@@ -99,7 +113,6 @@ def meals_map_to_output(meals_map: dict, meal_order: list[str]) -> dict:
         out[meal] = blocks
     return out
 
-
 def merge_blocks(blocks: list[dict]) -> list[dict]:
     sec_map: dict[str, list[str]] = {}
     for b in blocks:
@@ -109,13 +122,14 @@ def merge_blocks(blocks: list[dict]) -> list[dict]:
     merged.sort(key=lambda x: (x["section"] or "").lower())
     return merged
 
-
 def weekend_merge_brunch_dinner(base: dict) -> dict:
+
     brunch_blocks = []
     brunch_blocks.extend(base.get("breakfast", []))
     brunch_blocks.extend(base.get("lunch", []))
     brunch_blocks.extend(base.get("brunch", []))
     brunch = merge_blocks(brunch_blocks)
+
 
     dinner_blocks = list(base.get("dinner", []))
 
@@ -128,21 +142,18 @@ def weekend_merge_brunch_dinner(base: dict) -> dict:
             dinner_blocks.append(b)
 
     dinner = merge_blocks(dinner_blocks)
-
     return {"brunch": brunch, "dinner": dinner}
 
 
 def fetch_west_dining_menu():
-    utc_now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
-    eastern_time = utc_now - datetime.timedelta(hours=5)
-
-    date_str = eastern_time.strftime("%Y-%m-%d")
-    is_weekend = eastern_time.weekday() >= 5
+    now = ny_now()
+    date_str = now.strftime("%Y-%m-%d")
+    is_weekend = now.weekday() >= 5
 
     url = TARGET_URL_TEMPLATE.format(
-        year=eastern_time.year,
-        month=f"{eastern_time.month:02d}",
-        day=f"{eastern_time.day:02d}",
+        year=now.year,
+        month=f"{now.month:02d}",
+        day=f"{now.day:02d}",
     )
     print(f"Fetching from: {url}")
 
@@ -221,7 +232,8 @@ def fetch_west_dining_menu():
         "is_weekend": is_weekend,
         "status": status,
         "message": message,
-        "updated_at": eastern_time.strftime("%Y-%m-%d %H:%M:%S EST"),
+        "updated_at": now.strftime("%Y-%m-%d %H:%M:%S %Z"),
+        "timezone": "America/New_York",
         "meals": meals_out,
         "source_url": url,
     }
