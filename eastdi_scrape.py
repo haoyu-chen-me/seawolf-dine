@@ -4,7 +4,6 @@ import datetime
 import re
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-# --- Configuration ---
 
 TARGET_URL_TEMPLATE = (
     "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/"
@@ -13,7 +12,6 @@ TARGET_URL_TEMPLATE = (
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (SBU Student Project)"}
 
-# 关键字匹配餐段 (正则忽略大小写)
 MEAL_KEYWORDS = [
     ("late_night", re.compile(r"\blate\s*night\b", re.I)),
     ("breakfast", re.compile(r"\bbreakfast\b", re.I)),
@@ -21,16 +19,14 @@ MEAL_KEYWORDS = [
     ("dinner", re.compile(r"\bdinner\b", re.I)),
 ]
 
-# Pizza 和 Pasta 既然全天都有，需要特殊处理
 PIZZA_SECTION_RE = re.compile(r"\bpizza\b", re.I)
 PASTA_SECTION_RE = re.compile(r"\bpasta\b", re.I)
 
-# 周末合并逻辑：把 Late Night 的 Grill 归入 Dinner
+
 LATE_NIGHT_SOURCE_SECTION = "Late Night Specials"
 LATE_NIGHT_TARGET_SECTION = "Grill Dinner Specials"
 
 
-# --- Helper Functions ---
 
 def _ny_tz():
     try:
@@ -114,7 +110,6 @@ def meals_map_to_output(meals_map: dict, meal_order: list[str]) -> dict:
         blocks = []
         for sec, names in sections.items():
             blocks.append({"section": sec, "items": dedupe_preserve_order(names)})
-        # 按档口名排序，保持整洁
         blocks.sort(key=lambda x: (x["section"] or "").lower())
         out[meal] = blocks
     return out
@@ -146,13 +141,10 @@ def weekend_merge_brunch_dinner(base: dict) -> dict:
     # 2. Dinner
     dinner_blocks = list(base.get("dinner", []))
     
-    # 将 Late Night 内容并入 Dinner
     for b in base.get("late_night", []):
         sec = b.get("section") or "Other"
         items = b.get("items") or []
         
-        # 特殊逻辑：把 "Late Night Specials" (实际上是 Grill) 改名为 "Grill Dinner Specials"
-        # 这样前端过滤 Dinner 时能把这些 Grill 菜品选出来
         if sec == LATE_NIGHT_SOURCE_SECTION:
             dinner_blocks.append({"section": LATE_NIGHT_TARGET_SECTION, "items": items})
         else:
@@ -163,7 +155,6 @@ def weekend_merge_brunch_dinner(base: dict) -> dict:
     return {"brunch": brunch, "dinner": dinner}
 
 
-# --- Main Logic ---
 
 def fetch_east_dining_menu():
     now = ny_now()
@@ -203,23 +194,19 @@ def fetch_east_dining_menu():
             current_section = None
 
             for mi in todays_items:
-                # 1. 检查是否是 Section Header (Nutrislice 经常把标题作为 item 返回)
                 header = detect_header_text(mi)
                 if header:
                     current_section = header
                     continue
 
-                # 2. 获取菜名
                 food_name = safe_food_name(mi)
                 if not food_name:
                     continue
 
-                # 3. 确定 Section 名称
                 section = pick_section_name(mi)
                 if section == "Other" and current_section:
                     section = current_section
 
-                # 4. Pizza 和 Pasta 分发逻辑 (全天供应)
                 if is_pizza_or_pasta_section(section):
                     if is_weekend:
                         add_name(meals_map, "brunch", section, food_name)
@@ -230,7 +217,6 @@ def fetch_east_dining_menu():
                         add_name(meals_map, "late_night", section, food_name)
                     continue
 
-                # 5. 普通逻辑：根据 Section 名字猜测餐段
                 meal = guess_meal_from_section(section)
                 add_name(meals_map, meal, section, food_name)
 
@@ -245,7 +231,6 @@ def fetch_east_dining_menu():
         import traceback
         traceback.print_exc()
 
-    # 生成最终输出结构
     if is_weekend:
         base = meals_map_to_output(meals_map, ["breakfast", "lunch", "dinner", "late_night", "brunch"])
         meals_out = weekend_merge_brunch_dinner(base)
@@ -264,7 +249,6 @@ def fetch_east_dining_menu():
         "source_url": url,
     }
 
-    # 写入文件
     filename = "east_dining.json"
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
@@ -272,4 +256,5 @@ def fetch_east_dining_menu():
     print(f"Successfully updated {filename}!")
 
 if __name__ == "__main__":
+
     fetch_east_dining_menu()
