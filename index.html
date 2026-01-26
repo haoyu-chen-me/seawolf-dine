@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Wolfie Dine</title>
+    <title>Wolfie Dine  </title>
     <meta name="description" content="Daily menus, hours, and live updates in a clean, fast view.">
     
     <style>
@@ -14,6 +14,7 @@
             background: linear-gradient(135deg, #ffcdd2 0%, #ffebee 100%);
             min-height: 100vh;
             color: #333;
+            padding-bottom: 2rem;
         }
 
         header {
@@ -767,10 +768,13 @@
         
         let mealKey = currentMeal;
         if (mealKey === 'late-night') mealKey = 'late_night';
+        
+        // --- FIX: Map lunch to brunch on weekends ---
         if (data.is_weekend) {
-            if (mealKey === 'breakfast') mealKey = 'brunch';
+            if (mealKey === 'breakfast' || mealKey === 'lunch') mealKey = 'brunch';
             if (mealKey === 'late_night') mealKey = 'dinner';
         }
+        // ---------------------------------------------
 
         const rawBlocks = data.meals?.[mealKey] || [];
         const hallHours = getHallHours(isWest ? 'west-hall' : 'east-hall');
@@ -947,8 +951,9 @@
         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         let h = now.getHours();
         const m = String(now.getMinutes()).padStart(2, '0');
+       
         document.getElementById('clock-time').textContent = `${h}:${m}`;
-        document.getElementById('clock-date').textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+        document.getElementById('clock-date').textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
     }
 
     // Start everything
