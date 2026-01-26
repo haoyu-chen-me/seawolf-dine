@@ -1,0 +1,47 @@
+{
+  "location": "Roth Cafe",
+  "date_fetched_from": "2026-01-27",
+  "timezone": "America/New_York",
+  "updated_at": "2026-01-25 18:19 EST",
+  "status": "partial_error",
+  "sections": [
+    {
+      "section": "Subway",
+      "type": "chain",
+      "menu_url": "https://www.subway.com/en-us/menu",
+      "items": [
+        "Click to view the official menu"
+      ],
+      "status": "ok",
+      "message": ""
+    },
+    {
+      "section": "Smash n' Shake",
+      "type": "static",
+      "menu_url": "https://stonybrook.nutrislice.com/menu/roth-cafe/smash-n-shake/2026-01-27",
+      "items": [],
+      "status": "fetch_error",
+      "message": "Error: 404 Client Error: Not Found for url: https://stonybrook.api.nutrislice.com/menu/api/weeks/school/roth-cafe/menu-type/smash-n-shake/2026/01/27/?format=json",
+      "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/roth-cafe/menu-type/smash-n-shake/2026/01/27/?format=json"
+    },
+    {
+      "section": "Savor",
+      "type": "static",
+      "menu_url": "https://stonybrook.nutrislice.com/menu/roth-cafe/chef-jet/2026-01-27",
+      "items": [],
+      "status": "fetch_error",
+      "message": "Error: 404 Client Error: Not Found for url: https://stonybrook.api.nutrislice.com/menu/api/weeks/school/roth-cafe/menu-type/chef-jet/2026/01/27/?format=json",
+      "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/roth-cafe/menu-type/chef-jet/2026/01/27/?format=json"
+    },
+    {
+      "section": "Popeyes",
+      "type": "chain",
+      "menu_url": "https://www.popeyes.com/menu",
+      "items": [
+        "Click to view the official menu"
+      ],
+      "status": "ok",
+      "message": ""
+    }
+  ]
+}

@@ -1,4 +1,3 @@
-# eastdi_scrape.py
 import requests
 import json
 import datetime

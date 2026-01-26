@@ -10,10 +10,10 @@ API_TEMPLATE = (
     "{slug}/{year}/{month}/{day}/?format=json"
 )
 
-# 固定日（给“不变”的档口用）
+
 FIXED_DATE = datetime.date(2026, 1, 26)
 
-# Jasmine（整体）营业时间
+
 JASMINE_HOURS = {
     "mon_thu": "11am to 8pm",
     "fri": "11am to 8pm",
@@ -21,7 +21,7 @@ JASMINE_HOURS = {
     "sun": "12pm to 7pm",
 }
 
-# Curry Kitchen：仅周一到周五开放
+
 CURRY_HOURS = {
     "mon_thu": "11am to 8pm",
     "fri": "11am to 8pm",
@@ -29,7 +29,7 @@ CURRY_HOURS = {
     "sun": "Closed",
 }
 
-# 你现在给的 4 个档口（如果有第 5 个，照这个格式再加一行）
+
 STALLS = [
     {"name": "Cafetasia Chinese", "slug": "cafetasia-chinese", "daily": False},
     {"name": "Curry Kitchen", "slug": "curry-kitchen", "daily": True},  # daily
@@ -39,7 +39,7 @@ STALLS = [
 
 
 def eastern_now() -> datetime.datetime:
-    # 简单按东部时间 UTC-5（和你之前 East/West 保持一致）
+    
     return datetime.datetime.utcnow() - datetime.timedelta(hours=5)
 
 
@@ -48,7 +48,7 @@ def eastern_today_date() -> datetime.date:
 
 
 def weekday_key(d: datetime.date) -> str:
-    wd = d.weekday()  # Mon=0 ... Sun=6
+    wd = d.weekday()  
     if wd <= 3:
         return "mon_thu"
     if wd == 4:
@@ -178,13 +178,13 @@ def main():
         slug = s["slug"]
         is_daily = bool(s.get("daily"))
 
-        # daily 用今天；static 用固定日
+    
         fetch_date = today if is_daily else FIXED_DATE
 
-        # 默认按表给 hours
+       
         h = stall_hours_today(name, today_key)
 
-        # Curry Kitchen 周末直接 Closed，不抓
+       
         if name.strip().lower() == "curry kitchen" and h == "Closed":
             items = []
         else:
@@ -193,7 +193,7 @@ def main():
             except Exception:
                 items = []
 
-        # ✅ 新规则：如果什么都没抓到 -> 直接 Closed
+        
         if not items:
             h = "Closed"
 
