@@ -1,43 +1,39 @@
 {
   "location": "Dental Café",
-  "date": "2026-01-26",
+  "date": "2026-01-27",
   "timezone": "America/New_York",
-  "updated_at": "2026-01-26 01:29:25 EST",
+  "updated_at": "2026-01-27 00:46:17 EST",
   "status": "ok",
   "message": "Menu fetched.",
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sbu-eats-events/menu-type/dental-cafe/2026/01/26/?format=json",
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sbu-eats-events/menu-type/dental-cafe/2026/01/27/?format=json",
   "sections": [
     {
       "section": "Breakfast Specials",
       "items": [
         "Pork Bacon, Egg & Cheese on a English Muffin",
-        "Turkey Sausage, Egg, Cheese on a English Muffin",
-        "Double Egg & Cheese on a English Muffin"
+        "Double Egg & Cheese on a English Muffin",
+        "Turkey Sausage, Egg, Cheese on a English Muffin"
       ]
     },
     {
       "section": "Daily Specials",
       "items": [
         "Roasted Chicken Gyro, Yogurt Tzatziki, Feta Cheese Panini",
-        "Caprese Panini",
-        "Roast Beef Florentine Panini"
+        "Roast Beef Florentine Panini",
+        "Caprese Panini"
       ]
     },
     {
       "section": "Vegetarian Specials",
       "items": [
-        "Vegan Chicken Tenders",
-        "Herb Roasted Potato Wedges",
-        "Corn on the Cob"
+        "Eggplant Rollatini",
+        "spaghetti"
       ]
     },
     {
       "section": "Hot Entree Special",
       "items": [
-        "Hoisin BBQ Beef Brisket",
-        "Brown Gravy",
-        "Mashed Potatoes",
-        "Steamed Corn"
+        "Rigatoni Beef Bolognese"
       ]
     },
     {
@@ -48,5 +44,5 @@
       ]
     }
   ],
-  "menu_url": "https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe/2026-01-26"
+  "menu_url": "https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe/2026-01-27"
 }
