@@ -1,10 +1,10 @@
 {
-  "date": "2026-01-27",
+  "date": "2026-01-28",
   "location": "West Side Dining (Dine-in Specials)",
   "is_weekend": false,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-27 00:46:10 EST",
+  "updated_at": "2026-01-28 00:47:20 EST",
   "timezone": "America/New_York",
   "meals": {
     "breakfast": [
@@ -13,12 +13,12 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Crispy Tater Tots",
-          "Meatless Breakfast Sausage Patty",
-          "Spinach Potato Rosemary Frittata",
-          "French Toast",
-          "Cheesy Tofu Fajita Scramble",
-          "Strawberry Compote"
+          "Hash Brown Patty",
+          "Chicken Breakfast Sausage Patty",
+          "Pork Bacon, Egg & Cheddar Frittata",
+          "Belgian Waffle",
+          "Tofu Scramble",
+          "Apple Compote"
         ]
       }
     ],
@@ -26,31 +26,29 @@
       {
         "section": "Fusion Kitchen Lunch Specials",
         "items": [
-          "Roasted Pork Loin",
-          "Corn and Potato Hash",
-          "Sauteed Spinach",
+          "Jerk Chicken Thighs",
+          "Rice and Beans",
+          "Sweet Plantains",
+          "Braised Cabbage",
           "Jasmine Rice"
         ]
       },
       {
         "section": "Grill Lunch Specials",
         "items": [
-          "White Hamburger Bun",
-          "Whole Wheat Hamburger Bun",
-          "Seasoned Burger Beef",
-          "California Veggie Burger",
-          "Grilled Peppers and Onions",
-          "Cheese Sauce",
-          "French Fries",
-          "Onion Rings"
+          "Steak Sauce, Provolone Cheese & Mushroom Beef Burger",
+          "Smoky Grilled Chicken and Pepper Jack Cheese Melt",
+          "Salami, Pepperoni, Ham, Provolone Slider",
+          "Parsley and Garlic Fries",
+          "French Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Creamy Penne Ala Vodka & Meatballs (Beef & Pork)",
-          "Breadcrumb Crusted Broccoli Macaroni and Cheese",
-          "Baked Stuffed Pork Bacon Potato Soup"
+          "Udon Noodles with Cabbage",
+          "Farfalle Garlic and Oil",
+          "Tomato Basil Bisque"
         ]
       },
       {
@@ -58,17 +56,17 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Broccoli Spinach Alfredo Pizza",
-          "Pork Sausage Cheese Pizza"
+          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza",
+          "Spinach and Artichoke Mozzarella Cheese Pizza"
         ]
       },
       {
         "section": "Rooted Lunch Specials",
         "items": [
-          "Pinto Bean Stew",
-          "Carrot Couscous",
-          "Baby Bok Choy",
-          "Red Potato Hash"
+          "Tofu Cacciatore",
+          "Roasted Portobello Mushroom",
+          "saffron and sweet pea jasmine rice",
+          "Sauteed Collard Greens"
         ]
       }
     ],
@@ -76,37 +74,37 @@
       {
         "section": "Composed Salads",
         "items": [
-          "Southwestern Barley Kale Salad",
-          "Heirloom Tomato and Mozzarella Salad"
+          "Spicy Peppers, Corn & Hominy Salad",
+          "Garden Salad"
         ]
       },
       {
         "section": "Fusion Kitchen Dinner Specials",
         "items": [
-          "Baked Chicken Parmesan",
-          "Roasted Broccoli and Broccolini",
-          "Cheese Tortellini with Pesto Sauce",
-          "Roasted Red Tomato Sauce",
-          "Jasmine Rice"
+          "Teriyaki Glazed Chicken",
+          "Vegetable Lo Mein Egg Noodles with Mushrooms, Soy Sauce, Oyster Sauce",
+          "Spicy Glazed Green Beans",
+          "Jasmine Rice",
+          "Egg Roll"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Chicken Cheese Steak",
-          "Grilled Santa Fe Chicken Sandwich",
-          "Grilled Eggplant, Mozzarella & Basil Burger",
+          "Smoked Turkey, Arugula, Dried Cranberry, Cream Cheese Wrap",
+          "Roasted Street Corn Hot Dog",
+          "Vegetable Quesadilla",
           "Grilled Vegetables",
-          "Crispy Tater Tots",
-          "French Fries"
+          "French Fries",
+          "Curly Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Creamy Penne Ala Vodka & Meatballs (Beef & Pork)",
-          "Breadcrumb Crusted Broccoli Macaroni and Cheese",
-          "Baked Stuffed Pork Bacon Potato Soup"
+          "Udon Noodles with Cabbage",
+          "Farfalle Garlic and Oil",
+          "Tomato Basil Bisque"
         ]
       },
       {
@@ -114,39 +112,27 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Broccoli Spinach Alfredo Pizza",
-          "Pork Sausage Cheese Pizza"
+          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza",
+          "Spinach and Artichoke Mozzarella Cheese Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Chana Masala",
-          "Basmati Rice",
-          "Vindaloo Roasted Vegetables",
-          "Roasted Corn on the Cob"
+          "Quinoa Rancheros",
+          "Fajita Vegetables",
+          "Chimichurri Tofu",
+          "Maple-Roasted Sweet Potatoes"
         ]
       }
     ],
     "late_night": [
       {
-        "section": "Late Night Specials",
-        "items": [
-          "French Fries",
-          "Fried Zucchini",
-          "Jalapeno Poppers",
-          "Stuffed Shells in Marinara",
-          "Pepperoni Pizza Bagel",
-          "Pizza Bagel",
-          "Chicken and Vegetable Pot Stickers"
-        ]
-      },
-      {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Creamy Penne Ala Vodka & Meatballs (Beef & Pork)",
-          "Breadcrumb Crusted Broccoli Macaroni and Cheese",
-          "Baked Stuffed Pork Bacon Potato Soup"
+          "Udon Noodles with Cabbage",
+          "Farfalle Garlic and Oil",
+          "Tomato Basil Bisque"
         ]
       },
       {
@@ -154,11 +140,11 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Broccoli Spinach Alfredo Pizza",
-          "Pork Sausage Cheese Pizza"
+          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza",
+          "Spinach and Artichoke Mozzarella Cheese Pizza"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/01/27/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/01/28/?format=json"
 }

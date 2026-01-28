@@ -1,7 +1,7 @@
 {
   "location": "SAC",
   "timezone": "America/New_York",
-  "updated_at": "2026-01-27 00:46:14 EST",
+  "updated_at": "2026-01-28 00:47:22 EST",
   "status": "partial_error",
   "sections": [
     {
@@ -20,14 +20,11 @@
         "Nashville Chicken 'Which Basket with Fries",
         "Black Bean Burger Basket with Fries",
         "Cowboy Beef Burger Martin's Potato Bun",
-        "Parm Beef Beef Burger on Martin's Potato Bun",
+        "Parm Beef Burger on Martin's Potato Bun",
         "Bulgogi Fried Chicken Sandwich on Corn Dusted Kaiser",
         "French Fries",
         "Breaded & Fried Onion Rings",
-        "Mozzarella Sticks with Marinara Sauce",
-        "BBQ Buffalo Chicken Loaded Tots",
-        "Soy and Sesame Beef Bulgogi Loaded Tots",
-        "Loaded Cheesy Tater Tots"
+        "Mozzarella Sticks with Marinara Sauce"
       ],
       "menu_url": "https://stonybrook.nutrislice.com/menu/sac/flame/2026-01-27",
       "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sac/menu-type/flame/2026/01/27/?format=json",
@@ -117,17 +114,17 @@
       "section": "Soups & Chili",
       "school": "sac",
       "slug": "grab-n-go",
-      "date": "2026-01-27",
+      "date": "2026-01-28",
       "status": "ok",
       "message": "Menu fetched.",
       "items": [
         "Chicken & Dumpling Soup",
-        "Corn Chowder",
-        "Baked Stuffed Pork Bacon Potato Soup",
+        "Broccoli & Cheddar Cheese Soup",
+        "Tomato Basil Bisque",
         "Beef Chili"
       ],
-      "menu_url": "https://stonybrook.nutrislice.com/menu/sac/grab-n-go/2026-01-27",
-      "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sac/menu-type/grab-n-go/2026/01/27/?format=json",
+      "menu_url": "https://stonybrook.nutrislice.com/menu/sac/grab-n-go/2026-01-28",
+      "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sac/menu-type/grab-n-go/2026/01/28/?format=json",
       "is_daily": true
     },
     {
