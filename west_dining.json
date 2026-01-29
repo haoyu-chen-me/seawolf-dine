@@ -1,10 +1,10 @@
 {
-  "date": "2026-01-28",
+  "date": "2026-01-29",
   "location": "West Side Dining (Dine-in Specials)",
   "is_weekend": false,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-28 00:47:20 EST",
+  "updated_at": "2026-01-29 01:01:57 EST",
   "timezone": "America/New_York",
   "meals": {
     "breakfast": [
@@ -13,12 +13,12 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Hash Brown Patty",
-          "Chicken Breakfast Sausage Patty",
-          "Pork Bacon, Egg & Cheddar Frittata",
-          "Belgian Waffle",
-          "Tofu Scramble",
-          "Apple Compote"
+          "Home Fries with Onions & Peppers",
+          "Turkey Bacon",
+          "Potato Cheese Frittata",
+          "Lucky Charms Pancakes",
+          "Huevos Rancheros, Tofu Scramble",
+          "Pineapple Compote"
         ]
       }
     ],
@@ -26,29 +26,28 @@
       {
         "section": "Fusion Kitchen Lunch Specials",
         "items": [
-          "Jerk Chicken Thighs",
-          "Rice and Beans",
-          "Sweet Plantains",
-          "Braised Cabbage",
+          "Char Siu Chicken",
+          "Vegetable Lo Mein Egg Noodles with Mushrooms, Soy Sauce, Oyster Sauce",
+          "Broccoli",
           "Jasmine Rice"
         ]
       },
       {
         "section": "Grill Lunch Specials",
         "items": [
-          "Steak Sauce, Provolone Cheese & Mushroom Beef Burger",
-          "Smoky Grilled Chicken and Pepper Jack Cheese Melt",
-          "Salami, Pepperoni, Ham, Provolone Slider",
-          "Parsley and Garlic Fries",
-          "French Fries"
+          "Teriyaki Turkey, Pineapple, WW Bun",
+          "Ham, Mustard, Pickles & Cheese Snack Wrap",
+          "Doritos Beef Chili and Cheese Hot Dog",
+          "French Fries",
+          "Fried Potato Wedges"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Udon Noodles with Cabbage",
-          "Farfalle Garlic and Oil",
-          "Tomato Basil Bisque"
+          "Chicken and Andouille Creole Pasta",
+          "Rigatoni Marinara",
+          "Vegetable Beef Barley Soup"
         ]
       },
       {
@@ -56,17 +55,17 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza",
-          "Spinach and Artichoke Mozzarella Cheese Pizza"
+          "Meatball Pizza",
+          "Veggie Supreme Pizza"
         ]
       },
       {
         "section": "Rooted Lunch Specials",
         "items": [
-          "Tofu Cacciatore",
-          "Roasted Portobello Mushroom",
-          "saffron and sweet pea jasmine rice",
-          "Sauteed Collard Greens"
+          "Sweet and Sour Vegan Meatballs",
+          "Vegan Cajun Red Beans and Wild Rice",
+          "Carrots with Herbs",
+          "Charred Broccolini"
         ]
       }
     ],
@@ -74,37 +73,44 @@
       {
         "section": "Composed Salads",
         "items": [
-          "Spicy Peppers, Corn & Hominy Salad",
-          "Garden Salad"
+          "Heirloom Tomato and Mozzarella Salad",
+          "Broccoli Stem Slaw with Mayo"
         ]
       },
       {
         "section": "Fusion Kitchen Dinner Specials",
         "items": [
-          "Teriyaki Glazed Chicken",
-          "Vegetable Lo Mein Egg Noodles with Mushrooms, Soy Sauce, Oyster Sauce",
-          "Spicy Glazed Green Beans",
-          "Jasmine Rice",
-          "Egg Roll"
+          "Flour Tortilla",
+          "6\" Yellow Corn Tortilla",
+          "Beef Taco Meat",
+          "Citrus Chicken Carnitas",
+          "Sofrito Tofu",
+          "Sauteed Peppers and Onions",
+          "Cilantro Lime White Rice",
+          "Seasoned Black Beans",
+          "Sour Cream",
+          "Cheddar Cheese Sauce",
+          "Shredded Iceberg Lettuce",
+          "Pico de Gallo"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Smoked Turkey, Arugula, Dried Cranberry, Cream Cheese Wrap",
-          "Roasted Street Corn Hot Dog",
-          "Vegetable Quesadilla",
+          "Jalapeno Burger",
+          "Grilled Cheese Sandwich",
+          "Roast Pork Broccoli Rabe Sandwich",
           "Grilled Vegetables",
-          "French Fries",
-          "Curly Fries"
+          "Roasted Garlic Fries",
+          "French Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Udon Noodles with Cabbage",
-          "Farfalle Garlic and Oil",
-          "Tomato Basil Bisque"
+          "Chicken and Andouille Creole Pasta",
+          "Rigatoni Marinara",
+          "Vegetable Beef Barley Soup"
         ]
       },
       {
@@ -112,17 +118,17 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza",
-          "Spinach and Artichoke Mozzarella Cheese Pizza"
+          "Meatball Pizza",
+          "Veggie Supreme Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Quinoa Rancheros",
-          "Fajita Vegetables",
-          "Chimichurri Tofu",
-          "Maple-Roasted Sweet Potatoes"
+          "Three Bean Chili",
+          "Yellow Rice",
+          "Balsamic Butternut Squash",
+          "Roasted Mini Bell Peppers"
         ]
       }
     ],
@@ -130,9 +136,9 @@
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Udon Noodles with Cabbage",
-          "Farfalle Garlic and Oil",
-          "Tomato Basil Bisque"
+          "Chicken and Andouille Creole Pasta",
+          "Rigatoni Marinara",
+          "Vegetable Beef Barley Soup"
         ]
       },
       {
@@ -140,11 +146,11 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza",
-          "Spinach and Artichoke Mozzarella Cheese Pizza"
+          "Meatball Pizza",
+          "Veggie Supreme Pizza"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/01/28/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/01/29/?format=json"
 }
