@@ -1,10 +1,10 @@
 {
-  "date": "2026-01-29",
+  "date": "2026-01-30",
   "location": "West Side Dining (Dine-in Specials)",
   "is_weekend": false,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-29 01:01:57 EST",
+  "updated_at": "2026-01-30 01:04:00 EST",
   "timezone": "America/New_York",
   "meals": {
     "breakfast": [
@@ -13,12 +13,12 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Home Fries with Onions & Peppers",
-          "Turkey Bacon",
-          "Potato Cheese Frittata",
-          "Lucky Charms Pancakes",
-          "Huevos Rancheros, Tofu Scramble",
-          "Pineapple Compote"
+          "Hash Brown Patty",
+          "Corned Beef Hash",
+          "Spinach Potato Rosemary Frittata",
+          "Cheesy Tofu Fajita Scramble",
+          "Strawberry Shortcake French Toast",
+          "Strawberry Compote"
         ]
       }
     ],
@@ -26,28 +26,28 @@
       {
         "section": "Fusion Kitchen Lunch Specials",
         "items": [
-          "Char Siu Chicken",
-          "Vegetable Lo Mein Egg Noodles with Mushrooms, Soy Sauce, Oyster Sauce",
-          "Broccoli",
+          "Shrimp Jambalaya",
+          "Cheddar Biscuit",
+          "Charred Okra",
+          "Green Beans and Roasted Red Pepper",
           "Jasmine Rice"
         ]
       },
       {
         "section": "Grill Lunch Specials",
         "items": [
-          "Teriyaki Turkey, Pineapple, WW Bun",
-          "Ham, Mustard, Pickles & Cheese Snack Wrap",
-          "Doritos Beef Chili and Cheese Hot Dog",
-          "French Fries",
-          "Fried Potato Wedges"
+          "Fried Fish Po Boy",
+          "Churrasco Chicken Chimichurri Sandwich",
+          "Grilled Vegetable Quesadilla",
+          "French Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Chicken and Andouille Creole Pasta",
-          "Rigatoni Marinara",
-          "Vegetable Beef Barley Soup"
+          "Bowtie with Asparagus and Ricotta",
+          "Sweet Chili Lo Mein Noodles",
+          "Broccoli & Cheddar Cheese Soup"
         ]
       },
       {
@@ -55,17 +55,17 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Meatball Pizza",
-          "Veggie Supreme Pizza"
+          "Barbecue Chicken, Mozzarella & Provolone Pizza",
+          "Banana Pepper Pizza"
         ]
       },
       {
         "section": "Rooted Lunch Specials",
         "items": [
-          "Sweet and Sour Vegan Meatballs",
-          "Vegan Cajun Red Beans and Wild Rice",
-          "Carrots with Herbs",
-          "Charred Broccolini"
+          "Pastrami Spiced Tofu",
+          "Olive Oil Roasted Potatoes",
+          "Braised Red Cabbage",
+          "Broccoli"
         ]
       }
     ],
@@ -80,37 +80,29 @@
       {
         "section": "Fusion Kitchen Dinner Specials",
         "items": [
-          "Flour Tortilla",
-          "6\" Yellow Corn Tortilla",
-          "Beef Taco Meat",
-          "Citrus Chicken Carnitas",
-          "Sofrito Tofu",
-          "Sauteed Peppers and Onions",
-          "Cilantro Lime White Rice",
-          "Seasoned Black Beans",
-          "Sour Cream",
-          "Cheddar Cheese Sauce",
-          "Shredded Iceberg Lettuce",
-          "Pico de Gallo"
+          "Tilapia with Mango Sweet Chili Sauce",
+          "Roasted Tri Color Bell Peppers",
+          "Garlic Chili Yakisoba Noodle",
+          "Jasmine Rice"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Jalapeno Burger",
-          "Grilled Cheese Sandwich",
-          "Roast Pork Broccoli Rabe Sandwich",
+          "crispy buffalo shrimp quesadilla",
+          "Fontina, Cheddar, Asiago Grilled Cheese with Tomato",
+          "Pulled Pork Slider with Mayo Based Coleslaw",
           "Grilled Vegetables",
-          "Roasted Garlic Fries",
+          "Cajun Fries",
           "French Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Chicken and Andouille Creole Pasta",
-          "Rigatoni Marinara",
-          "Vegetable Beef Barley Soup"
+          "Bowtie with Asparagus and Ricotta",
+          "Sweet Chili Lo Mein Noodles",
+          "Broccoli & Cheddar Cheese Soup"
         ]
       },
       {
@@ -118,17 +110,17 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Meatball Pizza",
-          "Veggie Supreme Pizza"
+          "Barbecue Chicken, Mozzarella & Provolone Pizza",
+          "Banana Pepper Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Three Bean Chili",
-          "Yellow Rice",
-          "Balsamic Butternut Squash",
-          "Roasted Mini Bell Peppers"
+          "Buffalo Grilled Tofu",
+          "Barley with Mushrooms",
+          "Sesame Broccoli",
+          "Sauteed Vegetable Medley"
         ]
       }
     ],
@@ -136,9 +128,9 @@
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Chicken and Andouille Creole Pasta",
-          "Rigatoni Marinara",
-          "Vegetable Beef Barley Soup"
+          "Bowtie with Asparagus and Ricotta",
+          "Sweet Chili Lo Mein Noodles",
+          "Broccoli & Cheddar Cheese Soup"
         ]
       },
       {
@@ -146,11 +138,11 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Meatball Pizza",
-          "Veggie Supreme Pizza"
+          "Barbecue Chicken, Mozzarella & Provolone Pizza",
+          "Banana Pepper Pizza"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/01/29/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/01/30/?format=json"
 }
