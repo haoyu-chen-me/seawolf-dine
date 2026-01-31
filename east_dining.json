@@ -1,31 +1,39 @@
 {
-  "date": "2026-01-30",
+  "date": "2026-01-31",
   "location": "East Side Dining (Dine-in Specials)",
-  "is_weekend": false,
+  "is_weekend": true,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-30 01:03:58 EST",
+  "updated_at": "2026-01-31 00:56:17 EST",
   "timezone": "America/New_York",
   "meals": {
-    "breakfast": [
+    "brunch": [
       {
         "section": "Breakfast at Chef's Table",
         "items": [
-          "Banana Pancakes",
-          "Cherry Compote"
+          "Belgian Waffle",
+          "Blueberry Compote"
         ]
       },
       {
-        "section": "Grill Breakfast Buffet",
+        "section": "Chef's Table Lunch Specials",
         "items": [
-          "Scrambled Eggs with Cream and Butter",
-          "Scrambled Egg Whites",
-          "Chilaquiles, Beans, Tofu Scramble",
-          "Mushroom Florentine Scramble",
-          "Pork Breakfast Sausage Patty",
-          "Fried Hash Brown Patty",
-          "Banana Pancakes",
-          "Cherry Compote"
+          "Cider Brined Roasted Pork Loin",
+          "Charred Broccolini",
+          "Red Bliss Potatoes",
+          "Belgian Waffle",
+          "Blueberry Compote"
+        ]
+      },
+      {
+        "section": "Grill Lunch Specials",
+        "items": [
+          "Buffalo Chicken, Blue Cheese, WW",
+          "Bacon Cheeseburger",
+          "Meatless Reuben",
+          "Grilled Vegetables",
+          "Cajun Fries",
+          "Chili Crisp Hot Honey Chicken Tenders"
         ]
       },
       {
@@ -33,39 +41,17 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Chilaquiles, Beans, Tofu Scramble",
-          "Mushroom Florentine Scramble",
-          "Pork Breakfast Sausage Patty",
-          "Fried Hash Brown Patty"
-        ]
-      }
-    ],
-    "lunch": [
-      {
-        "section": "Chef's Table Lunch Specials",
-        "items": [
-          "Vegetable Shrimp Pad Thai",
-          "Ginger Broccoli & Bell Peppers",
-          "Vegetable Spring Roll",
-          "Papaya Tom Som Tam Salad"
-        ]
-      },
-      {
-        "section": "Grill Lunch Specials",
-        "items": [
-          "Roasted Street Corn Hot Dog",
-          "Cajun Remoulade Fried Fish Po Boy",
-          "BBQ Garden Burger",
-          "Grilled Vegetables",
-          "Parsley and Garlic Fries",
-          "Fried Mac and Cheese"
+          "Spicy Tofu Scramble",
+          "Red Pepper & Swiss Cheese Frittata Bites",
+          "Sauteed Breakfast Potatoes",
+          "Pork Breakfast Sausage Patty"
         ]
       },
       {
         "section": "Pasta Specials",
         "items": [
-          "Cheese Tortellini Marinara",
-          "Penne Pork Sausage & Pepper Penne Marinara"
+          "Creamy Chicken, Broccoli & Vegetable Penne Alfredo",
+          "Shrimp, Spinach & Tomato Penne Pasta"
         ]
       },
       {
@@ -73,17 +59,8 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Ham and Pineapple Pizza",
-          "Black Olive Pizza"
-        ]
-      },
-      {
-        "section": "Rooted Lunch Specials",
-        "items": [
-          "Sweet Potato Chickpea Spinach Vindaloo",
-          "Biryani Basmati Rice with Coconut Milk",
-          "Afghan Chana Dal",
-          "Swiss Chard"
+          "Beef Taco & Cheese Pizza",
+          "Mushroom and Cheese Pizza"
         ]
       }
     ],
@@ -91,28 +68,29 @@
       {
         "section": "Chef's Table Dinner Specials",
         "items": [
-          "Harissa Garlic Marinated Pork Loin",
-          "garlic mashed potatoes",
-          "Braised Southern Greens, Bacon",
-          "Charred Scallion, Lime Aioli"
+          "Jerk Chicken",
+          "Carrots, Celery and Potatoes",
+          "Creamed Green Beans",
+          "Baked Plantains"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Cheesesteak Club",
           "Jalapeno Ranch Chicken Slider",
-          "American Cheese, Fried Onions, Chipotle Crema Black Bean Burger",
-          "Fried Chicken Tenders",
+          "Black Bean Burger, Blue Cheese & Red Onion",
+          "Pork Sandwich",
+          "Breaded Popcorn Chicken",
           "French Fries",
-          "Grilled Vegetables"
+          "Grilled Vegetables",
+          "Chicken Philly Cheese Steak"
         ]
       },
       {
         "section": "Pasta Specials",
         "items": [
-          "Cheese Tortellini Marinara",
-          "Penne Pork Sausage & Pepper Penne Marinara"
+          "Creamy Chicken, Broccoli & Vegetable Penne Alfredo",
+          "Shrimp, Spinach & Tomato Penne Pasta"
         ]
       },
       {
@@ -120,45 +98,20 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Ham and Pineapple Pizza",
-          "Black Olive Pizza"
+          "Beef Taco & Cheese Pizza",
+          "Mushroom and Cheese Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Quinoa and Wild Rice",
-          "Buffalo Grilled Tofu",
-          "Grilled Sweet Peppers",
-          "Roasted Eggplant"
-        ]
-      }
-    ],
-    "late_night": [
-      {
-        "section": "Late Night Specials",
-        "items": [
-          "Cheese Quesadilla",
-          "Chicken Nuggets"
-        ]
-      },
-      {
-        "section": "Pasta Specials",
-        "items": [
-          "Cheese Tortellini Marinara",
-          "Penne Pork Sausage & Pepper Penne Marinara"
-        ]
-      },
-      {
-        "section": "Pizza Specials",
-        "items": [
-          "Cheese Pizza",
-          "Pepperoni Pizza",
-          "Ham and Pineapple Pizza",
-          "Black Olive Pizza"
+          "Vegan Hominy Squash Stew",
+          "Yellow Basmati Rice",
+          "Roasted Zucchini and Tomatoes",
+          "Roasted Brussels Sprouts"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/todays-dine-in-specials-esd/2026/01/30/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/todays-dine-in-specials-esd/2026/01/31/?format=json"
 }
