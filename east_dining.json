@@ -1,39 +1,51 @@
 {
-  "date": "2026-01-31",
+  "date": "2026-02-01",
   "location": "East Side Dining (Dine-in Specials)",
   "is_weekend": true,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-01-31 00:56:17 EST",
+  "updated_at": "2026-02-01 01:09:37 EST",
   "timezone": "America/New_York",
   "meals": {
     "brunch": [
       {
         "section": "Breakfast at Chef's Table",
         "items": [
-          "Belgian Waffle",
-          "Blueberry Compote"
+          "Belgian Waffles",
+          "Pineapple Compote"
         ]
       },
       {
         "section": "Chef's Table Lunch Specials",
         "items": [
-          "Cider Brined Roasted Pork Loin",
-          "Charred Broccolini",
-          "Red Bliss Potatoes",
-          "Belgian Waffle",
-          "Blueberry Compote"
+          "Char Siu Roast Pork",
+          "Pineapple Fried Rice",
+          "Sesame Broccoli and Carrots",
+          "Apple Compote",
+          "French Toast Sticks with Maple Syrup"
+        ]
+      },
+      {
+        "section": "Grill Breakfast Buffet",
+        "items": [
+          "Scrambled Eggs with Cream and Butter",
+          "Scrambled Egg Whites",
+          "Denver Scramble",
+          "Breakfast Potatoes",
+          "Chicken Sausage Patty",
+          "Pineapple Compote",
+          "Belgian Waffles"
         ]
       },
       {
         "section": "Grill Lunch Specials",
         "items": [
-          "Buffalo Chicken, Blue Cheese, WW",
-          "Bacon Cheeseburger",
-          "Meatless Reuben",
+          "BBQ Cheddar Ranch Garden Burger",
+          "Turkey, Bacon, American Cheese Wrap",
+          "Crispy Ranch Chicken Sandwich with Monterrey Cheese",
+          "French Fries",
           "Grilled Vegetables",
-          "Cajun Fries",
-          "Chili Crisp Hot Honey Chicken Tenders"
+          "Chicken Philly Cheese Steak"
         ]
       },
       {
@@ -41,17 +53,17 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Spicy Tofu Scramble",
-          "Red Pepper & Swiss Cheese Frittata Bites",
-          "Sauteed Breakfast Potatoes",
-          "Pork Breakfast Sausage Patty"
+          "Green Pepper & Onion Tofu Scramble",
+          "Bacon Cheddar Frittata",
+          "Pork Breakfast Sausage Patty",
+          "Crispy Tater Tots"
         ]
       },
       {
         "section": "Pasta Specials",
         "items": [
-          "Creamy Chicken, Broccoli & Vegetable Penne Alfredo",
-          "Shrimp, Spinach & Tomato Penne Pasta"
+          "Creamy Wild Mushroom Penne Pasta",
+          "Rigatoni with Sausage"
         ]
       },
       {
@@ -59,8 +71,19 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Beef Taco & Cheese Pizza",
-          "Mushroom and Cheese Pizza"
+          "Roasted Vegetable Pizza",
+          "Pork Bacon Four Cheese Pizza"
+        ]
+      },
+      {
+        "section": "Rooted Lunch Specials",
+        "items": [
+          "Scrambled Eggs with Cream and Butter",
+          "Scrambled Egg Whites",
+          "Pepper and Onion Tofu Scramble",
+          "Breakfast Potatoes",
+          "Egg, Chorizo, Cheddar Scramble",
+          "Chicken Sausage Patty"
         ]
       }
     ],
@@ -68,29 +91,28 @@
       {
         "section": "Chef's Table Dinner Specials",
         "items": [
-          "Jerk Chicken",
-          "Carrots, Celery and Potatoes",
-          "Creamed Green Beans",
-          "Baked Plantains"
+          "Chicken Marsala",
+          "Garlic Mashed Potatoes",
+          "Roasted Brussels Sprouts and Carrots",
+          "Marsala Sauce"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Jalapeno Ranch Chicken Slider",
-          "Black Bean Burger, Blue Cheese & Red Onion",
-          "Pork Sandwich",
-          "Breaded Popcorn Chicken",
+          "Garden Burger with American Cheese",
+          "Spicy Breaded Chicken Sandwich with Blue Cheese Coleslaw",
+          "Beef Slider",
+          "Fried Chicken Tenders",
           "French Fries",
-          "Grilled Vegetables",
-          "Chicken Philly Cheese Steak"
+          "Grilled Vegetables"
         ]
       },
       {
         "section": "Pasta Specials",
         "items": [
-          "Creamy Chicken, Broccoli & Vegetable Penne Alfredo",
-          "Shrimp, Spinach & Tomato Penne Pasta"
+          "Creamy Wild Mushroom Penne Pasta",
+          "Rigatoni with Sausage"
         ]
       },
       {
@@ -98,20 +120,20 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Beef Taco & Cheese Pizza",
-          "Mushroom and Cheese Pizza"
+          "Roasted Vegetable Pizza",
+          "Pork Bacon Four Cheese Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Vegan Hominy Squash Stew",
-          "Yellow Basmati Rice",
-          "Roasted Zucchini and Tomatoes",
-          "Roasted Brussels Sprouts"
+          "Kidney Bean, Green Chilis & Tomato Curry",
+          "Herbed Rice Pilaf",
+          "Roasted Cauliflower",
+          "Roasted Turnip Wedges"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/todays-dine-in-specials-esd/2026/01/31/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/todays-dine-in-specials-esd/2026/02/01/?format=json"
 }
