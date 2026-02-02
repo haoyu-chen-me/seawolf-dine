@@ -1,14 +1,14 @@
 {
-  "date": "2026-02-01",
+  "date": "2026-02-02",
   "location": "Jasmine",
-  "hours_today": "12pm to 7pm",
+  "hours_today": "11am to 8pm",
   "fixed_menu_date_for_non_daily": "2026-01-27",
-  "updated_at": "2026-02-01 01:09:38 EST",
+  "updated_at": "2026-02-02 01:16:29 EST",
   "timezone": "America/New_York",
   "sections": [
     {
       "section": "Cafetasia Chinese",
-      "hours_today": "12pm to 7pm",
+      "hours_today": "11am to 8pm",
       "menu_date": "2026-01-27",
       "items": [
         "Rice Cake",
@@ -35,14 +35,25 @@
     },
     {
       "section": "Curry Kitchen",
-      "hours_today": "Closed",
-      "menu_date": "2026-02-01",
-      "items": [],
-      "menu_url": "https://stonybrook.nutrislice.com/menu/jasmine/curry-kitchen/2026-02-01"
+      "hours_today": "11am to 8pm",
+      "menu_date": "2026-02-02",
+      "items": [
+        "Chicken Biryani",
+        "Chicken Tikka Masala",
+        "Tandoori Chicken with Onion Salad",
+        "Butter Naan",
+        "Vegetable Samosa",
+        "Chicken 65",
+        "Chana Masala Aloo",
+        "Yellow Dal",
+        "Basmati Rice",
+        "Sesame Tahini White Sauce"
+      ],
+      "menu_url": "https://stonybrook.nutrislice.com/menu/jasmine/curry-kitchen/2026-02-02"
     },
     {
       "section": "Cafetasia Korean",
-      "hours_today": "12pm to 7pm",
+      "hours_today": "11am to 8pm",
       "menu_date": "2026-01-27",
       "items": [
         "Tuk Kalbi",
@@ -67,7 +78,7 @@
     },
     {
       "section": "Sushido",
-      "hours_today": "12pm to 7pm",
+      "hours_today": "11am to 8pm",
       "menu_date": "2026-01-27",
       "items": [
         "Chef Special Combo Sushi",

@@ -1,28 +1,18 @@
 {
-  "date": "2026-02-01",
+  "date": "2026-02-02",
   "location": "East Side Dining (Dine-in Specials)",
-  "is_weekend": true,
+  "is_weekend": false,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-02-01 01:09:37 EST",
+  "updated_at": "2026-02-02 01:16:27 EST",
   "timezone": "America/New_York",
   "meals": {
-    "brunch": [
+    "breakfast": [
       {
         "section": "Breakfast at Chef's Table",
         "items": [
-          "Belgian Waffles",
-          "Pineapple Compote"
-        ]
-      },
-      {
-        "section": "Chef's Table Lunch Specials",
-        "items": [
-          "Char Siu Roast Pork",
-          "Pineapple Fried Rice",
-          "Sesame Broccoli and Carrots",
-          "Apple Compote",
-          "French Toast Sticks with Maple Syrup"
+          "Belgian Waffle",
+          "Blueberry Compote"
         ]
       },
       {
@@ -30,22 +20,11 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
+          "Mushroom Tofu Scramble",
           "Denver Scramble",
-          "Breakfast Potatoes",
-          "Chicken Sausage Patty",
-          "Pineapple Compote",
-          "Belgian Waffles"
-        ]
-      },
-      {
-        "section": "Grill Lunch Specials",
-        "items": [
-          "BBQ Cheddar Ranch Garden Burger",
-          "Turkey, Bacon, American Cheese Wrap",
-          "Crispy Ranch Chicken Sandwich with Monterrey Cheese",
-          "French Fries",
-          "Grilled Vegetables",
-          "Chicken Philly Cheese Steak"
+          "Crispy Tater Tots",
+          "Blueberry Compote",
+          "Belgian Waffle"
         ]
       },
       {
@@ -53,17 +32,39 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Green Pepper & Onion Tofu Scramble",
-          "Bacon Cheddar Frittata",
-          "Pork Breakfast Sausage Patty",
-          "Crispy Tater Tots"
+          "Mushroom Tofu Scramble",
+          "Denver Scramble",
+          "Crispy Tater Tots",
+          "Chicken Sausage Patty"
+        ]
+      }
+    ],
+    "lunch": [
+      {
+        "section": "Chef's Table Lunch Specials",
+        "items": [
+          "Chicken Cacciatore",
+          "Classic Risotto",
+          "Broccoli Rabe, Garlic and Chilies",
+          "Garlic Bread"
+        ]
+      },
+      {
+        "section": "Grill Lunch Specials",
+        "items": [
+          "BBQ Turkey Burger",
+          "Ham and Swiss Melt on Rye",
+          "BBQ Cheddar Ranch Garden Burger",
+          "Chicken Nuggets",
+          "Cajun Spiced Fries",
+          "Grilled Vegetables"
         ]
       },
       {
         "section": "Pasta Specials",
         "items": [
-          "Creamy Wild Mushroom Penne Pasta",
-          "Rigatoni with Sausage"
+          "Penne Pasta with Sausage, Zucchini",
+          "Tomato & Spinach Mac & Cheese"
         ]
       },
       {
@@ -71,19 +72,17 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Roasted Vegetable Pizza",
-          "Pork Bacon Four Cheese Pizza"
+          "Margherita Pizza",
+          "Cheesesteak Pizza"
         ]
       },
       {
         "section": "Rooted Lunch Specials",
         "items": [
-          "Scrambled Eggs with Cream and Butter",
-          "Scrambled Egg Whites",
-          "Pepper and Onion Tofu Scramble",
-          "Breakfast Potatoes",
-          "Egg, Chorizo, Cheddar Scramble",
-          "Chicken Sausage Patty"
+          "Green Pea Basmati Rice Pullao",
+          "Roasted Zucchini and Tomatoes",
+          "Red Dahl & Sweet Potatoes",
+          "Small Vegetable Samosa"
         ]
       }
     ],
@@ -91,28 +90,28 @@
       {
         "section": "Chef's Table Dinner Specials",
         "items": [
-          "Chicken Marsala",
-          "Garlic Mashed Potatoes",
-          "Roasted Brussels Sprouts and Carrots",
-          "Marsala Sauce"
+          "Roasted Pork",
+          "Yellow Rice",
+          "Chimichurri Sauce",
+          "Steamed Cauliflower"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Garden Burger with American Cheese",
-          "Spicy Breaded Chicken Sandwich with Blue Cheese Coleslaw",
-          "Beef Slider",
-          "Fried Chicken Tenders",
-          "French Fries",
-          "Grilled Vegetables"
+          "Tot'chos",
+          "Beef Chili",
+          "Tater Tots",
+          "Cheddar Cheese",
+          "Cheese Sauce",
+          "Broccoli"
         ]
       },
       {
         "section": "Pasta Specials",
         "items": [
-          "Creamy Wild Mushroom Penne Pasta",
-          "Rigatoni with Sausage"
+          "Penne Pasta with Sausage, Zucchini",
+          "Tomato & Spinach Mac & Cheese"
         ]
       },
       {
@@ -120,20 +119,51 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Roasted Vegetable Pizza",
-          "Pork Bacon Four Cheese Pizza"
+          "Margherita Pizza",
+          "Cheesesteak Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Kidney Bean, Green Chilis & Tomato Curry",
-          "Herbed Rice Pilaf",
-          "Roasted Cauliflower",
-          "Roasted Turnip Wedges"
+          "Cauliflower, Broccoli & Mushroom Lentil Bolognese",
+          "Brown Rice",
+          "Edamame Succotash",
+          "Spinach"
+        ]
+      }
+    ],
+    "late_night": [
+      {
+        "section": "Late Night Specials",
+        "items": [
+          "Beef Hot Dog with Sauerkraut",
+          "Beef Cheesesteak",
+          "Black Bean Burger",
+          "Fried Chicken Tenders",
+          "French Fries",
+          "Grilled Vegetables",
+          "soft pretzel",
+          "Jalapeno Bites"
+        ]
+      },
+      {
+        "section": "Pasta Specials",
+        "items": [
+          "Penne Pasta with Sausage, Zucchini",
+          "Tomato & Spinach Mac & Cheese"
+        ]
+      },
+      {
+        "section": "Pizza Specials",
+        "items": [
+          "Cheese Pizza",
+          "Pepperoni Pizza",
+          "Margherita Pizza",
+          "Cheesesteak Pizza"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/todays-dine-in-specials-esd/2026/02/01/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/east-side-dining/menu-type/todays-dine-in-specials-esd/2026/02/02/?format=json"
 }

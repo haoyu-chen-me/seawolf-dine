@@ -1,108 +1,147 @@
 {
-  "date": "2026-02-01",
+  "date": "2026-02-02",
   "location": "West Side Dining (Dine-in Specials)",
-  "is_weekend": true,
+  "is_weekend": false,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-02-01 01:09:37 EST",
+  "updated_at": "2026-02-02 01:16:29 EST",
   "timezone": "America/New_York",
   "meals": {
-    "brunch": [
-      {
-        "section": "Grill Lunch Specials",
-        "items": [
-          "Chipotle Ranch Chicken Quesadilla",
-          "Texas Toast Triple Cheese Sandwich",
-          "Bacon BBQ Beef Cheese Burger",
-          "Cajun Fries",
-          "French Fries"
-        ]
-      },
+    "breakfast": [
       {
         "section": "Hot Breakfast Buffet",
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Cheesy Tofu Fajita Scramble",
-          "Mushroom and Cheese Frittata",
-          "Tater Tots",
-          "Belgian Waffle",
-          "Pork Breakfast Sausage Patty",
-          "Strawberry Compote",
-          "BBQ Roasted Chicken",
-          "Broccoli",
-          "Warm Orzo and Sautéed Spinach",
-          "Jasmine Rice"
+          "Chilaquiles, Beans, Tofu Scramble",
+          "Spinach, Potato, Rosemary Frittata",
+          "Home Fries with Onions & Peppers",
+          "Blueberry Pancakes",
+          "Chicken Sausage Patty",
+          "Cherry Compote"
+        ]
+      }
+    ],
+    "lunch": [
+      {
+        "section": "Fusion Kitchen Lunch Specials",
+        "items": [
+          "Teriyaki Chicken",
+          "Gochujang, Hoisin & Soy Sauce Eggplant",
+          "Jasmine Rice",
+          "Yellow Rice with Peas"
+        ]
+      },
+      {
+        "section": "Grill Lunch Specials",
+        "items": [
+          "Caprese Grilled Cheese",
+          "Chicken Parmesan Slider",
+          "Cajun PINK Shrimp Po \"Girl\" Sandwich",
+          "French Fries",
+          "Crispy Parmesan French Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Cheese Pizza Flatbread",
-          "Creamy Penne Ala Vodka",
-          "Vegetable Beef Barley Soup"
+          "Spaghetti and Meatballs, Parmesan Cheese",
+          "Mushroom Ravioli, Marinara",
+          "Chicken & Dumpling Soup"
         ]
       },
       {
         "section": "Pizza Specials",
         "items": [
-          "Pepperoni Flatbread"
+          "Cheese Pizza",
+          "Pepperoni Pizza",
+          "Mushroom and Cheese Pizza",
+          "Pepper & Onion Pizza"
         ]
       },
       {
         "section": "Rooted Lunch Specials",
         "items": [
-          "Lentil and Black Bean Chili",
-          "rainbow carrots & crispy onions",
-          "Steamed Cauliflower",
-          "Tofu with Mango Sweet Chili Sauce"
+          "Meatless Chicken Tenders",
+          "Roasted Turmeric Potatoes",
+          "Roasted Brussels Sprouts",
+          "Fennel Beet Quinoa"
         ]
       }
     ],
     "dinner": [
       {
+        "section": "Composed Salads",
+        "items": [
+          "Tajin Spiced Watermelon Salad, Champagne Vinegarette",
+          "Chipotle Cole Slaw"
+        ]
+      },
+      {
         "section": "Fusion Kitchen Dinner Specials",
         "items": [
-          "Teriyaki Pork Loin",
-          "Gingered Snow Peas",
-          "Vegetable Lo Mein",
+          "Mongolian Beef",
+          "Agave Glazed Carrots",
+          "Roasted Purple Potatoes",
           "Jasmine Rice"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Impossible Meatless Slider",
-          "Chipotle Black Bean Burger,  American Cheese, Wheat Bun",
-          "Pork & Cheese Quesadilla",
-          "Seasoned Potato Wedges",
+          "Grilled Cheese",
+          "Honey Mustard Pork Sandwich",
+          "Cheese Quesadilla",
+          "BBQ Potato Chips",
           "French Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "Cheese Pizza Flatbread",
-          "Creamy Penne Ala Vodka",
-          "Vegetable Beef Barley Soup"
+          "Spaghetti and Meatballs, Parmesan Cheese",
+          "Mushroom Ravioli, Marinara",
+          "Chicken & Dumpling Soup"
         ]
       },
       {
         "section": "Pizza Specials",
         "items": [
-          "Pepperoni Flatbread"
+          "Cheese Pizza",
+          "Pepperoni Pizza",
+          "Mushroom and Cheese Pizza",
+          "Pepper & Onion Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Vegan Dal Bukhara (Curried Black Lentils)",
-          "Aloo Gobi",
-          "Broccoli",
-          "Roasted Hominy"
+          "BBQ Tofu",
+          "Red Rice and Beans",
+          "Roasted Zucchini, Squash",
+          "Grilled Corn on the Cob"
+        ]
+      }
+    ],
+    "late_night": [
+      {
+        "section": "Pasta and Soup Specials",
+        "items": [
+          "Spaghetti and Meatballs, Parmesan Cheese",
+          "Mushroom Ravioli, Marinara",
+          "Chicken & Dumpling Soup"
+        ]
+      },
+      {
+        "section": "Pizza Specials",
+        "items": [
+          "Cheese Pizza",
+          "Pepperoni Pizza",
+          "Mushroom and Cheese Pizza",
+          "Pepper & Onion Pizza"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/02/01/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/02/02/?format=json"
 }
