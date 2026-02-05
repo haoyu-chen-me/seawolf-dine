@@ -1,11 +1,11 @@
 {
   "location": "Dental Café",
-  "date": "2026-02-04",
+  "date": "2026-02-05",
   "timezone": "America/New_York",
-  "updated_at": "2026-02-04 01:06:19 EST",
+  "updated_at": "2026-02-05 01:12:16 EST",
   "status": "ok",
   "message": "Menu fetched.",
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sbu-eats-events/menu-type/dental-cafe/2026/02/04/?format=json",
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/sbu-eats-events/menu-type/dental-cafe/2026/02/05/?format=json",
   "sections": [
     {
       "section": "Breakfast Specials",
@@ -26,14 +26,15 @@
     {
       "section": "Vegetarian Specials",
       "items": [
-        "Baked Ziti"
+        "Vegetable Pasta Primavera"
       ]
     },
     {
       "section": "Hot Entree Special",
       "items": [
-        "Baked Chicken Parmesan",
-        "Penne Marinara"
+        "Jerk Chicken",
+        "White Rice",
+        "Pineapple Salsa"
       ]
     },
     {
@@ -44,5 +45,5 @@
       ]
     }
   ],
-  "menu_url": "https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe/2026-02-04"
+  "menu_url": "https://stonybrook.nutrislice.com/menu/sbu-eats-events/dental-cafe/2026-02-05"
 }

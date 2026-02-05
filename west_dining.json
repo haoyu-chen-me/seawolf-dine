@@ -1,10 +1,10 @@
 {
-  "date": "2026-02-04",
+  "date": "2026-02-05",
   "location": "West Side Dining (Dine-in Specials)",
   "is_weekend": false,
   "status": "ok",
   "message": "Menu fetched and categorized.",
-  "updated_at": "2026-02-04 01:06:04 EST",
+  "updated_at": "2026-02-05 01:12:10 EST",
   "timezone": "America/New_York",
   "meals": {
     "breakfast": [
@@ -13,12 +13,12 @@
         "items": [
           "Scrambled Eggs with Cream and Butter",
           "Scrambled Egg Whites",
-          "Black Bean, Bell Peppers, Tomato & Onion Tofu Scramble",
-          "Potato Cheese Frittata",
-          "Homes Fries",
-          "Baked Blueberry French Toast",
-          "Pork Bacon",
-          "Mixed Berry Compote"
+          "Tofu \"Chorizo\" Crumbles",
+          "Egg, Sausage, Cheddar Scramble",
+          "Hash Brown Patty",
+          "Smores Pancake",
+          "Pork sausage Links",
+          "Apple Compote"
         ]
       }
     ],
@@ -26,28 +26,28 @@
       {
         "section": "Fusion Kitchen Lunch Specials",
         "items": [
-          "Gochujang Chicken",
-          "Sesame Glazed Red Pepper and Snow Peas",
-          "Scallion Oil Soba Noodles",
-          "Jasmine Rice"
+          "beer battered cod",
+          "House Made Potato Chips",
+          "Cole Slaw",
+          "Caper Remoulade"
         ]
       },
       {
         "section": "Grill Lunch Specials",
         "items": [
-          "Beer Battered Cod Sandwich with Caper Mayo Spread",
-          "Bulgogi Grilled Chicken Sandwich, Spicy Kimchi",
-          "Grilled Swiss Cheese Sandwich",
-          "Truffle Parmesan Fries",
+          "Grilled Chicken Caesar Snack Wrap, Caesar Anchovy Dressing",
+          "Shredded Steak & Cheese Quesadilla",
+          "Roasted Red Pepper, Mozzarella Cheese Garden Burger, Pesto Mayo Wrap",
+          "Tater Tots",
           "French Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "sesame soba noodles",
-          "Farfalle Garlic and Oil",
-          "Tomato Basil Bisque"
+          "Buffalo Chicken Mac n Cheese",
+          "Soy Glazed Lo Mein Noodles with Mushroom, Cabbage, Carrots, Bamboo Shoots",
+          "Chicken and Wild Rice Soup"
         ]
       },
       {
@@ -55,17 +55,17 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Pesto Roasted Vegetable Pizza",
-          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza"
+          "Jalapeño Pizza",
+          "Bacon Pizza"
         ]
       },
       {
         "section": "Rooted Lunch Specials",
         "items": [
-          "Cajun-Style Lentil Stew",
-          "Cilantro Brown Rice",
-          "Lemon Thyme Carrots",
-          "Chimichurri Yucca"
+          "Chana Masala",
+          "Cumin Basmati RIce",
+          "Roasted Turnip Wedges",
+          "Turmeric Cauliflower"
         ]
       }
     ],
@@ -73,35 +73,35 @@
       {
         "section": "Composed Salads",
         "items": [
-          "Soy-Garlic Romaine Salad",
-          "Chipotle Cole Slaw"
+          "Heirloom Tomato and Mozzarella Salad",
+          "Garden Salad"
         ]
       },
       {
         "section": "Fusion Kitchen Dinner Specials",
         "items": [
-          "Cajun Shrimp",
-          "Creamy Southern Grits",
-          "Stewed Okra Medley",
-          "Frizzled Leeks"
+          "Buttermilk Brined Fried Chicken",
+          "Butter Bean Succotash",
+          "Smothered Cabbage",
+          "Fry Sauce"
         ]
       },
       {
         "section": "Grill Dinner Specials",
         "items": [
-          "Smoked Turkey, Arugula, Dried Cranberry, Cream Cheese Wrap",
-          "Roasted Street Corn Hot Dog",
-          "Vegetable Quesadilla",
-          "Curly Fries",
+          "Jalapeno Burger",
+          "Cheesesteak Club",
+          "Roast Pork Broccoli Rabe Sandwich",
+          "Seasoned Potato Wedges",
           "French Fries"
         ]
       },
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "sesame soba noodles",
-          "Farfalle Garlic and Oil",
-          "Tomato Basil Bisque"
+          "Buffalo Chicken Mac n Cheese",
+          "Soy Glazed Lo Mein Noodles with Mushroom, Cabbage, Carrots, Bamboo Shoots",
+          "Chicken and Wild Rice Soup"
         ]
       },
       {
@@ -109,17 +109,17 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Pesto Roasted Vegetable Pizza",
-          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza"
+          "Jalapeño Pizza",
+          "Bacon Pizza"
         ]
       },
       {
         "section": "Rooted Dinner Specials",
         "items": [
-          "Quinoa Rancheros",
-          "Fajita Vegetables",
-          "Cilantro Green Rice",
-          "Sauteed Yellow Squash & Pepper"
+          "Three Bean Chili",
+          "Yellow Rice",
+          "Sauteed Vegetable Medley",
+          "spicy broccoli rabe"
         ]
       }
     ],
@@ -127,9 +127,9 @@
       {
         "section": "Pasta and Soup Specials",
         "items": [
-          "sesame soba noodles",
-          "Farfalle Garlic and Oil",
-          "Tomato Basil Bisque"
+          "Buffalo Chicken Mac n Cheese",
+          "Soy Glazed Lo Mein Noodles with Mushroom, Cabbage, Carrots, Bamboo Shoots",
+          "Chicken and Wild Rice Soup"
         ]
       },
       {
@@ -137,11 +137,11 @@
         "items": [
           "Cheese Pizza",
           "Pepperoni Pizza",
-          "Pesto Roasted Vegetable Pizza",
-          "Mushroom, Pork Sausage & Pepperoni Supreme Cheese Pizza"
+          "Jalapeño Pizza",
+          "Bacon Pizza"
         ]
       }
     ]
   },
-  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/02/04/?format=json"
+  "source_url": "https://stonybrook.api.nutrislice.com/menu/api/weeks/school/west-side-dining/menu-type/todays-dine-in-specials-wsd/2026/02/05/?format=json"
 }
